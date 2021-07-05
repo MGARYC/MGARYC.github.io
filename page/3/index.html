@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>CodingDiary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="路其修远兮，吾将上下而求索">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CodingDiary">
+<meta property="og:url" content="http://example.com/page/3/index.html">
+<meta property="og:site_name" content="CodingDiary">
+<meta property="og:description" content="路其修远兮，吾将上下而求索">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="MAGRY">
+<meta property="article:tag" content="java,SpringClude,SpringBoot,Mysql,Linux,Docker">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="CodingDiary" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">CodingDiary</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">CodingDiary-代码日记</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-pm2-进程管理与维护" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/05/07/pm2-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4/" class="article-date">
+  <time class="dt-published" datetime="2020-05-07T04:00:31.000Z" itemprop="datePublished">2020-05-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/05/07/pm2-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4/">pm2进程管理与维护</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>全局安装，简直不能更简单。<br><code>npm install -g pm2</code></p>
+<h1 id="目录介绍"><a href="#目录介绍" class="headerlink" title="目录介绍"></a>目录介绍</h1><p>pm2安装好后，会自动创建下面目录。看文件名基本就知道干嘛的了，就不翻译了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$HOME/.pm2  #将包含所有PM2相关文件</span><br><span class="line">$HOME/.pm2/logs #将包含所有应用程序日志</span><br><span class="line">$HOME/.pm2/pids #将包含所有应用程序pids</span><br><span class="line">$HOME/.pm2/pm2.log PM2 logs</span><br><span class="line">$HOME/.pm2/pm2.pid PM2 pid</span><br><span class="line">$HOME/.pm2/rpc.sock #用于远程命令的套接字文件</span><br><span class="line">$HOME/.pm2/pub.sock #可发布事件的套接字文件 </span><br><span class="line">$HOME/.pm2/conf.js #PM2配置</span><br></pre></td></tr></table></figure>
+<h1 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h1><ul>
+<li>查看进程状态<br><code>pm2 list</code></li>
+<li>删除<br><code>pm2 delete name</code></li>
+<li>停止<br><code>pm2 stop all</code></li>
+<li>启动<br><code>pm2 start npm --name &quot;jsyfShopNuxt&quot; -- run start </code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">pm2 list # 查看当前正在运行的进程</span><br><span class="line">pm2 start all  # 启动所有应用</span><br><span class="line">pm2 restart all  # 重启所有应用</span><br><span class="line">pm2 stop all # 停止所有的应用程序</span><br><span class="line">pm2 delete all # 关闭并删除所有应用</span><br><span class="line">pm2 logs # 控制台显示所有日志</span><br><span class="line"></span><br><span class="line">pm2 start 0  # 启动 id为 0的指定应用程序</span><br><span class="line">pm2 restart 0  # 重启 id为 0的指定应用程序</span><br><span class="line">pm2 stop 0 # 停止 id为 0的指定应用程序</span><br><span class="line">pm2 delete 0 # 删除 id为 0的指定应用程序</span><br><span class="line"></span><br><span class="line">pm2 logs 0 # 控制台显示编号为0的日志</span><br><span class="line">pm2 show 0  # 查看执行编号为0的进程</span><br><span class="line">pm2 monit jsyfShopNuxt # 监控名称为jsyfShopNuxt的进程</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/05/07/pm2-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4/" data-id="ckqq2z1qv001hnkwab0cg9dqt" data-title="pm2进程管理与维护" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PM2/" rel="tag">PM2</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-网站SEO" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/05/07/%E7%BD%91%E7%AB%99SEO/" class="article-date">
+  <time class="dt-published" datetime="2020-05-07T04:00:31.000Z" itemprop="datePublished">2020-05-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/05/07/%E7%BD%91%E7%AB%99SEO/">网站SEO</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="文章导读"><a href="#文章导读" class="headerlink" title="文章导读"></a>文章导读</h2><h2 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h2><blockquote>
+<p>SEO是Search Engine optimization的缩写，是搜索引擎优化的意思。</p>
+</blockquote>
+<h2 id="做什么"><a href="#做什么" class="headerlink" title="做什么"></a>做什么</h2><blockquote>
+<p>SEO 是通过研究各类搜索引擎如何抓取互联网页面&gt; 和文件，及研究搜索引擎进行排序的规则，来对网页进行相关的优化，&gt; 使其有更多的内容被搜索引擎收录，并针对不同的关&gt; 键字获得搜索引擎的左边更高的排名，从而提高网站访问量，最终提&gt; 升网站的销售能力及宣传效果。SEO 不是技术手段，是&gt; 网站推广的一部分，属于被动式营销。SEO 是针对网络的传播模&gt; &gt; 式，把目标内容（广告、产品、品牌）传递给目标授众的最&gt; 有效的途径。</p>
+</blockquote>
+<h2 id="如何做"><a href="#如何做" class="headerlink" title="如何做"></a>如何做</h2><ol>
+<li>申请百度百度站长账号</li>
+<li>绑定网站域名信息</li>
+<li>更具网站静态页面生成所有需要的URL链接</li>
+<li>使用百度站长工具提交以生成静态页面的URL</li>
+<li>申请熊掌号 -&gt; 熊掌号针对手机网站进行收录（熊掌号能做到当天收录），申请熊掌号需要2-5天的审核。</li>
+<li>申请根据熊掌号申请百家号（针对PC网站进行收录）<h2 id="VUE最优解决方案"><a href="#VUE最优解决方案" class="headerlink" title="VUE最优解决方案"></a>VUE最优解决方案</h2></li>
+</ol>
+<blockquote>
+<p>VUE框架方案 –  使用基于VUE的一个框架NUXT直接自动生成静态文件，次要方法直接build后，start项目可使用伪静态</p>
+</blockquote>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><blockquote>
+<p>最优方案网页–全静态化（打铁还需自身硬）</p>
+</blockquote>
+<blockquote>
+<p>网站跳转链接直接使用<code>&lt;a&gt;</code>标签进行跳转，尽量少使用JS.</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/05/07/%E7%BD%91%E7%AB%99SEO/" data-id="ckqq2z1qw001lnkwaeoolehie" data-title="网站SEO" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SEO/" rel="tag">SEO</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-微信分享" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/05/07/%E5%BE%AE%E4%BF%A1%E5%88%86%E4%BA%AB/" class="article-date">
+  <time class="dt-published" datetime="2020-05-07T04:00:31.000Z" itemprop="datePublished">2020-05-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%BC%80%E5%8F%91/">开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/05/07/%E5%BE%AE%E4%BF%A1%E5%88%86%E4%BA%AB/">微信分享</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>如果想要是使用微信的分享功能，需要使用微信JS-SDK来完成。且只能点击微信右上角的<code>...</code>调起分享面板，不能直接由页面行为唤起！</p>
+<h3 id="JS-SDK使用"><a href="#JS-SDK使用" class="headerlink" title="JS-SDK使用"></a>JS-SDK使用</h3><ol>
+<li><p>绑定域名：</p>
+<p> 登录微信公众平台 –&gt; 公众号设置 –&gt; 功能设置 –&gt; 填写“JS接口安全域名”(白名单设置)。</p>
+</li>
+<li><p>在页面引入JS文件：</p>
+<p> <a target="_blank" rel="noopener" href="http://res.wx.qq.com/open/js/jweixin-1.2.0.js">http://res.wx.qq.com/open/js/jweixin-1.2.0.js</a></p>
+</li>
+<li><p>配置config：</p>
+<p> 所有需要使用JS-SDK的页面必须先注入配置信息，否则将无法调用。</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wx.config(&#123;</span><br><span class="line"></span><br><span class="line">debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，pc端和微信开发者时才会打印。</span><br><span class="line"></span><br><span class="line">appId: &#x27;&#x27;, // 必填，公众号的唯一标识</span><br><span class="line"></span><br><span class="line">timestamp: , // 必填，生成签名的时间戳</span><br><span class="line"></span><br><span class="line">nonceStr: &#x27;&#x27;, // 必填，生成签名的随机串</span><br><span class="line"></span><br><span class="line">signature: &#x27;&#x27;,// 必填，签名</span><br><span class="line"></span><br><span class="line">jsApiList: [] // 必填，需要使用的JS接口列表</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p> 注意：</p>
+<ul>
+<li><p>config是一个客户端的异步操作</p>
+</li>
+<li><p>在JS-SDK后调用，也应该尽可能早的调用</p>
+</li>
+<li><p>同一个url仅需调用一次</p>
+</li>
+<li><p>对于变化url的SPA的web app可在每次url变化时进行调用</p>
+</li>
+<li><p>低于Android6.2版本的微信客户端，不支持pushState的H5新特性，使用pushState来实现web app的页面会导致签名失败</p>
+</li>
+</ul>
+</li>
+<li><p>配置成功回调：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  wx.ready(function()&#123;</span><br><span class="line"></span><br><span class="line">// ...</span><br><span class="line"></span><br><span class="line">  &#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p> 注：无论config成功或失败，ready中的内容都会被执行！</p>
+</li>
+<li><p>配置失败回调：</p>
+<p> config信息验证失败会执行error函数。</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wx.error(function(res)&#123;</span><br><span class="line"></span><br><span class="line">// ...</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>通用参数：</p>
+<p> 所有接口通过wx对象(也可使用jWeixin对象)来调用，参数是一个对象，除了每个接口本身需要传的参数之外，还有以下通用函数参数：</p>
+<ul>
+<li><p>success 接口调用成功时执行的回调函数。</p>
+</li>
+<li><p>fail 接口调用失败时执行的回调函数。</p>
+</li>
+<li><p>complete 接口调用完成时执行的回调函数，无论成功或失败都会执行。</p>
+</li>
+<li><p>cancel 用户点击取消时的回调函数，仅部分有用户取消操作的api才会用到。</p>
+</li>
+<li><p>trigger 监听Menu中的按钮点击时触发的方法，该方法仅支持Menu中的相关接口。</p>
+</li>
+</ul>
+<p> 回调参数：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">xxx: xxx,</span><br><span class="line"></span><br><span class="line">errMsg: &#x27;&#x27; // 接口调用成功/失败信息</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>微信分享接口</p>
+</li>
+</ol>
+<p>分享到朋友圈、好友、QQ、QQ空间对应的接口为<code>&#39;onMenuShareTimeline&#39;,&#39;onMenuShareAppMessage&#39;,&#39;onMenuShareQQ&#39;,&#39;onMenuShareQZone&#39;</code></p>
+<ul>
+<li>分享到朋友圈</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wx.onMenuShareTimeline(&#123;</span><br><span class="line"></span><br><span class="line">    title: &#x27;&#x27;, // 分享标题</span><br><span class="line"></span><br><span class="line">    link: &#x27;&#x27;, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致</span><br><span class="line"></span><br><span class="line">    imgUrl: &#x27;&#x27;, // 分享图标</span><br><span class="line"></span><br><span class="line">    success: function () &#123;</span><br><span class="line"></span><br><span class="line">        // 用户确认分享后执行的回调函数</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    cancel: function () &#123;</span><br><span class="line"></span><br><span class="line">        // 用户取消分享后执行的回调函数</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>注：分享到朋友圈，只有title分享标题，没有desc描述。</p>
+<ul>
+<li>分享到好友或群</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wx.onMenuShareAppMessage(&#123;</span><br><span class="line"></span><br><span class="line">    title: &#x27;&#x27;, // 分享标题</span><br><span class="line"></span><br><span class="line">    desc: &#x27;&#x27;, // 分享描述</span><br><span class="line"></span><br><span class="line">    link: &#x27;&#x27;, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致</span><br><span class="line"></span><br><span class="line">    imgUrl: &#x27;&#x27;, // 分享图标</span><br><span class="line"></span><br><span class="line">    type: &#x27;&#x27;, // 分享类型,music、video或link，不填默认为link</span><br><span class="line"></span><br><span class="line">    dataUrl: &#x27;&#x27;, // 如果type是music或video，则要提供数据链接，默认为空</span><br><span class="line"></span><br><span class="line">    success: function () &#123;</span><br><span class="line"></span><br><span class="line">    // 用户确认分享后执行的回调函数</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    cancel: function () &#123;</span><br><span class="line"></span><br><span class="line">    // 用户取消分享后执行的回调函数</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>分享到QQ和QQ空间</li>
+</ul>
+<p>分享接口：<code>onMenuShareQQ, onMenuShareQZone</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    title: &#x27;&#x27;, // 分享标题</span><br><span class="line"></span><br><span class="line">    desc: &#x27;&#x27;, // 分享描述</span><br><span class="line"></span><br><span class="line">    link: &#x27;&#x27;, // 分享链接</span><br><span class="line"></span><br><span class="line">    imgUrl: &#x27;&#x27;, // 分享图标</span><br><span class="line"></span><br><span class="line">    success: function () &#123;</span><br><span class="line"></span><br><span class="line">    // 用户确认分享后执行的回调函数</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    cancel: function () &#123;</span><br><span class="line"></span><br><span class="line">    // 用户取消分享后执行的回调函数</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="微信分享"><a href="#微信分享" class="headerlink" title="微信分享"></a>微信分享</h2><pre><code>用户调用微信的分享功能，可以自定义分享的title和描述，以及小图标和链接。可以分享到群、好友、朋友圈、QQ、QQ空间等。
+</code></pre>
+<h2 id="分享设计规范"><a href="#分享设计规范" class="headerlink" title="分享设计规范"></a>分享设计规范</h2><ul>
+<li><p>分享标题：14字以内，建议使用朋友般亲切的口吻</p>
+</li>
+<li><p>分享图标：尺寸120*120，大小不超过10K，不支持GIF格式。必须采用https协议。</p>
+</li>
+<li><p>分享描述：20字以内，对标题的简要解读。</p>
+</li>
+<li><p>分享链接：外链页面所在服务器至少能支持每秒1500次的访问压力，且每次访问的响应时间200ms以内。必须采用https协议。</p>
+</li>
+<li><p>分享行为：页面上无分享按钮，页面上无诱导分享行为，包含但不限于分享后才能看到特定的信息，分享后才能进行下一步流程，分享后可以获得奖励等</p>
+</li>
+<li><p>分享文案：分享时“文案”和“图片”可以正常显示，分享后链接可以访问。</p>
+</li>
+<li><p>分享标题和描述不能出现敏感词汇，否则会导致部分不可预知的问题。比如分享者可以看到分享图标，被分享者看不到图标等。</p>
+</li>
+</ul>
+<h3 id="敏感词举例：红包、现金、到账等"><a href="#敏感词举例：红包、现金、到账等" class="headerlink" title="敏感词举例：红包、现金、到账等"></a>敏感词举例：红包、现金、到账等</h3><p>注：分享的图标链接和分享链接尽量保持为同一域名下的资源。否则可能会出现分享不成功或分享图标不显示的情况。</p>
+<p>由于不能由页面直接唤起微信的分享面板，所以就需要一个弹窗浮层来引导用户用户去点击…按钮唤起分享面板。注意这个弹窗浮层不能出现诱导分享的内容。</p>
+<h3 id="分享或广告文案禁止内容"><a href="#分享或广告文案禁止内容" class="headerlink" title="分享或广告文案禁止内容"></a>分享或广告文案禁止内容</h3><ul>
+<li><p>特殊字符：不允许使用特殊字符与符号 ，例如：“：）” “-。-”等； 不允许使用 emoji 表情</p>
+</li>
+<li><p>诱导或引导操作： 不允许出现诱导或引导用户操作的描述。包含但不限于以下文案：“请点击查看详情”、 “赶快戳开看一看”、“点一下下面你就知道是什么”、“点击下方了解公众号”</p>
+</li>
+<li><p>微信产品功能词汇：未经微信官方授权，禁止使用以下产品功能词汇及其谐音词汇。包含但不限于以下内容：“朋友圈” 、“点赞” 、“评论” 、“公众号”、 “微信”、 “红包”</p>
+</li>
+<li><p>URL：不允许直接放URL链接内容</p>
+</li>
+<li><p>电话号码：不允许出现电话号码</p>
+</li>
+<li><p>破折号：不允许出现破折号，破折号在移动端显示容易产生歧义</p>
+</li>
+<li><p>空行&amp;空格：不允许使用空行或空格</p>
+</li>
+<li><p>不规范折行：不允许出现单个词语或文字折行</p>
+</li>
+<li><p>股票代码：不允许出现公司股票代码</p>
+</li>
+<li><p>非简体中文文字&amp;方言&amp;小语种：不允许使用非简体中文文字（单字、词语、成语）。暂不支持使用方言和小语种作为文案。</p>
+</li>
+<li><p>产品销量数据：不允许使用任何维度的产品销量数据。</p>
+</li>
+</ul>
+<h2 id="分享开发调试时注意事项"><a href="#分享开发调试时注意事项" class="headerlink" title="分享开发调试时注意事项"></a>分享开发调试时注意事项</h2><ol>
+<li><p>分享出去的外链的域名必须和公众号后台配置的JS安全域名一致，否则会导致分享的失败</p>
+</li>
+<li><p>分享出去的外链，会自动给加上微信标识，导致二次分享失败。</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">from=groupmessage  分享到群</span><br><span class="line"></span><br><span class="line">from=timeline  分享到朋友圈</span><br><span class="line"></span><br><span class="line">from=singlemessage  分享到好友</span><br><span class="line"></span><br><span class="line">isappinstalled=0    0或1，表示是否安装了app</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>由于微信的签名生成时，需要传一个url参数，而这个url则是通过：<code>location.href.split(&#39;#&#39;)[0]</code>获取的url，取的是url的#前边的部分来生成签名，第一次分享成功，生成签名的url不带query字段。通过一次分享出去的链接，带上了query后，生成的签名就无效了，导致二次分享失败。</p>
+<p>解决办法：</p>
+<blockquote>
+<p>生成签名的时候，动态的获取url，传给生成签名的接口。</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>每次打开页面时，都获取到url的#前边部分传给签名生成接口，保证每次的签名都是有效的。</p>
+</blockquote>
+</blockquote>
+<ol start="3">
+<li><p>微信分享时invalid signature错误解决和查找顺序</p>
+<ol>
+<li><p>确认签名算法正确，可用<a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/debug">http://mp.weixin.qq.com/debug</a>… 页面工具进行校验。</p>
+</li>
+<li><p>确认config中nonceStr（js中驼峰标准大写S）, timestamp与用以签名中的对应noncestr, timestamp一致。</p>
+</li>
+<li><p>确认url是页面完整的url(请在当前页面alert(location.href.split(‘#’)[0])确认)，包括’http(s)://‘部分，以及’？’后面的GET参数部分,但不包括’#’hash后面的部分。</p>
+</li>
+<li><p>确认 config 中的 appid 与用来获取 jsapi_ticket 的 appid 一致。</p>
+</li>
+<li><p>确保一定缓存access_token和jsapi_ticket。</p>
+</li>
+<li><p>确保你获取用来签名的url是动态获取的，动态页面可参见实例代码中php的实现方式。如果是html的静态页面在前端通过ajax将url传到后台签名，前端需要用js获取当前页面除去’#’hash部分的链接（可用location.href.split(‘#’)[0]获取,必要时需要<code>encodeURIComponent</code>转换链接格式，因为页面一旦分享，微信客户端会在你的链接末尾加入其它参数，如果不是动态获取当前链接，将导致分享后的页面签名失败。</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="四川经济日报使用微信"><a href="#四川经济日报使用微信" class="headerlink" title="四川经济日报使用微信"></a>四川经济日报使用微信</h2><ul>
+<li><p>分享请求后台时间搓参数时  不能使用get传值，必须使用post 因为get 连接后面拼接需要分享的URL时可能会带有<code>&amp;</code>符号会被服务器理解成拼接参数</p>
+</li>
+<li><p>微信分享  后台请求时间搓 有效时间未7200秒，每天访问接口次数有限，否则后面无法成功。</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/05/07/%E5%BE%AE%E4%BF%A1%E5%88%86%E4%BA%AB/" data-id="ckqq2z1qy001onkwa0dmkak6w" data-title="微信分享" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1/" rel="tag">微信</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Linux-常用命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/05/07/Linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time class="dt-published" datetime="2020-05-07T04:00:31.000Z" itemprop="datePublished">2020-05-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/05/07/Linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Linux-常用命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="删除当前目录-“-zip”-的参数"><a href="#删除当前目录-“-zip”-的参数" class="headerlink" title="删除当前目录 “*.zip”  的参数"></a>删除当前目录 “*.zip”  的参数</h2><h2 id="find-name-“-zip”-xargs-rm"><a href="#find-name-“-zip”-xargs-rm" class="headerlink" title=" find . -name “*.zip” | xargs rm"></a> find . -name “*.zip” | xargs rm</h2><p>//查看log日志<br>tail -f catalina.out<br>//输出制定行数日志<br>tail -n 10000 catalina.out &gt; tmp.log</p>
+<p>  vi 强制打开（打开隐藏文件）<br> mkdir dir1 创建一个叫做 ‘dir1’ 的目录’<br> mkdir dir1 dir2 同时创建两个目录<br> mkdir -p /tmp/dir1/dir2 创建一个目录树<br> rm -f file1 删除一个叫做 ‘file1’ 的文件’<br> rmdir dir1 删除一个叫做 ‘dir1’ 的目录’<br> rm -rf dir1 删除一个叫做 ‘dir1’ 的目录并同时删除其内容<br> rm -rf dir1 dir2 同时删除两个目录及它们的内容<br> mv dir1 new_dir 重命名/移动 一个目录<br> cp file1  复制一个文件<br> cp dir/* . 复制一个目录下的所有文件到当前工作目录<br> cp -a /tmp/dir1 . 复制一个目录到当前工作目录<br> cp -a dir1 dir2 复制一个目录 </p>
+<p>执行命令：<br>ps aux|head -1;ps aux|grep -v PID|sort -rn -k +3|head<br>查看占用CPU异常的进程ID</p>
+<h2 id="执行命令-kill-9-ID号-停掉该进程。"><a href="#执行命令-kill-9-ID号-停掉该进程。" class="headerlink" title="执行命令 kill -9 ID号 停掉该进程。"></a>执行命令 kill -9 ID号 停掉该进程。</h2><h2 id="pm2"><a href="#pm2" class="headerlink" title="pm2"></a>pm2</h2><p><code>pm2 start npm --name &quot;scjjrb&quot; -- run start</code></p>
+<h2 id="系统信息"><a href="#系统信息" class="headerlink" title="系统信息"></a>系统信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">arch  显示机器的处理器架构(1) </span><br><span class="line">uname -m  显示机器的处理器架构(2) </span><br><span class="line">uname -r  显示正在使用的内核版本 </span><br><span class="line">dmidecode -q  显示硬件系统部件 - (SMBIOS / DMI) </span><br><span class="line">hdparm -i /dev/hda  罗列一个磁盘的架构特性 </span><br><span class="line">hdparm -tT /dev/sda 在磁盘上执行测试性读取操作 </span><br><span class="line">cat /proc/cpuinfo 显示CPU info的信息 </span><br><span class="line">cat /proc/interrupts 显示中断 </span><br><span class="line">cat /proc/meminfo 校验内存使用 </span><br><span class="line">cat /proc/swaps 显示哪些swap被使用 </span><br><span class="line">cat /proc/version 显示内核的版本 </span><br><span class="line">cat /proc/net/dev 显示网络适配器及统计 </span><br><span class="line">cat /proc/mounts 显示已加载的文件系统 </span><br><span class="line">lspci -tv 罗列 PCI 设备  </span><br><span class="line">ls -l缩写 ll  </span><br><span class="line">lsusb -tv 显示 USB 设备 </span><br><span class="line">date 显示系统日期 </span><br><span class="line">cal 2007 显示2007年的日历表 </span><br><span class="line">date 041217002007.00 设置日期和时间 - 月日时分年.秒 </span><br><span class="line">clock -w 将时间修改保存到 BIOS </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="关机-系统的关机、重启以及登出"><a href="#关机-系统的关机、重启以及登出" class="headerlink" title="关机 (系统的关机、重启以及登出 )"></a>关机 (系统的关机、重启以及登出 )</h2><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">shutdown -h now 关闭系统(1) </span><br><span class="line">init 0 关闭系统(2) </span><br><span class="line">telinit 0 关闭系统(3) </span><br><span class="line">shutdown -h hours:minutes &amp; 按预定时间关闭系统  shutdown -h 时间长短</span><br><span class="line">shutdown -c 取消按预定时间关闭系统 </span><br><span class="line">shutdown -r now 重启(1) </span><br><span class="line">reboot 重启(2) </span><br><span class="line">logout 注销  exit </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="文件和目录"><a href="#文件和目录" class="headerlink" title="文件和目录"></a>文件和目录</h3><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">cd /home 进入 &#x27;/ home&#x27; 目录&#x27;    r读--4  w写--2 x执行--1      </span><br><span class="line">cd .. 返回上一级目录 </span><br><span class="line">cd ../.. 返回上两级目录 </span><br><span class="line">cd 进入个人的主目录 </span><br><span class="line">cd ~user1 进入个人的主目录 </span><br><span class="line">cd - 返回上次所在的目录 </span><br><span class="line">pwd 显示工作路径 </span><br><span class="line">ls 查看目录中的文件 </span><br><span class="line">ls -F 查看目录中的文件 </span><br><span class="line">ls -l 显示文件和目录的详细资料 </span><br><span class="line">ls -a 显示隐藏文件 </span><br><span class="line">ls *[0-9]* 显示包含数字的文件名和目录名 </span><br><span class="line">tree 显示文件和目录由根目录开始的树形结构(1) </span><br><span class="line">lstree 显示文件和目录由根目录开始的树形结构(2) </span><br><span class="line">mkdir dir1 创建一个叫做 &#x27;dir1&#x27; 的目录&#x27; </span><br><span class="line">mkdir dir1 dir2 同时创建两个目录 </span><br><span class="line">mkdir -p /tmp/dir1/dir2 创建一个目录树 </span><br><span class="line">rm -f file1 删除一个叫做 &#x27;file1&#x27; 的文件&#x27; </span><br><span class="line">rmdir dir1 删除一个叫做 &#x27;dir1&#x27; 的目录&#x27; </span><br><span class="line">rm -rf dir1 删除一个叫做 &#x27;dir1&#x27; 的目录并同时删除其内容 </span><br><span class="line">rm -rf dir1 dir2 同时删除两个目录及它们的内容 </span><br><span class="line">mv dir1 new_dir 重命名/移动 一个目录 </span><br><span class="line">cp file1  复制一个文件 </span><br><span class="line">cp dir/* . 复制一个目录下的所有文件到当前工作目录 </span><br><span class="line">cp -a /tmp/dir1 . 复制一个目录到当前工作目录 </span><br><span class="line">cp -a dir1 dir2 复制一个目录 </span><br><span class="line">ln -s file1 lnk1 创建一个指向文件或目录的软链接 </span><br><span class="line">ln file1 lnk1 创建一个指向文件或目录的物理链接 </span><br><span class="line">touch -t 0712250000 file1 修改一个文件或目录的时间戳 - (YYMMDDhhmm) </span><br><span class="line">file file1 outputs the mime type of the file as text </span><br><span class="line">iconv -l 列出已知的编码 </span><br><span class="line">iconv -f fromEncoding -t toEncoding inputFile &gt; outputFile creates a new from the given input file by assuming it is encoded in fromEncoding and converting it to toEncoding. </span><br><span class="line">find . -maxdepth 1 -name *.jpg -print -exec convert &quot;&#123;&#125;&quot; -resize 80x60 &quot;thumbs/&#123;&#125;&quot; \; batch resize files in the current directory and send them to a thumbnails directory (requires convert from Imagemagick) </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="文件搜索"><a href="#文件搜索" class="headerlink" title="文件搜索"></a>文件搜索</h3><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">find / -name file1 从 &#x27;/&#x27; 开始进入根文件系统搜索文件和目录 </span><br><span class="line">find / -user user1 搜索属于用户 &#x27;user1&#x27; 的文件和目录 </span><br><span class="line">find /home/user1 -name \*.bin 在目录 &#x27;/ home/user1&#x27; 中搜索带有&#x27;.bin&#x27; 结尾的文件 </span><br><span class="line">find /usr/bin -type f -atime +100 搜索在过去100天内未被使用过的执行文件 </span><br><span class="line">find /usr/bin -type f -mtime -10 搜索在10天内被创建或者修改过的文件 </span><br><span class="line">find / -name \*.rpm -exec chmod 755 &#x27;&#123;&#125;&#x27; \; 搜索以 &#x27;.rpm&#x27; 结尾的文件并定义其权限 </span><br><span class="line">find / -xdev -name \*.rpm 搜索以 &#x27;.rpm&#x27; 结尾的文件，忽略光驱、捷盘等可移动设备 </span><br><span class="line">locate \*.ps 寻找以 &#x27;.ps&#x27; 结尾的文件 - 先运行 &#x27;updatedb&#x27; 命令 </span><br><span class="line">whereis halt 显示一个二进制文件、源码或man的位置 </span><br><span class="line">which halt 显示一个二进制文件或可执行文件的完整路径 </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="挂载一个文件系统"><a href="#挂载一个文件系统" class="headerlink" title="挂载一个文件系统"></a>挂载一个文件系统</h3><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mount /dev/hda2 /mnt/hda2 挂载一个叫做hda2的盘 - 确定目录 &#x27;/ mnt/hda2&#x27; 已经存在 </span><br><span class="line">umount /dev/hda2 卸载一个叫做hda2的盘 - 先从挂载点 &#x27;/ mnt/hda2&#x27; 退出 </span><br><span class="line">fuser -km /mnt/hda2 当设备繁忙时强制卸载 </span><br><span class="line">umount -n /mnt/hda2 运行卸载操作而不写入 /etc/mtab 文件- 当文件为只读或当磁盘写满时非常有用 </span><br><span class="line">mount /dev/fd0 /mnt/floppy 挂载一个软盘 </span><br><span class="line">mount /dev/cdrom /mnt/cdrom 挂载一个cdrom或dvdrom </span><br><span class="line">mount /dev/hdc /mnt/cdrecorder 挂载一个cdrw或dvdrom </span><br><span class="line">mount /dev/hdb /mnt/cdrecorder 挂载一个cdrw或dvdrom </span><br><span class="line">mount -o loop file.iso /mnt/cdrom 挂载一个文件或ISO镜像文件 </span><br><span class="line">mount -t vfat /dev/hda5 /mnt/hda5 挂载一个Windows FAT32文件系统 </span><br><span class="line">mount /dev/sda1 /mnt/usbdisk 挂载一个usb 捷盘或闪存设备 </span><br><span class="line">mount -t smbfs -o username=user,password=pass //WinClient/share /mnt/share 挂载一个windows网络共享 </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="磁盘空间"><a href="#磁盘空间" class="headerlink" title="磁盘空间"></a>磁盘空间</h2><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">df -h 显示已经挂载的分区列表 </span><br><span class="line">ls -lSr |more 以尺寸大小排列文件和目录 </span><br><span class="line">du -sh dir1 估算目录 &#x27;dir1&#x27; 已经使用的磁盘空间&#x27; </span><br><span class="line">du -sk * | sort -rn 以容量大小为依据依次显示文件和目录的大小 </span><br><span class="line">rpm -q -a --qf &#x27;%10&#123;SIZE&#125;t%&#123;NAME&#125;n&#x27; | sort -k1,1n 以大小为依据依次显示已安装的rpm包所使用的空间 (fedora, redhat类系统) </span><br><span class="line">dpkg-query -W -f=&#x27;$&#123;Installed-Size;10&#125;t$&#123;Package&#125;n&#x27; | sort -k1,1n 以大小为依据显示已安装的deb包所使用的空间 (ubuntu, debian类系统) </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="用户和群组"><a href="#用户和群组" class="headerlink" title="用户和群组"></a>用户和群组</h2><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">groupadd group_name 创建一个新用户组</span><br><span class="line">groupdel group_name 删除一个用户组 </span><br><span class="line">groupmod -n new_group_name old_group_name 重命名一个用户组 </span><br><span class="line">useradd -c &quot;Name Surname &quot; -g admin -d /home/user1 -s /bin/bash user1 创建一个属于 &quot;admin&quot; 用户组的用户 </span><br><span class="line">useradd user1 创建一个新用户 </span><br><span class="line">userdel -r user1 删除一个用户 ( &#x27;-r&#x27; 排除主目录) </span><br><span class="line">usermod -c &quot;User FTP&quot; -g system -d /ftp/user1 -s /bin/nologin user1 修改用户属性 </span><br><span class="line">passwd 修改口令 </span><br><span class="line">passwd user1 修改一个用户的口令 (只允许root执行) </span><br><span class="line">chage -E 2005-12-31 user1 设置用户口令的失效期限 </span><br><span class="line">pwck 检查 &#x27;/etc/passwd&#x27; 的文件格式和语法修正以及存在的用户 </span><br><span class="line">grpck 检查 &#x27;/etc/passwd&#x27; 的文件格式和语法修正以及存在的群组 </span><br><span class="line">newgrp group_name 登陆进一个新的群组以改变新创建文件的预设群组 </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="文件的权限-使用-“-”-设置权限，使用-“-“-用于取消"><a href="#文件的权限-使用-“-”-设置权限，使用-“-“-用于取消" class="headerlink" title="文件的权限 - 使用 “+” 设置权限，使用 “-“ 用于取消"></a>文件的权限 - 使用 “+” 设置权限，使用 “-“ 用于取消</h2> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ls -lh 显示权限 </span><br><span class="line">ls /tmp | pr -T5 -W$COLUMNS 将终端划分成5栏显示 </span><br><span class="line">chmod ugo+rwx directory1 设置目录的所有人(u)、群组(g)以及其他人(o)以读（r ）、写(w)和执行(x)的权限 </span><br><span class="line">chmod go-rwx directory1 删除群组(g)与其他人(o)对目录的读写执行权限 </span><br><span class="line">chown user1 file1 改变一个文件的所有人属性 </span><br><span class="line">chown -R user1 directory1 改变一个目录的所有人属性并同时改变改目录下所有文件的属性 </span><br><span class="line">chgrp group1 file1 改变文件的群组 </span><br><span class="line">chown user1:group1 file1 改变一个文件的所有人和群组属性 </span><br><span class="line">find / -perm -u+s 罗列一个系统中所有使用了SUID控制的文件 </span><br><span class="line">chmod u+s /bin/file1 设置一个二进制文件的 SUID 位 - 运行该文件的用户也被赋予和所有者同样的权限 </span><br><span class="line">chmod u-s /bin/file1 禁用一个二进制文件的 SUID位 </span><br><span class="line">chmod g+s /home/public 设置一个目录的SGID 位 - 类似SUID ，不过这是针对目录的 </span><br><span class="line">chmod g-s /home/public 禁用一个目录的 SGID 位 </span><br><span class="line">chmod o+t /home/public 设置一个文件的 STIKY 位 - 只允许合法所有人删除文件 </span><br><span class="line">chmod o-t /home/public 禁用一个目录的 STIKY 位 </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="文件的特殊属性-使用-“-”-设置权限，使用-“-“-用于取消"><a href="#文件的特殊属性-使用-“-”-设置权限，使用-“-“-用于取消" class="headerlink" title="文件的特殊属性 - 使用 “+” 设置权限，使用 “-“ 用于取消"></a>文件的特殊属性 - 使用 “+” 设置权限，使用 “-“ 用于取消</h2><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">chattr +a file1 只允许以追加方式读写文件 </span><br><span class="line">chattr +c file1 允许这个文件能被内核自动压缩/解压 </span><br><span class="line">chattr +d file1 在进行文件系统备份时，dump程序将忽略这个文件 </span><br><span class="line">chattr +i file1 设置成不可变的文件，不能被删除、修改、重命名或者链接 </span><br><span class="line">chattr +s file1 允许一个文件被安全地删除 </span><br><span class="line">chattr +S file1 一旦应用程序对这个文件执行了写操作，使系统立刻把修改的结果写到磁盘 </span><br><span class="line">chattr +u file1 若文件被删除，系统会允许你在以后恢复这个被删除的文件 </span><br><span class="line">lsattr 显示特殊的属性 </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="打包和压缩文件"><a href="#打包和压缩文件" class="headerlink" title="打包和压缩文件"></a>打包和压缩文件</h2> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">bunzip2 file1.bz2 解压一个叫做 &#x27;file1.bz2&#x27;的文件 </span><br><span class="line">bzip2 file1 压缩一个叫做 &#x27;file1&#x27; 的文件 </span><br><span class="line">gunzip file1.gz 解压一个叫做 &#x27;file1.gz&#x27;的文件 </span><br><span class="line">gzip file1 压缩一个叫做 &#x27;file1&#x27;的文件 </span><br><span class="line">gzip -9 file1 最大程度压缩 </span><br><span class="line">rar a file1.rar test_file 创建一个叫做 &#x27;file1.rar&#x27; 的包 </span><br><span class="line">rar a file1.rar file1 file2 dir1 同时压缩 &#x27;file1&#x27;, &#x27;file2&#x27; 以及目录 &#x27;dir1&#x27; </span><br><span class="line">rar x file1.rar 解压rar包 </span><br><span class="line">unrar x file1.rar 解压rar包 </span><br><span class="line">tar -cvf archive.tar file1 创建一个非压缩的 tarball </span><br><span class="line">tar -cvf archive.tar file1 file2 dir1 创建一个包含了 &#x27;file1&#x27;, &#x27;file2&#x27; 以及 &#x27;dir1&#x27;的档案文件 </span><br><span class="line">tar -tf archive.tar 显示一个包中的内容 </span><br><span class="line">tar -xvf archive.tar 释放一个包 </span><br><span class="line">tar -xvf archive.tar -C /tmp 将压缩包释放到 /tmp目录下 </span><br><span class="line">tar -cvfj archive.tar.bz2 dir1 创建一个bzip2格式的压缩包 </span><br><span class="line">tar -xvfj archive.tar.bz2 解压一个bzip2格式的压缩包 </span><br><span class="line">tar -cvfz archive.tar.gz dir1 创建一个gzip格式的压缩包 </span><br><span class="line">tar -xvfz archive.tar.gz 解压一个gzip格式的压缩包 </span><br><span class="line">zip file1.zip file1 创建一个zip格式的压缩包 </span><br><span class="line">zip -r file1.zip file1 file2 dir1 将几个文件和目录同时压缩成一个zip格式的压缩包 </span><br><span class="line">unzip file1.zip 解压一个zip格式压缩包 </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="RPM-包-（Fedora-Redhat及类似系统）"><a href="#RPM-包-（Fedora-Redhat及类似系统）" class="headerlink" title="RPM 包 - （Fedora, Redhat及类似系统）"></a>RPM 包 - （Fedora, Redhat及类似系统）</h2> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">rpm -ivh package.rpm 安装一个rpm包 </span><br><span class="line">rpm -ivh --nodeeps package.rpm 安装一个rpm包而忽略依赖关系警告 </span><br><span class="line">rpm -U package.rpm 更新一个rpm包但不改变其配置文件 </span><br><span class="line">rpm -F package.rpm 更新一个确定已经安装的rpm包 </span><br><span class="line">rpm -e package_name.rpm 删除一个rpm包 </span><br><span class="line">rpm -qa 显示系统中所有已经安装的rpm包 </span><br><span class="line">rpm -qa | grep httpd 显示所有名称中包含 &quot;httpd&quot; 字样的rpm包 </span><br><span class="line">rpm -qi package_name 获取一个已安装包的特殊信息 </span><br><span class="line">rpm -qg &quot;System Environment/Daemons&quot; 显示一个组件的rpm包 </span><br><span class="line">rpm -ql package_name 显示一个已经安装的rpm包提供的文件列表 </span><br><span class="line">rpm -qc package_name 显示一个已经安装的rpm包提供的配置文件列表 </span><br><span class="line">rpm -q package_name --whatrequires 显示与一个rpm包存在依赖关系的列表 </span><br><span class="line">rpm -q package_name --whatprovides 显示一个rpm包所占的体积 </span><br><span class="line">rpm -q package_name --scripts 显示在安装/删除期间所执行的脚本l </span><br><span class="line">rpm -q package_name --changelog 显示一个rpm包的修改历史 </span><br><span class="line">rpm -qf /etc/httpd/conf/httpd.conf 确认所给的文件由哪个rpm包所提供 </span><br><span class="line">rpm -qp package.rpm -l 显示由一个尚未安装的rpm包提供的文件列表 </span><br><span class="line">rpm --import /media/cdrom/RPM-GPG-KEY 导入公钥数字证书 </span><br><span class="line">rpm --checksig package.rpm 确认一个rpm包的完整性 </span><br><span class="line">rpm -qa gpg-pubkey 确认已安装的所有rpm包的完整性 </span><br><span class="line">rpm -V package_name 检查文件尺寸、 许可、类型、所有者、群组、MD5检查以及最后修改时间 </span><br><span class="line">rpm -Va 检查系统中所有已安装的rpm包- 小心使用 </span><br><span class="line">rpm -Vp package.rpm 确认一个rpm包还未安装 </span><br><span class="line">rpm2cpio package.rpm | cpio --extract --make-directories *bin* 从一个rpm包运行可执行文件 </span><br><span class="line">rpm -ivh /usr/src/redhat/RPMS/`arch`/package.rpm 从一个rpm源码安装一个构建好的包 </span><br><span class="line">rpmbuild --rebuild package_name.src.rpm 从一个rpm源码构建一个 rpm 包 </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="YUM-软件包升级器-（Fedora-RedHat及类似系统）"><a href="#YUM-软件包升级器-（Fedora-RedHat及类似系统）" class="headerlink" title="YUM 软件包升级器 - （Fedora, RedHat及类似系统）"></a>YUM 软件包升级器 - （Fedora, RedHat及类似系统）</h2> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">yum install package_name 下载并安装一个rpm包 </span><br><span class="line">yum localinstall package_name.rpm 将安装一个rpm包，使用你自己的软件仓库为你解决所有依赖关系 </span><br><span class="line">yum update package_name.rpm 更新当前系统中所有安装的rpm包 </span><br><span class="line">yum update package_name 更新一个rpm包 </span><br><span class="line">yum remove package_name 删除一个rpm包 </span><br><span class="line">yum list 列出当前系统中安装的所有包 </span><br><span class="line">yum search package_name 在rpm仓库中搜寻软件包 </span><br><span class="line">yum clean packages 清理rpm缓存删除下载的包 </span><br><span class="line">yum clean headers 删除所有头文件 </span><br><span class="line">yum clean all 删除所有缓存的包和头文件 </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="DEB-包-Debian-Ubuntu-以及类似系统"><a href="#DEB-包-Debian-Ubuntu-以及类似系统" class="headerlink" title="DEB 包 (Debian, Ubuntu 以及类似系统)"></a>DEB 包 (Debian, Ubuntu 以及类似系统)</h2> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">dpkg -i package.deb 安装/更新一个 deb 包 </span><br><span class="line">dpkg -r package_name 从系统删除一个 deb 包 </span><br><span class="line">dpkg -l 显示系统中所有已经安装的 deb 包 </span><br><span class="line">dpkg -l | grep httpd 显示所有名称中包含 &quot;httpd&quot; 字样的deb包 </span><br><span class="line">dpkg -s package_name 获得已经安装在系统中一个特殊包的信息 </span><br><span class="line">dpkg -L package_name 显示系统中已经安装的一个deb包所提供的文件列表 </span><br><span class="line">dpkg --contents package.deb 显示尚未安装的一个包所提供的文件列表 </span><br><span class="line">dpkg -S /bin/ping 确认所给的文件由哪个deb包提供 </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="APT-软件工具-Debian-Ubuntu-以及类似系统"><a href="#APT-软件工具-Debian-Ubuntu-以及类似系统" class="headerlink" title="APT 软件工具 (Debian, Ubuntu 以及类似系统)"></a>APT 软件工具 (Debian, Ubuntu 以及类似系统)</h2> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">apt-get install package_name 安装/更新一个 deb 包 </span><br><span class="line">apt-cdrom install package_name 从光盘安装/更新一个 deb 包 </span><br><span class="line">apt-get update 升级列表中的软件包 </span><br><span class="line">apt-get upgrade 升级所有已安装的软件 </span><br><span class="line">apt-get remove package_name 从系统删除一个deb包 </span><br><span class="line">apt-get check 确认依赖的软件仓库正确 </span><br><span class="line">apt-get clean 从下载的软件包中清理缓存 </span><br><span class="line">apt-cache search searched-package 返回包含所要搜索字符串的软件包名称 </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="查看文件内容"><a href="#查看文件内容" class="headerlink" title="查看文件内容"></a>查看文件内容</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">cat file1 从第一个字节开始正向查看文件的内容 </span><br><span class="line">tac file1 从最后一行开始反向查看一个文件的内容 </span><br><span class="line">more file1 查看一个长文件的内容 </span><br><span class="line">less file1 类似于 &#x27;more&#x27; 命令，但是它允许在文件中和正向操作一样的反向操作 </span><br><span class="line">head -2 file1 查看一个文件的前两行 </span><br><span class="line">tail -2 file1 查看一个文件的最后两行 </span><br><span class="line">tail -f /var/log/messages 实时查看被添加到一个文件中的内容 </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="文本处理"><a href="#文本处理" class="headerlink" title="文本处理"></a>文本处理</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">cat file1 file2 ... | command &lt;&gt; file1_in.txt_or_file1_out.txt general syntax for text manipulation using PIPE, STDIN and STDOUT </span><br><span class="line">cat file1 | command( sed, grep, awk, grep, etc...) &gt; result.txt 合并一个文件的详细说明文本，并将简介写入一个新文件中 </span><br><span class="line">cat file1 | command( sed, grep, awk, grep, etc...) &gt;&gt; result.txt 合并一个文件的详细说明文本，并将简介写入一个已有的文件中 </span><br><span class="line">grep Aug /var/log/messages 在文件 &#x27;/var/log/messages&#x27;中查找关键词&quot;Aug&quot; </span><br><span class="line">grep ^Aug /var/log/messages 在文件 &#x27;/var/log/messages&#x27;中查找以&quot;Aug&quot;开始的词汇 </span><br><span class="line">grep [0-9] /var/log/messages 选择 &#x27;/var/log/messages&#x27; 文件中所有包含数字的行 </span><br><span class="line">grep Aug -R /var/log/* 在目录 &#x27;/var/log&#x27; 及随后的目录中搜索字符串&quot;Aug&quot; </span><br><span class="line">sed &#x27;s/stringa1/stringa2/g&#x27; example.txt 将example.txt文件中的 &quot;string1&quot; 替换成 &quot;string2&quot; </span><br><span class="line">sed &#x27;/^$/d&#x27; example.txt 从example.txt文件中删除所有空白行 </span><br><span class="line">sed &#x27;/ *#/d; /^$/d&#x27; example.txt 从example.txt文件中删除所有注释和空白行 </span><br><span class="line">echo &#x27;esempio&#x27; | tr &#x27;[:lower:]&#x27; &#x27;[:upper:]&#x27; 合并上下单元格内容 </span><br><span class="line">sed -e &#x27;1d&#x27; result.txt 从文件example.txt 中排除第一行 </span><br><span class="line">sed -n &#x27;/stringa1/p&#x27; 查看只包含词汇 &quot;string1&quot;的行 </span><br><span class="line">sed -e &#x27;s/ *$//&#x27; example.txt 删除每一行最后的空白字符 </span><br><span class="line">sed -e &#x27;s/stringa1//g&#x27; example.txt 从文档中只删除词汇 &quot;string1&quot; 并保留剩余全部 </span><br><span class="line">sed -n &#x27;1,5p;5q&#x27; example.txt 查看从第一行到第5行内容 </span><br><span class="line">sed -n &#x27;5p;5q&#x27; example.txt 查看第5行 </span><br><span class="line">sed -e &#x27;s/00*/0/g&#x27; example.txt 用单个零替换多个零 </span><br><span class="line">cat -n file1 标示文件的行数 </span><br><span class="line">cat example.txt | awk &#x27;NR%2==1&#x27; 删除example.txt文件中的所有偶数行 </span><br><span class="line">echo a b c | awk &#x27;&#123;print $1&#125;&#x27; 查看一行第一栏 </span><br><span class="line">echo a b c | awk &#x27;&#123;print $1,$3&#125;&#x27; 查看一行的第一和第三栏 </span><br><span class="line">paste file1 file2 合并两个文件或两栏的内容 </span><br><span class="line">paste -d &#x27;+&#x27; file1 file2 合并两个文件或两栏的内容，中间用&quot;+&quot;区分 </span><br><span class="line">sort file1 file2 排序两个文件的内容 </span><br><span class="line">sort file1 file2 | uniq 取出两个文件的并集(重复的行只保留一份) </span><br><span class="line">sort file1 file2 | uniq -u 删除交集，留下其他的行 </span><br><span class="line">sort file1 file2 | uniq -d 取出两个文件的交集(只留下同时存在于两个文件中的文件) </span><br><span class="line">comm -1 file1 file2 比较两个文件的内容只删除 &#x27;file1&#x27; 所包含的内容 </span><br><span class="line">comm -2 file1 file2 比较两个文件的内容只删除 &#x27;file2&#x27; 所包含的内容 </span><br><span class="line">comm -3 file1 file2 比较两个文件的内容只删除两个文件共有的部分 </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="字符设置和文件格式转换"><a href="#字符设置和文件格式转换" class="headerlink" title="字符设置和文件格式转换"></a>字符设置和文件格式转换</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">dos2unix filedos.txt fileunix.txt 将一个文本文件的格式从MSDOS转换成UNIX </span><br><span class="line">unix2dos fileunix.txt filedos.txt 将一个文本文件的格式从UNIX转换成MSDOS </span><br><span class="line">recode ..HTML &lt; page.txt &gt; page.html 将一个文本文件转换成html </span><br><span class="line">recode -l | more 显示所有允许的转换格式 </span><br><span class="line"></span><br><span class="line">返回顶部索引 ^</span><br><span class="line"></span><br><span class="line">文件系统分析 </span><br><span class="line">badblocks -v /dev/hda1 检查磁盘hda1上的坏磁块 </span><br><span class="line">fsck /dev/hda1 修复/检查hda1磁盘上linux文件系统的完整性 </span><br><span class="line">fsck.ext2 /dev/hda1 修复/检查hda1磁盘上ext2文件系统的完整性 </span><br><span class="line">e2fsck /dev/hda1 修复/检查hda1磁盘上ext2文件系统的完整性 </span><br><span class="line">e2fsck -j /dev/hda1 修复/检查hda1磁盘上ext3文件系统的完整性 </span><br><span class="line">fsck.ext3 /dev/hda1 修复/检查hda1磁盘上ext3文件系统的完整性 </span><br><span class="line">fsck.vfat /dev/hda1 修复/检查hda1磁盘上fat文件系统的完整性 </span><br><span class="line">fsck.msdos /dev/hda1 修复/检查hda1磁盘上dos文件系统的完整性 </span><br><span class="line">dosfsck /dev/hda1 修复/检查hda1磁盘上dos文件系统的完整性 </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="初始化一个文件系统"><a href="#初始化一个文件系统" class="headerlink" title="初始化一个文件系统"></a>初始化一个文件系统</h2> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mkfs /dev/hda1 在hda1分区创建一个文件系统 </span><br><span class="line">mke2fs /dev/hda1 在hda1分区创建一个linux ext2的文件系统 </span><br><span class="line">mke2fs -j /dev/hda1 在hda1分区创建一个linux ext3(日志型)的文件系统 </span><br><span class="line">mkfs -t vfat 32 -F /dev/hda1 创建一个 FAT32 文件系统 </span><br><span class="line">fdformat -n /dev/fd0 格式化一个软盘 </span><br><span class="line">mkswap /dev/hda3 创建一个swap文件系统 </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="SWAP文件系统"><a href="#SWAP文件系统" class="headerlink" title="SWAP文件系统"></a>SWAP文件系统</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mkswap /dev/hda3 创建一个swap文件系统 </span><br><span class="line">swapon /dev/hda3 启用一个新的swap文件系统 </span><br><span class="line">swapon /dev/hda2 /dev/hdb3 启用两个swap分区 </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">dump -0aj -f /tmp/home0.bak /home 制作一个 &#x27;/home&#x27; 目录的完整备份 </span><br><span class="line">dump -1aj -f /tmp/home0.bak /home 制作一个 &#x27;/home&#x27; 目录的交互式备份 </span><br><span class="line">restore -if /tmp/home0.bak 还原一个交互式备份 </span><br><span class="line">rsync -rogpav --delete /home /tmp 同步两边的目录 </span><br><span class="line">rsync -rogpav -e ssh --delete /home ip_address:/tmp 通过SSH通道rsync </span><br><span class="line">rsync -az -e ssh --delete ip_addr:/home/public /home/local 通过ssh和压缩将一个远程目录同步到本地目录 </span><br><span class="line">rsync -az -e ssh --delete /home/local ip_addr:/home/public 通过ssh和压缩将本地目录同步到远程目录 </span><br><span class="line">dd bs=1M if=/dev/hda | gzip | ssh user@ip_addr &#x27;dd of=hda.gz&#x27; 通过ssh在远程主机上执行一次备份本地磁盘的操作 </span><br><span class="line">dd if=/dev/sda of=/tmp/file1 备份磁盘内容到一个文件 </span><br><span class="line">tar -Puf backup.tar /home/user 执行一次对 &#x27;/home/user&#x27; 目录的交互式备份操作 </span><br><span class="line">( cd /tmp/local/ &amp;&amp; tar c . ) | ssh -C user@ip_addr &#x27;cd /home/share/ &amp;&amp; tar x -p&#x27; 通过ssh在远程目录中复制一个目录内容 </span><br><span class="line">( tar c /home ) | ssh -C user@ip_addr &#x27;cd /home/backup-home &amp;&amp; tar x -p&#x27; 通过ssh在远程目录中复制一个本地目录 </span><br><span class="line">tar cf - . | (cd /tmp/backup ; tar xf - ) 本地将一个目录复制到另一个地方，保留原有权限及链接 </span><br><span class="line">find /home/user1 -name &#x27;*.txt&#x27; | xargs cp -av --target-directory=/home/backup/ --parents 从一个目录查找并复制所有以 &#x27;.txt&#x27; 结尾的文件到另一个目录 </span><br><span class="line">find /var/log -name &#x27;*.log&#x27; | tar cv --files-from=- | bzip2 &gt; log.tar.bz2 查找所有以 &#x27;.log&#x27; 结尾的文件并做成一个bzip包 </span><br><span class="line">dd if=/dev/hda of=/dev/fd0 bs=512 count=1 做一个将 MBR (Master Boot Record)内容复制到软盘的动作 </span><br><span class="line">dd if=/dev/fd0 of=/dev/hda bs=512 count=1 从已经保存到软盘的备份中恢复MBR内容 </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="光盘"><a href="#光盘" class="headerlink" title="光盘"></a>光盘</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">cdrecord -v gracetime=2 dev=/dev/cdrom -eject blank=fast -force 清空一个可复写的光盘内容 </span><br><span class="line">mkisofs /dev/cdrom &gt; cd.iso 在磁盘上创建一个光盘的iso镜像文件 </span><br><span class="line">mkisofs /dev/cdrom | gzip &gt; cd_iso.gz 在磁盘上创建一个压缩了的光盘iso镜像文件 </span><br><span class="line">mkisofs -J -allow-leading-dots -R -V &quot;Label CD&quot; -iso-level 4 -o ./cd.iso data_cd 创建一个目录的iso镜像文件 </span><br><span class="line">cdrecord -v dev=/dev/cdrom cd.iso 刻录一个ISO镜像文件 </span><br><span class="line">gzip -dc cd_iso.gz | cdrecord dev=/dev/cdrom - 刻录一个压缩了的ISO镜像文件 </span><br><span class="line">mount -o loop cd.iso /mnt/iso 挂载一个ISO镜像文件 </span><br><span class="line">cd-paranoia -B 从一个CD光盘转录音轨到 wav 文件中 </span><br><span class="line">cd-paranoia -- &quot;-3&quot; 从一个CD光盘转录音轨到 wav 文件中（参数-3） </span><br><span class="line">cdrecord --scanbus 扫描总线以识别scsi通道 </span><br><span class="line">dd if=/dev/hdc | md5sum 校验一个设备的md5sum编码，例如一张 CD </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="网络-（以太网和WIFI无线）"><a href="#网络-（以太网和WIFI无线）" class="headerlink" title="网络 - （以太网和WIFI无线）"></a>网络 - （以太网和WIFI无线）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ifconfig eth0 显示一个以太网卡的配置 </span><br><span class="line">ifup eth0 启用一个 &#x27;eth0&#x27; 网络设备 </span><br><span class="line">ifdown eth0 禁用一个 &#x27;eth0&#x27; 网络设备 </span><br><span class="line">ifconfig eth0 192.168.1.1 netmask 255.255.255.0 控制IP地址 </span><br><span class="line">ifconfig eth0 promisc 设置 &#x27;eth0&#x27; 成混杂模式以嗅探数据包 (sniffing) </span><br><span class="line">dhclient eth0 以dhcp模式启用 &#x27;eth0&#x27; </span><br><span class="line">route -n show routing table </span><br><span class="line">route add -net 0/0 gw IP_Gateway configura default gateway </span><br><span class="line">route add -net 192.168.0.0 netmask 255.255.0.0 gw 192.168.1.1 configure static route to reach network &#x27;192.168.0.0/16&#x27; </span><br><span class="line">route del 0/0 gw IP_gateway remove static route </span><br><span class="line">echo &quot;1&quot; &gt; /proc/sys/net/ipv4/ip_forward activate ip routing </span><br><span class="line">hostname show hostname of system </span><br><span class="line">host www.example.com lookup hostname to resolve name to ip address and viceversa(1) </span><br><span class="line">nslookup www.example.com lookup hostname to resolve name to ip address and viceversa(2) </span><br><span class="line">ip link show show link status of all interfaces </span><br><span class="line">mii-tool eth0 show link status of &#x27;eth0&#x27; </span><br><span class="line">ethtool eth0 show statistics of network card &#x27;eth0&#x27; </span><br><span class="line">netstat -tup show all active network connections and their PID </span><br><span class="line">netstat -tupl show all network services listening on the system and their PID </span><br><span class="line">tcpdump tcp port 80 show all HTTP traffic </span><br><span class="line">iwlist scan show wireless networks </span><br><span class="line">iwconfig eth1 show configuration of a wireless network card </span><br><span class="line">hostname show hostname </span><br><span class="line">host www.example.com lookup hostname to resolve name to ip address and viceversa </span><br><span class="line">nslookup www.example.com lookup hostname to resolve name to ip address and viceversa </span><br><span class="line">whois www.example.com lookup on Whois database </span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="Microsoft-Windows-networks-SAMBA"><a href="#Microsoft-Windows-networks-SAMBA" class="headerlink" title="Microsoft Windows networks (SAMBA)"></a>Microsoft Windows networks (SAMBA)</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> nbtscan ip_addr netbios name resolution </span><br><span class="line"> nmblookup -A ip_addr netbios name resolution </span><br><span class="line"> smbclient -L ip_addr/hostname show remote shares of a windows host </span><br><span class="line"> smbget -Rr smb://ip_addr/share like wget can download files from a host windows via smb </span><br><span class="line"> mount -t smbfs -o username=user,password=pass //WinClient/share /mnt/share mount a windows network share</span><br><span class="line">Tomcat</span><br></pre></td></tr></table></figure>
+
+<h2 id="centos"><a href="#centos" class="headerlink" title="centos"></a>centos</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://pkgs.org/download/libXss.so.1</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/05/07/Linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-id="ckqq2z1rt002ynkwag2q2e1fb" data-title="Linux-常用命令" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91/">开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E6%A1%A3/">文档</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PM2/" rel="tag">PM2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SEO/" rel="tag">SEO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scala/" rel="tag">Scala</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springboot/" rel="tag">Springboot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swagger2/" rel="tag">Swagger2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu19/" rel="tag">Ubuntu19</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/idea/" rel="tag">idea</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kafka/" rel="tag">kafka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/word/" rel="tag">word</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1/" rel="tag">微信</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Docker/" style="font-size: 20px;">Docker</a> <a href="/tags/Java/" style="font-size: 13.33px;">Java</a> <a href="/tags/Linux/" style="font-size: 16.67px;">Linux</a> <a href="/tags/PM2/" style="font-size: 10px;">PM2</a> <a href="/tags/Redis/" style="font-size: 16.67px;">Redis</a> <a href="/tags/SEO/" style="font-size: 10px;">SEO</a> <a href="/tags/Scala/" style="font-size: 10px;">Scala</a> <a href="/tags/Springboot/" style="font-size: 13.33px;">Springboot</a> <a href="/tags/Swagger2/" style="font-size: 10px;">Swagger2</a> <a href="/tags/Ubuntu19/" style="font-size: 10px;">Ubuntu19</a> <a href="/tags/idea/" style="font-size: 10px;">idea</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/kafka/" style="font-size: 13.33px;">kafka</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/word/" style="font-size: 10px;">word</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 10px;">微信</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/07/05/hexo/">hexo</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/05/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/07/Docker-%E5%86%85%E9%83%A8%E6%97%B6%E9%97%B4%E4%B8%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%B6%E9%97%B4%E4%B8%8D%E4%B8%80%E8%87%B4/">Docker-内部时间与服务器时间不一致</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/07/Docker-%E5%AE%B9%E5%99%A8%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF/">Docker-容器开机自启</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/07/Docker-%E5%AE%89%E8%A3%85MySQL8/">Docker-安装MySQL8</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 MAGRY<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

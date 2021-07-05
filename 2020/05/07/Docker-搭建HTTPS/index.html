@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Docker-搭建HTTPS | CodingDiary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="准备工作 SA免费版腾讯申请   SA免费版阿里云申请 选择Symantec服务商   Linux 服务器一台   安装方式采用Docker  开始配置Docker 下载Nginx##. 查找 Docker Hub 上的 nginx 镜像 docker search nginx 我现在使用官方镜像配置docker pull nginx 运行容器1docker run -p 80:80 --name">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker-搭建HTTPS">
+<meta property="og:url" content="http://example.com/2020/05/07/Docker-%E6%90%AD%E5%BB%BAHTTPS/index.html">
+<meta property="og:site_name" content="CodingDiary">
+<meta property="og:description" content="准备工作 SA免费版腾讯申请   SA免费版阿里云申请 选择Symantec服务商   Linux 服务器一台   安装方式采用Docker  开始配置Docker 下载Nginx##. 查找 Docker Hub 上的 nginx 镜像 docker search nginx 我现在使用官方镜像配置docker pull nginx 运行容器1docker run -p 80:80 --name">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-07T04:00:31.000Z">
+<meta property="article:modified_time" content="2020-05-07T08:06:49.384Z">
+<meta property="article:author" content="MAGRY">
+<meta property="article:tag" content="Docker">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="CodingDiary" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">CodingDiary</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">CodingDiary-代码日记</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Docker-搭建HTTPS" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/05/07/Docker-%E6%90%AD%E5%BB%BAHTTPS/" class="article-date">
+  <time class="dt-published" datetime="2020-05-07T04:00:31.000Z" itemprop="datePublished">2020-05-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Docker-搭建HTTPS
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/400/4143">SA免费版腾讯申请</a></p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://common-buy.aliyun.com/?spm=5176.2020520154.0.0.45d3Uo4kUo4kz4&commodityCode=cas#/buy">SA免费版阿里云申请</a> 选择Symantec服务商</p>
+</blockquote>
+<blockquote>
+<p>Linux 服务器一台</p>
+</blockquote>
+<blockquote>
+<p>安装方式采用Docker</p>
+</blockquote>
+<h1 id="开始配置"><a href="#开始配置" class="headerlink" title="开始配置"></a>开始配置</h1><p>Docker 下载Nginx<br>##. 查找 <a target="_blank" rel="noopener" href="https://hub.docker.com/r/library/nginx/">Docker Hub</a> 上的 nginx 镜像<br><code> docker search nginx</code></p>
+<h2 id="我现在使用官方镜像配置"><a href="#我现在使用官方镜像配置" class="headerlink" title="我现在使用官方镜像配置"></a>我现在使用官方镜像配置</h2><p><code>docker pull nginx</code></p>
+<h2 id="运行容器"><a href="#运行容器" class="headerlink" title="运行容器"></a>运行容器</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 80:80 --name mynginx -v $PWD/www:/www -v $PWD/conf/nginx.conf:/etc/nginx/nginx.conf -v $PWD/logs:/wwwlogs  -d nginx  </span><br></pre></td></tr></table></figure>
+<p>命令说明</p>
+<ul>
+<li><p>-p 80:80：将容器的80端口映射到主机的80端口</p>
+</li>
+<li><p>–name mynginx：将容器命名为mynginx</p>
+</li>
+<li><p>-v $PWD/www:/www：将主机中当前目录下的www挂载到容器的/www</p>
+</li>
+<li><p>-v $PWD/conf/nginx.conf:/etc/nginx/nginx.conf：将主机中当前目录下的nginx.conf挂载到容器的/etc/nginx/nginx.conf</p>
+</li>
+<li><p>-v $PWD/logs:/wwwlogs：将主机中当前目录下的logs挂载到容器的/wwwlogs</p>
+</li>
+</ul>
+<h2 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h2><h3 id="运行容器-1"><a href="#运行容器-1" class="headerlink" title="运行容器"></a>运行容器</h3><p>命令格式</p>
+<p><code>docker run [option] IMAGE [COMMOND] [ARG...] </code></p>
+<p>容器操作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">docker ps         # 查看正在运行的容器</span><br><span class="line"></span><br><span class="line">docker ps -a      # 查看所有容器</span><br><span class="line"></span><br><span class="line">docker ps -l      # 查看最近一次运行的容器</span><br><span class="line"></span><br><span class="line">docker create 容器名或者容器ID    # 创建容器</span><br><span class="line"></span><br><span class="line">docker start [-i] 容器名        # 启动容器</span><br><span class="line"></span><br><span class="line">docker run 容器名或者容器ID       # 运行容器，相当于docker create + docker start</span><br><span class="line"></span><br><span class="line">docker attach 容器名或者容器ID bash     # 进入容器的命令行（退出容器后容器会停止）</span><br><span class="line"></span><br><span class="line">docker exec -it 容器名或者容器ID bash   # 进入容器的命令行</span><br><span class="line"></span><br><span class="line">docker stop 容器名                    # 停止容器</span><br><span class="line"></span><br><span class="line">docker rm 容器名                      # 删除容器</span><br><span class="line"></span><br><span class="line">docker top 容器名                    # 查看WEB应用程序容器的进程</span><br><span class="line"></span><br><span class="line">docker inspect 容器名                # 查看Docker的底层信息</span><br></pre></td></tr></table></figure>
+<p>进入容器内部</p>
+<p><code>docker exec -it [容器名称] bash</code></p>
+<h2 id="配置Https"><a href="#配置Https" class="headerlink" title="配置Https"></a>配置Https</h2><p>配置nginx.conf</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">  server &#123; </span><br><span class="line">    listen       443; </span><br><span class="line">    server_name  localhost; </span><br><span class="line">    ssl                  on; </span><br><span class="line">    ssl_certificate      1_root_bundle.crt;      (证书公钥)</span><br><span class="line">    ssl_certificate_key      2_ domainname.com.key;      (证书私钥)</span><br><span class="line">    ssl_session_timeout  5m; </span><br><span class="line">    ssl_protocols  SSLv3 TLSv1; </span><br><span class="line">    ssl_ciphers  HIGH:!ADH:!EXPORT56:RC4+RSA:+MEDIUM; </span><br><span class="line">    ssl_prefer_server_ciphers   on; </span><br><span class="line">    location / &#123; </span><br><span class="line">        root   html; </span><br><span class="line">        index  index.html index.htm; </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="检查岂容"><a href="#检查岂容" class="headerlink" title="检查岂容"></a>检查岂容</h2><p> 启动nginx,访问https://+证书绑定的域名</p>
+<blockquote>
+<p>注:部署完毕后若网站无法通过https正常访问,可确认服务器443端口是否开启或被网站卫士等加速工具拦截。<br>(1)开启方法:防火墙设置-例外端口-添加443端口(TCP)。<br>(2)若被安全或加速工具拦截,可以在拦截记录中将443添加至信任列表。<br>(3)阿里云证书与腾讯证书不太一致但是大体分为两种（公有、私有两份证书）总体配置设置思路一致</p>
+</blockquote>
+<p>Utuntu 启动使用命令：<code>service nginx  [start/stop/...]</code><br>后续补充中。。。。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/05/07/Docker-%E6%90%AD%E5%BB%BAHTTPS/" data-id="ckqq2z1qa0006nkwa3eft6myl" data-title="Docker-搭建HTTPS" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/05/07/Docker-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          Docker-常用命令
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/07/Docker-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Docker-远程连接</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91/">开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E6%A1%A3/">文档</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PM2/" rel="tag">PM2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SEO/" rel="tag">SEO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scala/" rel="tag">Scala</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springboot/" rel="tag">Springboot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swagger2/" rel="tag">Swagger2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu19/" rel="tag">Ubuntu19</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/idea/" rel="tag">idea</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kafka/" rel="tag">kafka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/word/" rel="tag">word</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1/" rel="tag">微信</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Docker/" style="font-size: 20px;">Docker</a> <a href="/tags/Java/" style="font-size: 13.33px;">Java</a> <a href="/tags/Linux/" style="font-size: 16.67px;">Linux</a> <a href="/tags/PM2/" style="font-size: 10px;">PM2</a> <a href="/tags/Redis/" style="font-size: 16.67px;">Redis</a> <a href="/tags/SEO/" style="font-size: 10px;">SEO</a> <a href="/tags/Scala/" style="font-size: 10px;">Scala</a> <a href="/tags/Springboot/" style="font-size: 13.33px;">Springboot</a> <a href="/tags/Swagger2/" style="font-size: 10px;">Swagger2</a> <a href="/tags/Ubuntu19/" style="font-size: 10px;">Ubuntu19</a> <a href="/tags/idea/" style="font-size: 10px;">idea</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/kafka/" style="font-size: 13.33px;">kafka</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/word/" style="font-size: 10px;">word</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 10px;">微信</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/07/05/hexo/">hexo</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/05/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/07/Docker-%E5%86%85%E9%83%A8%E6%97%B6%E9%97%B4%E4%B8%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%B6%E9%97%B4%E4%B8%8D%E4%B8%80%E8%87%B4/">Docker-内部时间与服务器时间不一致</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/07/Docker-%E5%AE%B9%E5%99%A8%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF/">Docker-容器开机自启</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/07/Docker-%E5%AE%89%E8%A3%85MySQL8/">Docker-安装MySQL8</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 MAGRY<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
