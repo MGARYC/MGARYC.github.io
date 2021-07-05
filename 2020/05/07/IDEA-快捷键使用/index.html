@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mgaryc.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="磨刀不误砍柴工，这些快捷键能加快编码数据，希望大家收藏一波Ctrl+&#x2F; 或 Ctrl+Shift+&#x2F; 注释（&#x2F;&#x2F; 或者&#x2F;…&#x2F; ）Ctrl+D 复制行Ctrl+X 删除行快速修复 alt+enter (modify&#x2F;cast)代码提示 alt+&#x2F;ctr+G 定位某一行Shift+F6 重构-重命名Ctrl+R 替换文本Ctrl+F 查找文本 Ctrl+E 最近打开的文件Ctrl+J 自动代码 组织导">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IDEA-快捷键使用">
+<meta property="og:url" content="http://mgaryc.github.io/2020/05/07/IDEA-%E5%BF%AB%E6%8D%B7%E9%94%AE%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="CodingDiary">
+<meta property="og:description" content="磨刀不误砍柴工，这些快捷键能加快编码数据，希望大家收藏一波Ctrl+&#x2F; 或 Ctrl+Shift+&#x2F; 注释（&#x2F;&#x2F; 或者&#x2F;…&#x2F; ）Ctrl+D 复制行Ctrl+X 删除行快速修复 alt+enter (modify&#x2F;cast)代码提示 alt+&#x2F;ctr+G 定位某一行Shift+F6 重构-重命名Ctrl+R 替换文本Ctrl+F 查找文本 Ctrl+E 最近打开的文件Ctrl+J 自动代码 组织导">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-07T04:00:31.000Z">
+<meta property="article:modified_time" content="2020-05-07T08:08:45.237Z">
+<meta property="article:author" content="MAGRY">
+<meta property="article:tag" content="idea">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://mgaryc.github.io/2020/05/07/IDEA-%E5%BF%AB%E6%8D%B7%E9%94%AE%E4%BD%BF%E7%94%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>IDEA-快捷键使用 | CodingDiary</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">CodingDiary</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">CodingDiary-代码日记</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://mgaryc.github.io/2020/05/07/IDEA-%E5%BF%AB%E6%8D%B7%E9%94%AE%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MAGRY">
+      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodingDiary">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          IDEA-快捷键使用
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:08:45" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">开发</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="磨刀不误砍柴工，这些快捷键能加快编码数据，希望大家收藏一波"><a href="#磨刀不误砍柴工，这些快捷键能加快编码数据，希望大家收藏一波" class="headerlink" title="磨刀不误砍柴工，这些快捷键能加快编码数据，希望大家收藏一波"></a>磨刀不误砍柴工，这些快捷键能加快编码数据，希望大家收藏一波</h1><p>Ctrl+/ 或 Ctrl+Shift+/ 注释（// 或者/<em>…</em>/ ）<br>Ctrl+D 复制行<br>Ctrl+X 删除行<br>快速修复 alt+enter (modify/cast)<br>代码提示 alt+/<br>ctr+G 定位某一行<br>Shift+F6 重构-重命名<br>Ctrl+R 替换文本<br>Ctrl+F 查找文本</p>
+<p>Ctrl+E 最近打开的文件<br>Ctrl+J 自动代码</p>
+<p>组织导入 ctr+alt+O<br>格式化代码 ctr+alt+L<br>大小写转化 ctr+shift+U</p>
+<hr>
+<h2 id="IntelliJ-Idea-常用快捷键列表"><a href="#IntelliJ-Idea-常用快捷键列表" class="headerlink" title="IntelliJ Idea 常用快捷键列表"></a>IntelliJ Idea 常用快捷键列表</h2><p>Alt+回车 导入包,自动修正<br>Ctrl+N   查找类<br>Ctrl+Shift+N 查找文件<br>Ctrl+Alt+L  格式化代码<br>Ctrl+Alt+O 优化导入的类和包<br>Alt+Insert 生成代码(如get,set方法,构造函数等)<br>Ctrl+E或者Alt+Shift+C  最近更改的代码<br>Ctrl+R 替换文本<br>Ctrl+F 查找文本<br>Ctrl+Shift+Space 自动补全代码<br>Ctrl+空格 代码提示<br>Ctrl+Alt+Space 类名或接口名提示<br>Ctrl+P 方法参数提示<br>Ctrl+Shift+Alt+N 查找类中的方法或变量<br>Alt+Shift+C 对比最近修改的代码</p>
+<p>Shift+F6  重构-重命名<br>Ctrl+Shift+先上键<br>Ctrl+X 删除行<br>Ctrl+D 复制行<br>Ctrl+/ 或 Ctrl+Shift+/  注释（// 或者/<em>…</em>/ ）<br>Ctrl+J  自动代码<br>Ctrl+E 最近打开的文件<br>Ctrl+H 显示类结构图<br>Ctrl+Q 显示注释文档<br>Alt+F1 查找代码所在位置<br>Alt+1 快速打开或隐藏工程面板<br>Ctrl+Alt+ left/right 返回至上次浏览的位置<br>Alt+ left/right 切换代码视图<br>Alt+ Up/Down 在方法间快速移动定位<br>Ctrl+Shift+Up/Down 代码向上/下移动。<br>F2 或Shift+F2 高亮错误或警告快速定位</p>
+<p>代码标签输入完成后，按Tab，生成代码。<br>选中文本，按Ctrl+Shift+F7 ，高亮显示所有该文本，按Esc高亮消失。<br>Ctrl+W 选中代码，连续按会有其他效果<br>选中文本，按Alt+F3 ，逐个往下查找相同文本，并高亮显示。<br>Ctrl+Up/Down 光标跳转到第一行或最后一行下<br>Ctrl+B 快速打开光标处的类或方法 </p>
+<hr>
+<h2 id="IDEA内存优化"><a href="#IDEA内存优化" class="headerlink" title="IDEA内存优化"></a>IDEA内存优化</h2><ol>
+<li>因机器本身的配置而配置：</li>
+</ol>
+<h2 id="IntelliJ-IDEA-8-bin-idea-exe-vmoptions"><a href="#IntelliJ-IDEA-8-bin-idea-exe-vmoptions" class="headerlink" title="\IntelliJ IDEA 8\bin\idea.exe.vmoptions  "></a>\IntelliJ IDEA 8\bin\idea.exe.vmoptions  </h2><p>-Xms64m<br>-Xmx256m<br>-XX:MaxPermSize=92m<br>-ea<br>-server<br>-Dsun.awt.keepWorkingSetOnMinimize=true</p>
+<hr>
+<ol start="2">
+<li>查询快捷键</li>
+</ol>
+<p>CTRL+N   查找类<br>CTRL+SHIFT+N  查找文件<br>CTRL+SHIFT+ALT+N 查找类中的方法或变量<br>CIRL+B   找变量的来源<br>CTRL+ALT+B  找所有的子类<br>CTRL+SHIFT+B  找变量的类<br>CTRL+G   定位行<br>CTRL+F   在当前窗口查找文本<br>CTRL+SHIFT+F  在指定窗口查找文本<br>CTRL+R   在 当前窗口替换文本<br>CTRL+SHIFT+R  在指定窗口替换文本<br>ALT+SHIFT+C  查找修改的文件<br>CTRL+E   最近打开的文件<br>F3   向下查找关键字出现位置<br>SHIFT+F3  向上一个关键字出现位置<br>F4   查找变量来源<br>CTRL+ALT+F7  选中的字符查找工程出现的地方<br>CTRL+SHIFT+O  弹出显示查找内容</p>
+<hr>
+<ol start="3">
+<li>自动代码</li>
+</ol>
+<p>ALT+回车  导入包,自动修正<br>CTRL+ALT+L  格式化代码<br>CTRL+ALT+I  自动缩进<br>CTRL+ALT+O  优化导入的类和包<br>ALT+INSERT  生成代码(如GET,SET方法,构造函数等)<br>CTRL+E 最近更改的代码<br>CTRL+SHIFT+SPACE 自动补全代码<br>CTRL+空格  代码提示<br>CTRL+ALT+SPACE  类名或接口名提示<br>CTRL+P   方法参数提示<br>CTRL+J   自动代码<br>CTRL+ALT+T  把选中的代码放在 TRY{} IF{} ELSE{} 里</p>
+<hr>
+<ol start="4">
+<li>复制快捷方式</li>
+</ol>
+<p>CTRL+D   复制行<br>CTRL+X   剪切,删除行  </p>
+<hr>
+<ol start="5">
+<li>其他快捷方式</li>
+</ol>
+<p>CIRL+U   大小写切换<br>CTRL+Z   倒退<br>CTRL+SHIFT+Z  向前<br>CTRL+ALT+F12  资源管理器打开文件夹<br>ALT+F1   查找文件所在目录位置<br>SHIFT+ALT+INSERT 竖编辑模式<br>CTRL+/   注释//<br>CTRL+SHIFT+/  注释/<em>…</em>/<br>CTRL+W   选中代码，连续按会有其他效果<br>CTRL+B   快速打开光标处的类或方法<br>ALT+ ←/→  切换代码视图<br>CTRL+ALT ←/→  返回上次编辑的位置<br>ALT+ ↑/↓  在方法间快速移动定位<br>SHIFT+F6  重构-重命名<br>CTRL+H   显示类结构图<br>CTRL+Q   显示注释文档<br>ALT+1   快速打开或隐藏工程面板<br>CTRL+SHIFT+UP/DOWN 代码向上/下移动。<br>CTRL+UP/DOWN  光标跳转到第一行或最后一行下<br>ESC   光标返回编辑框<br>SHIFT+ESC  光标返回编辑框,关闭无用的窗口<br>F1   帮助千万别按,很卡!<br>CTRL+F4   非常重要下班都用</p>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/idea/" rel="tag"># idea</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/07/Docker-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/" rel="prev" title="Docker-远程连接">
+      <i class="fa fa-chevron-left"></i> Docker-远程连接
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/07/Docker-%E6%90%AD%E5%BB%BAHTTPS/" rel="next" title="Docker-搭建HTTPS">
+      Docker-搭建HTTPS <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A3%A8%E5%88%80%E4%B8%8D%E8%AF%AF%E7%A0%8D%E6%9F%B4%E5%B7%A5%EF%BC%8C%E8%BF%99%E4%BA%9B%E5%BF%AB%E6%8D%B7%E9%94%AE%E8%83%BD%E5%8A%A0%E5%BF%AB%E7%BC%96%E7%A0%81%E6%95%B0%E6%8D%AE%EF%BC%8C%E5%B8%8C%E6%9C%9B%E5%A4%A7%E5%AE%B6%E6%94%B6%E8%97%8F%E4%B8%80%E6%B3%A2"><span class="nav-number">1.</span> <span class="nav-text">磨刀不误砍柴工，这些快捷键能加快编码数据，希望大家收藏一波</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IntelliJ-Idea-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%88%97%E8%A1%A8"><span class="nav-number">1.1.</span> <span class="nav-text">IntelliJ Idea 常用快捷键列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDEA%E5%86%85%E5%AD%98%E4%BC%98%E5%8C%96"><span class="nav-number">1.2.</span> <span class="nav-text">IDEA内存优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IntelliJ-IDEA-8-bin-idea-exe-vmoptions"><span class="nav-number">1.3.</span> <span class="nav-text">\IntelliJ IDEA 8\bin\idea.exe.vmoptions  </span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">MAGRY</p>
+  <div class="site-description" itemprop="description">路其修远兮，吾将上下而求索</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mgaryc" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mgaryc" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:a1144362724a@gmail.com" title="E-Mail → mailto:a1144362724a@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">蜀ICP备18037843号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MAGRY</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

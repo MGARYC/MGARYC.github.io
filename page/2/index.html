@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mgaryc.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="路其修远兮，吾将上下而求索">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CodingDiary">
+<meta property="og:url" content="http://mgaryc.github.io/page/2/index.html">
+<meta property="og:site_name" content="CodingDiary">
+<meta property="og:description" content="路其修远兮，吾将上下而求索">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="MAGRY">
+<meta property="article:tag" content="java,SpringClude,SpringBoot,Mysql,Linux,Docker">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://mgaryc.github.io/page/2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>CodingDiary</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">CodingDiary</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">CodingDiary-代码日记</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://mgaryc.github.io/2020/05/07/Kafka-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MAGRY">
+      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodingDiary">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/07/Kafka-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="post-title-link" itemprop="url">KAFKA学习记录</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:33:25" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">开发</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h2><h3 id="一、broker"><a href="#一、broker" class="headerlink" title="一、broker"></a>一、broker</h3><blockquote>
+<p>一个独立的 Kafka 服务器被称为 broker。</p>
+</blockquote>
+<h4 id="broker配置"><a href="#broker配置" class="headerlink" title="broker配置"></a>broker配置</h4><blockquote>
+<p>Kafka 发行包里自带的配置样本可以用来安装单机服务，但并不能满足大多数安装场景的要求。 Kafka 有很多配置选项，涉及安装和调优的方方面面。不过大多数调优选项可以使用默认配置，除非你对调优有特别的要求。</p>
+<blockquote>
+<ol>
+<li> broker.id<br>每个broker都需要有一个标识符，使用broker.id来表示。它的默认值是0，也可以被设置成其他任意整数。这个值在整个Kafka集群里必须是唯一的。这个值可以任意选定，如果出于维护的需要，可以在服务器节点间交换使用这些ID。建议把它们设置成与机器名具有相关性的整数，这样在进行维护时，将ID号映射到机器名就没那么麻烦了。例如，如果机器名包含唯一性的数字（比如hostl.example.com、host2.example.com），那么用这些数字<br>来设置broker.id就再好不过了。</li>
+<li>port<br>如果使用配置样本来启动Kafka，它会监听9092端口。修改po「t配置参数可以把它设置<br>成其他任意可用的端口。要注意，如果使用1024以下的端口，需要使用root权限启动<br>Kafka，不过不建议这么做。<br>zookeeper.connect<br>用于保存broker元数据的Zookeeperd地址是是通过zookeeper.connect来指定的。<br>localhost:2181表示这个Zooke巳per是运行在本地的2181端口上。该配置参数是用冒号分隔的一组localhost:port/path列表，每一部分的含义如下：<blockquote>
+<ul>
+<li>hostname是Zookeeper服务器的机器名或IP地址;</li>
+<li>port是Zookeeper的客户端连接端口;</li>
+<li>/path是可选的Zookeeper路径，作为Kafka集群的chroot环境。如果不指定，默认使用根路径。如果指定的chroot路径不存在，broker会在启动的时候创建它。</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+</blockquote>
+<h3 id="二、集群"><a href="#二、集群" class="headerlink" title="二、集群"></a>二、集群</h3><blockquote>
+<p>broker 是集群的组成部分。</p>
+</blockquote>
+<h3 id="三、生产者-Producer"><a href="#三、生产者-Producer" class="headerlink" title="三、生产者{Producer}"></a>三、生产者{Producer}</h3><blockquote>
+<p>创建消息。</p>
+</blockquote>
+<h3 id="四、消费者"><a href="#四、消费者" class="headerlink" title="四、消费者"></a>四、消费者</h3><blockquote>
+<p>消费消息。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://mgaryc.github.io/2020/05/07/Redis-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MAGRY">
+      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodingDiary">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/07/Redis-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">Redis-学习总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:33:25" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">开发</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Redis-学习总结"><a href="#Redis-学习总结" class="headerlink" title="Redis-学习总结"></a>Redis-学习总结</h2><h1 id="基础学习"><a href="#基础学习" class="headerlink" title="基础学习"></a>基础学习</h1><h2 id="Redis的数据类型"><a href="#Redis的数据类型" class="headerlink" title="Redis的数据类型"></a>Redis的数据类型</h2><p>使用场景：</p>
+<ol>
+<li>制作永久缓存</li>
+<li>定时缓存（设值时添加时间搓）</li>
+</ol>
+<h3 id="String（字符串类型）"><a href="#String（字符串类型）" class="headerlink" title="String（字符串类型）"></a>String（字符串类型）</h3><blockquote>
+<p> string 是 redis 最基本的类型，你可以理解成与 Memcached 一模一样的类型，一个 key 对应一个 value。<br>string 类型是二进制安全的。意思是 redis 的 string 可以包含任何数据。比如jpg图片或者序列化的对象。<br>string 类型是 Redis 最基本的数据类型，string 类型的值最大能存储 512MB。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//添加 name = runoob</span><br><span class="line">redis 127.0.0.1:6379&gt; SET name &quot;runoob&quot;</span><br><span class="line">查询name</span><br><span class="line">redis 127.0.0.1:6379&gt; GET name</span><br></pre></td></tr></table></figure>
+<h3 id="Hash（哈希）"><a href="#Hash（哈希）" class="headerlink" title="Hash（哈希）"></a>Hash（哈希）</h3><blockquote>
+<p>Redis hash 是一个键值(key=&gt;value)对集合。<br>Redis hash 是一个 string 类型的 field 和 value 的映射表，hash 特别适合用于存储对象</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//设置添加hmset key value.</span><br><span class="line">redis&gt; HMSET myhash field1 &quot;Hello&quot; field2 &quot;World&quot;</span><br><span class="line">//查询、获取Hhget</span><br><span class="line">redis&gt; HGET myhash field1</span><br><span class="line">redis&gt; HGET myhash field2</span><br></pre></td></tr></table></figure>
+<h3 id="List（列表）"><a href="#List（列表）" class="headerlink" title="List（列表）"></a>List（列表）</h3><blockquote>
+<p>Redis 列表是简单的字符串列表，按照插入顺序排序。你可以添加一个元素到列表的头部（左边）或者尾部（右边）。<br>注意：左右都可操作数据。与kafka配合使用(左进右出)</p>
+</blockquote>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; lpush runoob redis</span><br><span class="line">(integer) 1</span><br><span class="line">redis 127.0.0.1:6379&gt; lpush runoob mongodb</span><br><span class="line">(integer) 2</span><br><span class="line">redis 127.0.0.1:6379&gt; lpush runoob rabitmq</span><br><span class="line">(integer) 3</span><br><span class="line">redis 127.0.0.1:6379&gt; lrange runoob 0 10</span><br><span class="line">1) &quot;rabitmq&quot;</span><br><span class="line">2) &quot;mongodb&quot;</span><br><span class="line">3) &quot;redis&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="Set（集合）"><a href="#Set（集合）" class="headerlink" title="Set（集合）"></a>Set（集合）</h3><blockquote>
+<p>Redis的Set是string类型的无序集合。<br>集合是通过哈希表实现的，所以添加，删除，查找的复杂度都是O(1)。</p>
+</blockquote>
+<h4 id="sadd-命令"><a href="#sadd-命令" class="headerlink" title="sadd 命令"></a>sadd 命令</h4><blockquote>
+<p>添加一个 string 元素到 key 对应的 set 集合中，成功返回1，如果元素已经在集合中返回 0，如果 key 对应的 set 不存在则返回错误。</p>
+</blockquote>
+<p><code>sadd key member</code></p>
+<p>注意：以上实例中 rabitmq 添加了两次，但根据集合内元素的唯一性，第二次插入的元素将被忽略。<br>集合中最大的成员数为 232 - 1(4294967295, 每个集合可存储40多亿个成员)。</p>
+<h3 id="zset-sorted-set：有序集合"><a href="#zset-sorted-set：有序集合" class="headerlink" title="zset(sorted set：有序集合)"></a>zset(sorted set：有序集合)</h3><blockquote>
+<p>Redis zset 和 set 一样也是string类型元素的集合,且不允许重复的成员。<br>不同的是每个元素都会关联一个double类型的分数。redis正是通过分数来为集合中的成员进行从小到大的排序。<br>zset的成员是唯一的,但分数(score)却可以重复。</p>
+</blockquote>
+<p><code>zadd key score member</code></p>
+<h4 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; zadd runoob 0 redis</span><br><span class="line">(integer) 1</span><br><span class="line">redis 127.0.0.1:6379&gt; zadd runoob 0 mongodb</span><br><span class="line">(integer) 1</span><br><span class="line">redis 127.0.0.1:6379&gt; zadd runoob 0 rabitmq</span><br><span class="line">(integer) 1</span><br><span class="line">redis 127.0.0.1:6379&gt; zadd runoob 0 rabitmq</span><br><span class="line">(integer) 0</span><br><span class="line">redis 127.0.0.1:6379&gt; &gt; ZRANGEBYSCORE runoob 0 1000</span><br><span class="line">1) &quot;mongodb&quot;</span><br><span class="line">2) &quot;rabitmq&quot;</span><br><span class="line">3) &quot;redis&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="使用方向应用场景"><a href="#使用方向应用场景" class="headerlink" title="使用方向应用场景"></a>使用方向应用场景</h2><ol>
+<li>数据库主从（相当于MySQL集群）</li>
+<li>管理网路会话（session和Cookie）<br><a target="_blank" rel="noopener" href="http://www.runoob.com/redis/redis-data-types.html">详情查看</a>…<h1 id="出错解决"><a href="#出错解决" class="headerlink" title="出错解决"></a>出错解决</h1><h2 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h2><blockquote>
+<p>原因</p>
+<blockquote>
+<p>同一时间发出上百万条操作时产生（表现对外无法访问，对内处理数据）</p>
+</blockquote>
+<p>处理方法</p>
+<blockquote>
+<p> 加入随机数（降低同一时间数据量的处理）Eg:分成10批没批处理多少等等</p>
+</blockquote>
+</blockquote>
+<h2 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h2><blockquote>
+<p>原因</p>
+<blockquote>
+<p>在访问缓存时,娶不到设置的缓存值，这个请求会直接请求数据库，导致服务能力降低（如果数据量太大会使数据库直接崩溃）</p>
+</blockquote>
+<p>处理方法</p>
+<blockquote>
+<p>请求时设置假值，大传入的数据直接通过（常量）传输回去</p>
+</blockquote>
+</blockquote>
+</li>
+</ol>
+<h1 id="Redis运维"><a href="#Redis运维" class="headerlink" title="Redis运维"></a>Redis运维</h1><h2 id="设置密码"><a href="#设置密码" class="headerlink" title="设置密码"></a>设置密码</h2><ol>
+<li>初始化Redis密码：</li>
+</ol>
+<p>编辑redis.conf配置文件，找到requirepass参数，这个就是配置redis访问密码的参数:</p>
+<p>   <code># requirepass foobared</code>  </p>
+<pre><code>去掉注释修改为 ` requirepass redis123 `
+</code></pre>
+<p>   （Ps:需重启Redis才能生效）</p>
+<p>   redis的查询速度是非常快的，外部用户一秒内可以尝试多大150K个密码；所以密码要尽量长（对于DBA 没有必要必须记住密码）；</p>
+<ol start="2">
+<li>不重启Redis设置密码（临时的，当服务器重启了密码必须重设）： </li>
+</ol>
+<p>设置密码<br><code>config set requirepass test123 </code></p>
+<p>查看密码<br><code>config get requirepass</code></p>
+<p>在配置文件中有配置requirepass的密码（当redis重启时密码依然有效）。</p>
+<ol start="3">
+<li>登陆有密码的Redis：</li>
+</ol>
+<p>  在登录的时候的时候输入密码：</p>
+<p>  <code> redis-cli -p 6379 -a test123</code></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://mgaryc.github.io/2020/05/07/Redis-%E9%9B%86%E7%BE%A4(%E4%B8%80)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MAGRY">
+      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodingDiary">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/07/Redis-%E9%9B%86%E7%BE%A4(%E4%B8%80)/" class="post-title-link" itemprop="url">Redis-集群(一)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:34:14" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">运维</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.redis.cn/topics/cluster-tutorial.html">本文提取至官网文档</a></p>
+</blockquote>
+<h2 id="Redis集群介绍"><a href="#Redis集群介绍" class="headerlink" title="Redis集群介绍"></a>Redis集群介绍</h2><p>Redis 集群是一个提供<strong>在多个Redis间节点间共享数据</strong>的程序集。</p>
+<p>Redis集群并不支持处理多个keys的命令,因为这需要在不同的节点间移动数据,从而达不到像Redis那样的性能,在高负载的情况下可能会导致不可预料的错误.</p>
+<p>Redis 集群通过分区来提供<strong>一定程度的可用性</strong>,在实际环境中当某个节点宕机或者不可达的情况下继续处理命令. Redis 集群的优势:</p>
+<ul>
+<li>自动分割数据到不同的节点上。</li>
+<li>整个集群的部分节点失败或者不可达的情况下能够继续处理命令。</li>
+</ul>
+<h2 id="Redis-集群的数据分片"><a href="#Redis-集群的数据分片" class="headerlink" title="Redis 集群的数据分片"></a>Redis 集群的数据分片</h2><p>Redis 集群没有使用一致性hash, 而是引入了 <strong>哈希槽</strong>的概念.</p>
+<p>Redis 集群有16384个哈希槽,每个key通过CRC16校验后对16384取模来决定放置哪个槽.集群的每个节点负责一部分hash槽,举个例子,比如当前集群有3个节点,那么:</p>
+<ul>
+<li>节点 A 包含 0 到 5500号哈希槽.</li>
+<li>节点 B 包含5501 到 11000 号哈希槽.</li>
+<li>节点 C 包含11001 到 16384号哈希槽.<blockquote>
+<p>这种结构很容易添加或者删除节点. 比如如果我想新添加个节点D, 我需要从节点 A, B, C中得部分槽到D上. 如果我想移除节点A,需要将A中的槽移到B和C节点上,然后将没有任何槽的A节点从集群中移除即可. 由于从一个节点将哈希槽移动到另一个节点并不会停止服务,所以无论添加删除或者改变某个节点的哈希槽的数量都不会造成集群不可用的状态.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="Redis-集群的主从复制模型"><a href="#Redis-集群的主从复制模型" class="headerlink" title="Redis 集群的主从复制模型"></a>Redis 集群的主从复制模型</h2><p>为了使在部分节点失败或者大部分节点无法通信的情况下集群仍然可用，所以集群使用了主从复制模型,每个节点都会有N-1个复制品.</p>
+<p>在我们例子中具有A，B，C三个节点的集群,在没有复制模型的情况下,如果节点B失败了，那么整个集群就会以为缺少5501-11000这个范围的槽而不可用.</p>
+<p>然而如果在集群创建的时候（或者过一段时间）我们为每个节点添加一个从节点A1，B1，C1,那么整个集群便有三个master节点和三个slave节点组成，这样在节点B失败后，集群便会选举B1为新的主节点继续服务，整个集群便不会因为槽找不到而不可用了</p>
+<p>不过当B和B1 都失败后，集群是不可用的.</p>
+<h2 id="Redis-一致性保证"><a href="#Redis-一致性保证" class="headerlink" title="Redis 一致性保证"></a>Redis 一致性保证</h2><p>Redis 并不能保证数据的强<strong>一致性</strong>. 这意味这在实际中集群在特定的条件下可能会丢失写操作.</p>
+<p>第一个原因是因为集群是用了异步复制. 写操作过程:</p>
+<ul>
+<li>客户端向主节点B写入一条命令.</li>
+<li>主节点B向客户端回复命令状态.</li>
+<li>主节点将写操作复制给他得从节点 B1, B2 和 B3.</li>
+</ul>
+<p>主节点对命令的复制工作发生在返回命令回复之后， 因为如果每次处理命令请求都需要等待复制操作完成的话， 那么主节点处理命令请求的速度将极大地降低 —— 我们必须在性能和一致性之间做出权衡。 注意：Redis 集群可能会在将来提供同步写的方法。 Redis 集群另外一种可能会丢失命令的情况是集群出现了网络分区， 并且一个客户端与至少包括一个主节点在内的少数实例被孤立。</p>
+<p>举个例子 假设集群包含 A 、 B 、 C 、 A1 、 B1 、 C1 六个节点， 其中 A 、B 、C 为主节点， A1 、B1 、C1 为A，B，C的从节点， 还有一个客户端 Z1 假设集群中发生网络分区，那么集群可能会分为两方，大部分的一方包含节点 A 、C 、A1 、B1 和 C1 ，小部分的一方则包含节点 B 和客户端 Z1 .</p>
+<p>Z1仍然能够向主节点B中写入, 如果网络分区发生时间较短,那么集群将会继续正常运作,如果分区的时间足够让大部分的一方将B1选举为新的master，那么Z1写入B中得数据便丢失了.</p>
+<p>注意， 在网络分裂出现期间， 客户端 Z1 可以向主节点 B 发送写命令的最大时间是有限制的， 这一时间限制称为节点超时时间（node timeout）， 是 Redis 集群的一个重要的配置选项：</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://mgaryc.github.io/2020/05/07/Redis-%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MAGRY">
+      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodingDiary">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/07/Redis-%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%EF%BC%89/" class="post-title-link" itemprop="url">Redis-集群（二）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:33:25" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">运维</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="集群配置文件"><a href="#集群配置文件" class="headerlink" title="集群配置文件"></a>集群配置文件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//设置端口号</span><br><span class="line">port 7000</span><br><span class="line">//集群模式</span><br><span class="line">cluster-enabled yes</span><br><span class="line">//保存节点配置文件的路径， 默认值为 nodes.conf.节点配置文件无须人为修改， 它由 Redis 集群在启动时创建， 并在有需要时自动进行更新</span><br><span class="line">cluster-config-file nodes.conf</span><br><span class="line">//节点超时设置</span><br><span class="line">cluster-node-timeout 5000</span><br><span class="line">// 进程守护</span><br><span class="line">appendonly yes</span><br></pre></td></tr></table></figure>
+<h2 id="创建DOcker环境-配置Redis配置"><a href="#创建DOcker环境-配置Redis配置" class="headerlink" title="创建DOcker环境  配置Redis配置"></a>创建DOcker环境  配置Redis配置</h2><h3 id="1、准备redis容器"><a href="#1、准备redis容器" class="headerlink" title="1、准备redis容器"></a>1、准备redis容器</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --name docker-redis-master --mount type=bind,source=/home/leesia/docker/redis/v,target=/leesia redis /bin/bash</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --name docker-redis-slave1 --mount type=bind,source=/home/leesia/docker/redis/v,target=/leesia --link docker-redis-master:master redis /bin/bash</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>    命令说明：</p>
+<blockquote>
+<p>    第一条命令是启动主服务容器，容器名为docker-redis-master，mount 参数挂载了宿主机的/home/leesia/docker/redis/v到容器的/leesia目录，宿主机的/home/leesia/docker/redis/v目录必须存在，否则会报错，可以参考–mount参数配置。/bin/bash是容器启动时进入伪终端。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>    第二条命令是启动从服务容器，容器名为docker-redis-slave1，同样挂载了宿主机的/home/leesia/docker/redis/v到容器的/leesia目录。link参数是连接到其他容器，这里连接到主服务容器docker-redis-master，并设置别名为master。 /bin/bash是容器启动时进入伪终端。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>  分别执行这两个命令，可启动redis容器，并进入容器。在容器中按ctrl+p，再ctrl+q可从容器退出，并保持容器继续运行，退出后用执行docker exec -it container_id /bin/bash再次进入容器。</p>
+</blockquote>
+<p>把定义的配置（两个）文件分别复制到主从容器的/usr/local/bin目录下。<br>分别在主从容器的/usr/local/bin目录下执行redis-server redis.conf命令，启动redis服务。这样，redis主从服务器已经搭建。</p>
+<h3 id="2、验证"><a href="#2、验证" class="headerlink" title="2、验证"></a>2、验证</h3><p>在主服务容器的/usr/local/bin目录下执行redis-cli -h 172.17.0.2 -p 6379，连接redis服务，执行set master ‘master’，存入一个master键。</p>
+<p>在从服务容器的/usr/local/bin目录下执行redis-cli -h 172.17.0.4 -p 6379，连接redis服务，执行get master，返回’master’，说明主服务器将数据同步到了从服务器中。</p>
+<h3 id="代码清单4-2-查看redis结点IP"><a href="#代码清单4-2-查看redis结点IP" class="headerlink" title="代码清单4-2 查看redis结点IP"></a>代码清单4-2 查看redis结点IP</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># docker inspect redis01 redis02 redis03 redis04 redis05 redis06 </span><br><span class="line"></span><br><span class="line">&quot;IPAddress&quot;: &quot;172.19.0.16&quot;,</span><br><span class="line"></span><br><span class="line">&quot;IPAddress&quot;: &quot;172.19.0.17&quot;,</span><br><span class="line"></span><br><span class="line">&quot;IPAddress&quot;: &quot;172.19.0.15&quot;,</span><br><span class="line"></span><br><span class="line">&quot;IPAddress&quot;: &quot;172.19.0.19&quot;,</span><br><span class="line"></span><br><span class="line">&quot;IPAddress&quot;: &quot;172.19.0.14&quot;,</span><br><span class="line"></span><br><span class="line">&quot;IPAddress&quot;: &quot;172.19.0.18&quot;,</span><br></pre></td></tr></table></figure>
+<h2 id="安装Redis-集群插件"><a href="#安装Redis-集群插件" class="headerlink" title="安装Redis 集群插件"></a>安装Redis 集群插件</h2><ul>
+<li><p>安装插件<br><code>yum install -y redis ruby rubygems</code></p>
+</li>
+<li><p><code>gem install redis -v 3.2.2</code>  # 由于yum当前默认安装版本为3.2.10，在gem中选择了相近版本3.2.2，<a target="_blank" rel="noopener" href="https://rubygems.org/gems/redis/versions/">更多版本见</a></p>
+</li>
+<li><p><code>wget http://download.redis.io/redis-stable/src/redis-trib.rb</code> # 下载最新的redis-trib.rb，包含自动将master和slave交叉部署的功能，部分老版本没有该功能*</p>
+</li>
+<li><p>WARNING: redis-trib.rb is not longer available!这个出现的问题极有可能是 redis-trib.rb与你所安装的版本不符,并不是命令错了，<a target="_blank" rel="noopener" href="https://blog.csdn.net/aaaadong/article/details/82625567">解决办法详情</a> </p>
+</li>
+<li><p> 直接查找redis版本  <code>redis-server --version</code></p>
+</li>
+<li><p>windows下载地址 <code>https://github.com/MicrosoftArchive/redis/releases</code></p>
+</li>
+<li><p>linux下载地址 <code>http://download.redis.io/releases/</code></p>
+</li>
+<li><p>开放权限<code>chmod +x redis-trib.rb</code></p>
+</li>
+</ul>
+<p>启动集群(条件必须是奇数)  3主3从  高可用配置 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./redis-trib.rb create --replicas 1 172.17.0.3:6001 172.17.0.4:6002 \</span><br><span class="line">172.17.0.5:6003 172.17.0.6:6004 172.17.0.7:6005 172.17.0.8:6006</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://mgaryc.github.io/2020/05/07/SpringBoot-%E6%89%93%E5%8C%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MAGRY">
+      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodingDiary">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/07/SpringBoot-%E6%89%93%E5%8C%85/" class="post-title-link" itemprop="url">SpringBoot-打包（Jar、war）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:35:26" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">开发</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="SpringBoot-打包（Jar-、war-）"><a href="#SpringBoot-打包（Jar-、war-）" class="headerlink" title="SpringBoot-打包（Jar-、war-）"></a>SpringBoot-打包（Jar-、war-）</h2><h1 id="War-打包方式"><a href="#War-打包方式" class="headerlink" title="War 打包方式"></a>War 打包方式</h1><h3 id="一-、-没有分模块的maven打包"><a href="#一-、-没有分模块的maven打包" class="headerlink" title="一 、 没有分模块的maven打包"></a>一 、 没有分模块的maven打包</h3><p>1、找到主程序下的<code>pox.xml</code>文件并进行修改</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;packaging&gt;war&lt;/packaging&gt;</span><br></pre></td></tr></table></figure>
+<p>2、新增Springboot <code>spring-boot-starter-tomcat</code>并将依赖设置为provided。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;</span><br><span class="line">    &lt;scope&gt;provided&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="二、分模块maven打包"><a href="#二、分模块maven打包" class="headerlink" title="二、分模块maven打包"></a>二、分模块maven打包</h3><p>1、找到主程序下的<code>pox.xml</code>文件并进行修改</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;packaging&gt;war&lt;/packaging&gt;</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;plugin&gt;</span><br><span class="line">    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;maven-war-plugin&lt;/artifactId&gt;</span><br><span class="line">    &lt;configuration&gt;</span><br><span class="line">        &lt;warName&gt;api&lt;/warName&gt;</span><br><span class="line">        &lt;failOnMissingWebXml&gt;false&lt;/failOnMissingWebXml&gt;</span><br><span class="line">    &lt;/configuration&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br></pre></td></tr></table></figure>
+<p>2、 找到 Springboot  <code>spring-boot-starter-web</code>模块排除<code>Tomcat</code>,并新增单独的Springboot <code>Tomcat</code>模块，设置在编译时使用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">    &lt;exclusions&gt;</span><br><span class="line">        &lt;exclusion&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;</span><br><span class="line">        &lt;/exclusion&gt;</span><br><span class="line">    &lt;/exclusions&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;</span><br><span class="line">    &lt;scope&gt;compile&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="以上两种方法都需要继承SpringBootServletInitializer，并且实现其中的方法，在其中指向你应用的主运行类。"><a href="#以上两种方法都需要继承SpringBootServletInitializer，并且实现其中的方法，在其中指向你应用的主运行类。" class="headerlink" title="以上两种方法都需要继承SpringBootServletInitializer，并且实现其中的方法，在其中指向你应用的主运行类。"></a>以上两种方法都需要继承<code>SpringBootServletInitializer</code>，并且实现其中的方法，在其中指向你应用的主运行类。</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class ApplicationRunner extends SpringBootServletInitializer &#123;</span><br><span class="line"> </span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(ApplicationRunner.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    @Override</span><br><span class="line">    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) &#123;</span><br><span class="line">        return builder.sources(ApplicationRunner.class);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="JAR"><a href="#JAR" class="headerlink" title="JAR"></a>JAR</h1><h3 id="一-、-没有分模块的maven打包-1"><a href="#一-、-没有分模块的maven打包-1" class="headerlink" title="一 、 没有分模块的maven打包"></a>一 、 没有分模块的maven打包</h3><p>1、找到主程序下的<code>pox.xml</code>文件并进行修改</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;packaging&gt;jar&lt;/packaging&gt;</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;plugin&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="二、分模块maven打包-1"><a href="#二、分模块maven打包-1" class="headerlink" title="二、分模块maven打包"></a>二、分模块maven打包</h3><p>1、找到主程序下的<code>pox.xml</code>文件并进行修改</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;packaging&gt;jar&lt;/packaging&gt;</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;plugin&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">    &lt;executions&gt;</span><br><span class="line">        &lt;execution&gt;</span><br><span class="line">            &lt;goals&gt;</span><br><span class="line">                &lt;goal&gt;repackage&lt;/goal&gt;</span><br><span class="line">            &lt;/goals&gt;</span><br><span class="line">        &lt;/execution&gt;</span><br><span class="line">    &lt;/executions&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://mgaryc.github.io/2020/05/07/Swagger2-%E6%B3%A8%E8%A7%A3%E8%A7%A3%E9%87%8A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MAGRY">
+      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodingDiary">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/07/Swagger2-%E6%B3%A8%E8%A7%A3%E8%A7%A3%E9%87%8A/" class="post-title-link" itemprop="url">Swagger2-注解解释</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:33:45" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">开发</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="注解的使用方法"><a href="#注解的使用方法" class="headerlink" title="注解的使用方法"></a>注解的使用方法</h2><p>@ApiOperation 用在方法上，说明方法的作用<br>@ApiImplicitParams 用在方法上包含一组方法说明<br>@ApiImplicitParam y用在@ApiImplicitParams 注解中，指明一个请求参数的各个方面</p>
+<ul>
+<li>paranType 参数放在什么地方</li>
+<li>-header 请求参数的获取 @RequestHeader</li>
+<li>-query  请求参数的获取 @RequestParam</li>
+<li>-path (用于restful接口) 请求参数的获取 @PathVariable （请求后带参数）</li>
+<li>-body(RequestBody)</li>
+<li>-form (表单提交)</li>
+<li>name 参数名称</li>
+<li>dataType 参数类型</li>
+<li>required 参数是否必传</li>
+<li>value 参数的意思</li>
+<li>defaultValue 参数默认值</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://mgaryc.github.io/2020/05/07/Ubuntu19-%E5%88%86%E8%BE%A8%E7%8E%87%E9%80%89%E9%A1%B9%E4%B8%A2%E5%A4%B1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MAGRY">
+      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodingDiary">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/07/Ubuntu19-%E5%88%86%E8%BE%A8%E7%8E%87%E9%80%89%E9%A1%B9%E4%B8%A2%E5%A4%B1/" class="post-title-link" itemprop="url">Ubuntu19-分辨率选项丢失</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:33:50" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">开发</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Ubuntu19-1-分辨率选项丢失"><a href="#Ubuntu19-1-分辨率选项丢失" class="headerlink" title="Ubuntu19-1-分辨率选项丢失"></a>Ubuntu19-1-分辨率选项丢失</h2><hr>
+<ul>
+<li>方案一<br>直接上手但是这个方法是针对  <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_22999067/article/details/90611457">分辨率调整选项里没有的选项而新增的</a>，因此无效</li>
+</ul>
+<hr>
+<ul>
+<li>方案二<ol>
+<li>在第一次撞墙后，开始一步一步解决问题，疑点一：显卡驱动是否有误，于是我直接注销使用其他用户登陆<br>发现没有问题，排除显卡驱动问题。</li>
+<li>查看调试分辨率命令的帮助文档<code>xrandr  -help</code>最后得出结果，尝试使用下命令直接进行切换才修复成功（有效）<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xrandr -s 0</span><br><span class="line">xrandr -s 1</span><br><span class="line">xrandr -s 2</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://mgaryc.github.io/2020/05/07/Window-%E5%AE%89%E8%A3%85Scala%E5%8F%8A%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MAGRY">
+      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodingDiary">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/07/Window-%E5%AE%89%E8%A3%85Scala%E5%8F%8A%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">Window-安装Scala及出现问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:18:41" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">开发</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="scala安装"><a href="#scala安装" class="headerlink" title="scala安装"></a>scala安装</h2><blockquote>
+<p>scala官方下载地址：<a target="_blank" rel="noopener" href="http://www.scala-lang.org/download/">http://www.scala-lang.org/download/</a><br><img src="https://upload-images.jianshu.io/upload_images/15538074-e4dcbd147e3e1ee3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>修改环境变量<br>（0）、右击我的电脑—属性—高级系统设置—环境变量—新建系统变量<br>变量名：SCALA_HOME<br>变量值：选择你自己设置的scala安装路径<br>（1）、选择PATH变量—编辑—新增一个变量值<br>scala安装目录的bin目录，例：C:\Program Files (x86)\scala\bin; 或者%SCALA_HOME%\bin;<br>（2）、找到classpath—新增变量值：<br>.;%SCALA_HOME%\bin;%SCALA_HOME%\lib\dt.jar;%SCALA_HOME%\lib\tools.jar.;<br>复制此变量值，注意 .; 不要遗漏。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>配置环境变量完成之后，测试一下是否成功。<br>win + r —输入cmd—输入scala </p>
+</blockquote>
+<h2 id="出现“此时不应有-scala-bin-scala-bat。”问题"><a href="#出现“此时不应有-scala-bin-scala-bat。”问题" class="headerlink" title="出现“此时不应有 \scala\bin\scala.bat。”问题"></a>出现“此时不应有 \scala\bin\scala.bat。”问题</h2><blockquote>
+<p>scala的安装路径如果包含了空格，就可能会出现这种情况。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://mgaryc.github.io/2020/05/07/Word-%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MAGRY">
+      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodingDiary">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/07/Word-%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/" class="post-title-link" itemprop="url">word 快捷键</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:28:35" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%96%87%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">文档</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="word-快捷键"><a href="#word-快捷键" class="headerlink" title="word 快捷键"></a>word 快捷键</h2><h3 id="撤销和恢复操作"><a href="#撤销和恢复操作" class="headerlink" title="撤销和恢复操作"></a>撤销和恢复操作</h3><ul>
+<li><p>Esc：取消操作</p>
+</li>
+<li><p>Ctrl+Z：撤销操作</p>
+</li>
+<li><p>Ctrl+Y：恢复或重复操作</p>
+</li>
+</ul>
+<h3 id="文本编辑"><a href="#文本编辑" class="headerlink" title="文本编辑"></a>文本编辑</h3><ul>
+<li><p>Ctrl+Shift+空格键：创建不间断空格</p>
+</li>
+<li><p>Ctrl+连字符：创建不间断连字符</p>
+</li>
+<li><p>Ctrl+B：加粗字母</p>
+</li>
+<li><p>Ctrl+I：使字母倾斜</p>
+</li>
+<li><p>Ctrl+U：为字符添加下划线</p>
+</li>
+<li><p>Ctrl+Shift+&lt;：将字号减小一个值</p>
+</li>
+<li><p>Ctrl+Shift+&gt;：将字号增大一个值</p>
+</li>
+<li><p>Ctrl+[：将字号减小1 磅</p>
+</li>
+<li><p>Ctrl+]：将字号增大1 磅</p>
+</li>
+<li><p>Ctrl+空格键：删除段落或字符格式</p>
+</li>
+<li><p>Ctrl+C：复制所选文本或对象</p>
+</li>
+<li><p>Ctrl+X：剪切所选文本或对象</p>
+</li>
+<li><p>Ctrl+V：粘贴文本或对象</p>
+</li>
+<li><p>Ctrl+Alt+V：选择性粘贴</p>
+</li>
+<li><p>Ctrl+Shift+V：仅粘贴格式</p>
+</li>
+<li><p>Ctrl+Shift+G：打开“字数统计”对话框</p>
+</li>
+</ul>
+<h3 id="创建、查看和保存文档"><a href="#创建、查看和保存文档" class="headerlink" title="创建、查看和保存文档"></a>创建、查看和保存文档</h3><ul>
+<li><p>Ctrl+O：打开文档</p>
+</li>
+<li><p>Ctrl+W：关闭文档</p>
+</li>
+<li><p>Alt+Ctrl+S：拆分文档窗口</p>
+</li>
+<li><p>Ctrl+S：保存文档</p>
+</li>
+<li><p>Alt+Shift+C：撤消拆分文档窗口</p>
+<h3 id="查找、替换和浏览文本"><a href="#查找、替换和浏览文本" class="headerlink" title="查找、替换和浏览文本"></a>查找、替换和浏览文本</h3></li>
+<li><p>Ctrl+F：查找内容、格式和特殊项</p>
+</li>
+<li><p>Alt+Ctrl+Y：重复查找</p>
+</li>
+<li><p>Ctrl+H：替换文字、特定格式和特殊项</p>
+</li>
+<li><p>Ctrl+G：转到至页、书签、脚注、表格、注释、图形或其他位置</p>
+</li>
+<li><p>Alt+Ctrl+Z：在最后四个已编辑过的位置之间进行切换</p>
+</li>
+<li><p>Ctrl+Page Up：移至上一编辑位置</p>
+</li>
+<li><p>Ctrl+Page Down：移至下一编辑位置</p>
+</li>
+</ul>
+<h3 id="切换视图"><a href="#切换视图" class="headerlink" title="切换视图"></a>切换视图</h3><ul>
+<li><p>Alt+Ctrl+P：切换到普通视图</p>
+</li>
+<li><p>Alt+Ctrl+O：切换到大纲视图</p>
+</li>
+<li><p>Alt+Ctrl+N：切换到草稿视图</p>
+</li>
+</ul>
+<h3 id="大纲视图"><a href="#大纲视图" class="headerlink" title="大纲视图"></a>大纲视图</h3><ul>
+<li><p>Alt+Shift+向左键：提升段落级别</p>
+</li>
+<li><p>Alt+Shift+向右键：降低段落级别</p>
+</li>
+<li><p>Ctrl+Shift+N：降级为正文</p>
+</li>
+<li><p>Alt+Shift+向上键：上移所选段落</p>
+</li>
+<li><p>Alt+Shift+向下键：下移所选段落</p>
+</li>
+<li><p>Alt+Shift+加号：扩展标题下的文本</p>
+</li>
+<li><p>Alt+Shift+减号：折叠标题下的文本</p>
+</li>
+<li><p>Alt+Shift+A：扩展或折叠所有文本或标题</p>
+</li>
+<li><p>数字键盘上的斜杠 (/)：隐藏或显示字符格式</p>
+</li>
+<li><p>Alt+Shift+L：显示首行正文或所有正文</p>
+</li>
+<li><p>Ctrl+Tab：插入制表符</p>
+</li>
+</ul>
+<h3 id="打印和预览文档"><a href="#打印和预览文档" class="headerlink" title="打印和预览文档"></a>打印和预览文档</h3><ul>
+<li><p>Ctrl+P:打印文档</p>
+</li>
+<li><p>Alt+Ctrl+I：切换至或退出打印预览</p>
+</li>
+<li><p>箭头键：在放大的预览页上移动</p>
+</li>
+<li><p>Page Up/Down：缩小显示比例时逐页翻阅预览页</p>
+</li>
+<li><p>Ctrl+Home：缩小显示比例时移至预览首页</p>
+</li>
+<li><p>Ctrl+End：缩小显示比例时移至最后一张预览页</p>
+</li>
+</ul>
+<h3 id="审阅文档"><a href="#审阅文档" class="headerlink" title="审阅文档"></a>审阅文档</h3><ul>
+<li><p>Alt+Ctrl+M：插入批注</p>
+</li>
+<li><p>Ctrl+Shift+E：打开或关闭修订</p>
+</li>
+<li><p>Alt+Shift+C：如果“审阅窗格”打开，则将其关闭</p>
+</li>
+</ul>
+<h3 id="处理网页"><a href="#处理网页" class="headerlink" title="处理网页"></a>处理网页</h3><ul>
+<li><p>Ctrl+K：插入超链接</p>
+</li>
+<li><p>Alt+向右键：前进一页</p>
+</li>
+<li><p>Alt+向左键：返回一页</p>
+</li>
+<li><p>F9：刷新</p>
+</li>
+</ul>
+<h3 id="访问和使用任务窗格和库"><a href="#访问和使用任务窗格和库" class="headerlink" title="访问和使用任务窗格和库"></a>访问和使用任务窗格和库</h3><ul>
+<li><p>（可能多次) F6：从程序窗口中的一个任务窗格移动到另一个</p>
+</li>
+<li><p>（可能多次）Ctrl+Tab：菜单活动状态时，移到任务窗格</p>
+</li>
+<li><p>Tab或Shift+Tab：任务窗格活动状态，选择该任务窗格中的下一个或上一个选项</p>
+</li>
+<li><p>Ctrl+空格键：显示任务窗格菜单上的整个命令集</p>
+</li>
+<li><p>Shift+F10：打开选中库项目的下拉菜单</p>
+</li>
+<li><p>空格键或Enter：执行分配给所选按钮的操作</p>
+</li>
+<li><p>Home：选择库中的第一个项目</p>
+</li>
+<li><p>End：选择库中的最后一个项目</p>
+</li>
+<li><p>Page Up：在选中的库列表中向上滚动</p>
+</li>
+<li><p>Page Down：在选中的库列表中向下滚动</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://mgaryc.github.io/2020/05/07/docker-%E5%AE%89%E8%A3%85%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MAGRY">
+      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodingDiary">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/07/docker-%E5%AE%89%E8%A3%85%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" class="post-title-link" itemprop="url">docker-安装问题记录</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:06:49" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">运维</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li><p>当前用户没有加权限</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.40/containers/json: dial unix /var/run/docker.sock: connect: permission denied</span><br></pre></td></tr></table></figure>
+<p>   解决办法</p>
+<p>  正确的是将当前用户加入docker组:</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gpasswd -a $&#123;USER&#125; docker</span><br></pre></td></tr></table></figure>
+<p>  退出重新进入即可</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">MAGRY</p>
+  <div class="site-description" itemprop="description">路其修远兮，吾将上下而求索</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mgaryc" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mgaryc" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:a1144362724a@gmail.com" title="E-Mail → mailto:a1144362724a@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">蜀ICP备18037843号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MAGRY</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

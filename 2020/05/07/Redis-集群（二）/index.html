@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mgaryc.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="集群配置文件12345678910&#x2F;&#x2F;设置端口号port 7000&#x2F;&#x2F;集群模式cluster-enabled yes&#x2F;&#x2F;保存节点配置文件的路径， 默认值为 nodes.conf.节点配置文件无须人为修改， 它由 Redis 集群在启动时创建， 并在有需要时自动进行更新cluster-config-file nodes.conf&#x2F;&#x2F;节点超时设置cluster-node-timeout 5000&#x2F;&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis-集群（二）">
+<meta property="og:url" content="http://mgaryc.github.io/2020/05/07/Redis-%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%EF%BC%89/index.html">
+<meta property="og:site_name" content="CodingDiary">
+<meta property="og:description" content="集群配置文件12345678910&#x2F;&#x2F;设置端口号port 7000&#x2F;&#x2F;集群模式cluster-enabled yes&#x2F;&#x2F;保存节点配置文件的路径， 默认值为 nodes.conf.节点配置文件无须人为修改， 它由 Redis 集群在启动时创建， 并在有需要时自动进行更新cluster-config-file nodes.conf&#x2F;&#x2F;节点超时设置cluster-node-timeout 5000&#x2F;&#x2F;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-07T04:00:31.000Z">
+<meta property="article:modified_time" content="2020-05-07T08:33:25.479Z">
+<meta property="article:author" content="MAGRY">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="Redis">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://mgaryc.github.io/2020/05/07/Redis-%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%EF%BC%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Redis-集群（二） | CodingDiary</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">CodingDiary</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">CodingDiary-代码日记</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://mgaryc.github.io/2020/05/07/Redis-%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MAGRY">
+      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodingDiary">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Redis-集群（二）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:33:25" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">运维</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="集群配置文件"><a href="#集群配置文件" class="headerlink" title="集群配置文件"></a>集群配置文件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//设置端口号</span><br><span class="line">port 7000</span><br><span class="line">//集群模式</span><br><span class="line">cluster-enabled yes</span><br><span class="line">//保存节点配置文件的路径， 默认值为 nodes.conf.节点配置文件无须人为修改， 它由 Redis 集群在启动时创建， 并在有需要时自动进行更新</span><br><span class="line">cluster-config-file nodes.conf</span><br><span class="line">//节点超时设置</span><br><span class="line">cluster-node-timeout 5000</span><br><span class="line">// 进程守护</span><br><span class="line">appendonly yes</span><br></pre></td></tr></table></figure>
+<h2 id="创建DOcker环境-配置Redis配置"><a href="#创建DOcker环境-配置Redis配置" class="headerlink" title="创建DOcker环境  配置Redis配置"></a>创建DOcker环境  配置Redis配置</h2><h3 id="1、准备redis容器"><a href="#1、准备redis容器" class="headerlink" title="1、准备redis容器"></a>1、准备redis容器</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --name docker-redis-master --mount type=bind,source=/home/leesia/docker/redis/v,target=/leesia redis /bin/bash</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --name docker-redis-slave1 --mount type=bind,source=/home/leesia/docker/redis/v,target=/leesia --link docker-redis-master:master redis /bin/bash</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>    命令说明：</p>
+<blockquote>
+<p>    第一条命令是启动主服务容器，容器名为docker-redis-master，mount 参数挂载了宿主机的/home/leesia/docker/redis/v到容器的/leesia目录，宿主机的/home/leesia/docker/redis/v目录必须存在，否则会报错，可以参考–mount参数配置。/bin/bash是容器启动时进入伪终端。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>    第二条命令是启动从服务容器，容器名为docker-redis-slave1，同样挂载了宿主机的/home/leesia/docker/redis/v到容器的/leesia目录。link参数是连接到其他容器，这里连接到主服务容器docker-redis-master，并设置别名为master。 /bin/bash是容器启动时进入伪终端。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>  分别执行这两个命令，可启动redis容器，并进入容器。在容器中按ctrl+p，再ctrl+q可从容器退出，并保持容器继续运行，退出后用执行docker exec -it container_id /bin/bash再次进入容器。</p>
+</blockquote>
+<p>把定义的配置（两个）文件分别复制到主从容器的/usr/local/bin目录下。<br>分别在主从容器的/usr/local/bin目录下执行redis-server redis.conf命令，启动redis服务。这样，redis主从服务器已经搭建。</p>
+<h3 id="2、验证"><a href="#2、验证" class="headerlink" title="2、验证"></a>2、验证</h3><p>在主服务容器的/usr/local/bin目录下执行redis-cli -h 172.17.0.2 -p 6379，连接redis服务，执行set master ‘master’，存入一个master键。</p>
+<p>在从服务容器的/usr/local/bin目录下执行redis-cli -h 172.17.0.4 -p 6379，连接redis服务，执行get master，返回’master’，说明主服务器将数据同步到了从服务器中。</p>
+<h3 id="代码清单4-2-查看redis结点IP"><a href="#代码清单4-2-查看redis结点IP" class="headerlink" title="代码清单4-2 查看redis结点IP"></a>代码清单4-2 查看redis结点IP</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># docker inspect redis01 redis02 redis03 redis04 redis05 redis06 </span><br><span class="line"></span><br><span class="line">&quot;IPAddress&quot;: &quot;172.19.0.16&quot;,</span><br><span class="line"></span><br><span class="line">&quot;IPAddress&quot;: &quot;172.19.0.17&quot;,</span><br><span class="line"></span><br><span class="line">&quot;IPAddress&quot;: &quot;172.19.0.15&quot;,</span><br><span class="line"></span><br><span class="line">&quot;IPAddress&quot;: &quot;172.19.0.19&quot;,</span><br><span class="line"></span><br><span class="line">&quot;IPAddress&quot;: &quot;172.19.0.14&quot;,</span><br><span class="line"></span><br><span class="line">&quot;IPAddress&quot;: &quot;172.19.0.18&quot;,</span><br></pre></td></tr></table></figure>
+<h2 id="安装Redis-集群插件"><a href="#安装Redis-集群插件" class="headerlink" title="安装Redis 集群插件"></a>安装Redis 集群插件</h2><ul>
+<li><p>安装插件<br><code>yum install -y redis ruby rubygems</code></p>
+</li>
+<li><p><code>gem install redis -v 3.2.2</code>  # 由于yum当前默认安装版本为3.2.10，在gem中选择了相近版本3.2.2，<a target="_blank" rel="noopener" href="https://rubygems.org/gems/redis/versions/">更多版本见</a></p>
+</li>
+<li><p><code>wget http://download.redis.io/redis-stable/src/redis-trib.rb</code> # 下载最新的redis-trib.rb，包含自动将master和slave交叉部署的功能，部分老版本没有该功能*</p>
+</li>
+<li><p>WARNING: redis-trib.rb is not longer available!这个出现的问题极有可能是 redis-trib.rb与你所安装的版本不符,并不是命令错了，<a target="_blank" rel="noopener" href="https://blog.csdn.net/aaaadong/article/details/82625567">解决办法详情</a> </p>
+</li>
+<li><p> 直接查找redis版本  <code>redis-server --version</code></p>
+</li>
+<li><p>windows下载地址 <code>https://github.com/MicrosoftArchive/redis/releases</code></p>
+</li>
+<li><p>linux下载地址 <code>http://download.redis.io/releases/</code></p>
+</li>
+<li><p>开放权限<code>chmod +x redis-trib.rb</code></p>
+</li>
+</ul>
+<p>启动集群(条件必须是奇数)  3主3从  高可用配置 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./redis-trib.rb create --replicas 1 172.17.0.3:6001 172.17.0.4:6002 \</span><br><span class="line">172.17.0.5:6003 172.17.0.6:6004 172.17.0.7:6005 172.17.0.8:6006</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"># java</a>
+              <a href="/tags/Redis/" rel="tag"># Redis</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/07/SpringBoot-%E6%89%93%E5%8C%85/" rel="prev" title="SpringBoot-打包（Jar、war）">
+      <i class="fa fa-chevron-left"></i> SpringBoot-打包（Jar、war）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/07/Redis-%E9%9B%86%E7%BE%A4(%E4%B8%80)/" rel="next" title="Redis-集群(一)">
+      Redis-集群(一) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">集群配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BADOcker%E7%8E%AF%E5%A2%83-%E9%85%8D%E7%BD%AERedis%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">创建DOcker环境  配置Redis配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%87%86%E5%A4%87redis%E5%AE%B9%E5%99%A8"><span class="nav-number">2.1.</span> <span class="nav-text">1、准备redis容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E9%AA%8C%E8%AF%81"><span class="nav-number">2.2.</span> <span class="nav-text">2、验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E6%B8%85%E5%8D%954-2-%E6%9F%A5%E7%9C%8Bredis%E7%BB%93%E7%82%B9IP"><span class="nav-number">2.3.</span> <span class="nav-text">代码清单4-2 查看redis结点IP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Redis-%E9%9B%86%E7%BE%A4%E6%8F%92%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">安装Redis 集群插件</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">MAGRY</p>
+  <div class="site-description" itemprop="description">路其修远兮，吾将上下而求索</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mgaryc" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mgaryc" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:a1144362724a@gmail.com" title="E-Mail → mailto:a1144362724a@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">蜀ICP备18037843号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MAGRY</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

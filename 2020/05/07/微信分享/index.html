@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mgaryc.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="准备工作如果想要是使用微信的分享功能，需要使用微信JS-SDK来完成。且只能点击微信右上角的...调起分享面板，不能直接由页面行为唤起！ JS-SDK使用 绑定域名：  登录微信公众平台 –&gt; 公众号设置 –&gt; 功能设置 –&gt; 填写“JS接口安全域名”(白名单设置)。  在页面引入JS文件：  http:&#x2F;&#x2F;res.wx.qq.com&#x2F;open&#x2F;js&#x2F;jweixin-1.2.0.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信分享">
+<meta property="og:url" content="http://mgaryc.github.io/2020/05/07/%E5%BE%AE%E4%BF%A1%E5%88%86%E4%BA%AB/index.html">
+<meta property="og:site_name" content="CodingDiary">
+<meta property="og:description" content="准备工作如果想要是使用微信的分享功能，需要使用微信JS-SDK来完成。且只能点击微信右上角的...调起分享面板，不能直接由页面行为唤起！ JS-SDK使用 绑定域名：  登录微信公众平台 –&gt; 公众号设置 –&gt; 功能设置 –&gt; 填写“JS接口安全域名”(白名单设置)。  在页面引入JS文件：  http:&#x2F;&#x2F;res.wx.qq.com&#x2F;open&#x2F;js&#x2F;jweixin-1.2.0.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-07T04:00:31.000Z">
+<meta property="article:modified_time" content="2020-05-07T08:32:21.679Z">
+<meta property="article:author" content="MAGRY">
+<meta property="article:tag" content="微信">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://mgaryc.github.io/2020/05/07/%E5%BE%AE%E4%BF%A1%E5%88%86%E4%BA%AB/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>微信分享 | CodingDiary</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">CodingDiary</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">CodingDiary-代码日记</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://mgaryc.github.io/2020/05/07/%E5%BE%AE%E4%BF%A1%E5%88%86%E4%BA%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MAGRY">
+      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodingDiary">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          微信分享
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:32:21" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">开发</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>如果想要是使用微信的分享功能，需要使用微信JS-SDK来完成。且只能点击微信右上角的<code>...</code>调起分享面板，不能直接由页面行为唤起！</p>
+<h3 id="JS-SDK使用"><a href="#JS-SDK使用" class="headerlink" title="JS-SDK使用"></a>JS-SDK使用</h3><ol>
+<li><p>绑定域名：</p>
+<p> 登录微信公众平台 –&gt; 公众号设置 –&gt; 功能设置 –&gt; 填写“JS接口安全域名”(白名单设置)。</p>
+</li>
+<li><p>在页面引入JS文件：</p>
+<p> <a target="_blank" rel="noopener" href="http://res.wx.qq.com/open/js/jweixin-1.2.0.js">http://res.wx.qq.com/open/js/jweixin-1.2.0.js</a></p>
+</li>
+<li><p>配置config：</p>
+<p> 所有需要使用JS-SDK的页面必须先注入配置信息，否则将无法调用。</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wx.config(&#123;</span><br><span class="line"></span><br><span class="line">debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，pc端和微信开发者时才会打印。</span><br><span class="line"></span><br><span class="line">appId: &#x27;&#x27;, // 必填，公众号的唯一标识</span><br><span class="line"></span><br><span class="line">timestamp: , // 必填，生成签名的时间戳</span><br><span class="line"></span><br><span class="line">nonceStr: &#x27;&#x27;, // 必填，生成签名的随机串</span><br><span class="line"></span><br><span class="line">signature: &#x27;&#x27;,// 必填，签名</span><br><span class="line"></span><br><span class="line">jsApiList: [] // 必填，需要使用的JS接口列表</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p> 注意：</p>
+<ul>
+<li><p>config是一个客户端的异步操作</p>
+</li>
+<li><p>在JS-SDK后调用，也应该尽可能早的调用</p>
+</li>
+<li><p>同一个url仅需调用一次</p>
+</li>
+<li><p>对于变化url的SPA的web app可在每次url变化时进行调用</p>
+</li>
+<li><p>低于Android6.2版本的微信客户端，不支持pushState的H5新特性，使用pushState来实现web app的页面会导致签名失败</p>
+</li>
+</ul>
+</li>
+<li><p>配置成功回调：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  wx.ready(function()&#123;</span><br><span class="line"></span><br><span class="line">// ...</span><br><span class="line"></span><br><span class="line">  &#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p> 注：无论config成功或失败，ready中的内容都会被执行！</p>
+</li>
+<li><p>配置失败回调：</p>
+<p> config信息验证失败会执行error函数。</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wx.error(function(res)&#123;</span><br><span class="line"></span><br><span class="line">// ...</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>通用参数：</p>
+<p> 所有接口通过wx对象(也可使用jWeixin对象)来调用，参数是一个对象，除了每个接口本身需要传的参数之外，还有以下通用函数参数：</p>
+<ul>
+<li><p>success 接口调用成功时执行的回调函数。</p>
+</li>
+<li><p>fail 接口调用失败时执行的回调函数。</p>
+</li>
+<li><p>complete 接口调用完成时执行的回调函数，无论成功或失败都会执行。</p>
+</li>
+<li><p>cancel 用户点击取消时的回调函数，仅部分有用户取消操作的api才会用到。</p>
+</li>
+<li><p>trigger 监听Menu中的按钮点击时触发的方法，该方法仅支持Menu中的相关接口。</p>
+</li>
+</ul>
+<p> 回调参数：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">xxx: xxx,</span><br><span class="line"></span><br><span class="line">errMsg: &#x27;&#x27; // 接口调用成功/失败信息</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>微信分享接口</p>
+</li>
+</ol>
+<p>分享到朋友圈、好友、QQ、QQ空间对应的接口为<code>&#39;onMenuShareTimeline&#39;,&#39;onMenuShareAppMessage&#39;,&#39;onMenuShareQQ&#39;,&#39;onMenuShareQZone&#39;</code></p>
+<ul>
+<li>分享到朋友圈</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wx.onMenuShareTimeline(&#123;</span><br><span class="line"></span><br><span class="line">    title: &#x27;&#x27;, // 分享标题</span><br><span class="line"></span><br><span class="line">    link: &#x27;&#x27;, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致</span><br><span class="line"></span><br><span class="line">    imgUrl: &#x27;&#x27;, // 分享图标</span><br><span class="line"></span><br><span class="line">    success: function () &#123;</span><br><span class="line"></span><br><span class="line">        // 用户确认分享后执行的回调函数</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    cancel: function () &#123;</span><br><span class="line"></span><br><span class="line">        // 用户取消分享后执行的回调函数</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>注：分享到朋友圈，只有title分享标题，没有desc描述。</p>
+<ul>
+<li>分享到好友或群</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wx.onMenuShareAppMessage(&#123;</span><br><span class="line"></span><br><span class="line">    title: &#x27;&#x27;, // 分享标题</span><br><span class="line"></span><br><span class="line">    desc: &#x27;&#x27;, // 分享描述</span><br><span class="line"></span><br><span class="line">    link: &#x27;&#x27;, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致</span><br><span class="line"></span><br><span class="line">    imgUrl: &#x27;&#x27;, // 分享图标</span><br><span class="line"></span><br><span class="line">    type: &#x27;&#x27;, // 分享类型,music、video或link，不填默认为link</span><br><span class="line"></span><br><span class="line">    dataUrl: &#x27;&#x27;, // 如果type是music或video，则要提供数据链接，默认为空</span><br><span class="line"></span><br><span class="line">    success: function () &#123;</span><br><span class="line"></span><br><span class="line">    // 用户确认分享后执行的回调函数</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    cancel: function () &#123;</span><br><span class="line"></span><br><span class="line">    // 用户取消分享后执行的回调函数</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>分享到QQ和QQ空间</li>
+</ul>
+<p>分享接口：<code>onMenuShareQQ, onMenuShareQZone</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    title: &#x27;&#x27;, // 分享标题</span><br><span class="line"></span><br><span class="line">    desc: &#x27;&#x27;, // 分享描述</span><br><span class="line"></span><br><span class="line">    link: &#x27;&#x27;, // 分享链接</span><br><span class="line"></span><br><span class="line">    imgUrl: &#x27;&#x27;, // 分享图标</span><br><span class="line"></span><br><span class="line">    success: function () &#123;</span><br><span class="line"></span><br><span class="line">    // 用户确认分享后执行的回调函数</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    cancel: function () &#123;</span><br><span class="line"></span><br><span class="line">    // 用户取消分享后执行的回调函数</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="微信分享"><a href="#微信分享" class="headerlink" title="微信分享"></a>微信分享</h2><pre><code>用户调用微信的分享功能，可以自定义分享的title和描述，以及小图标和链接。可以分享到群、好友、朋友圈、QQ、QQ空间等。
+</code></pre>
+<h2 id="分享设计规范"><a href="#分享设计规范" class="headerlink" title="分享设计规范"></a>分享设计规范</h2><ul>
+<li><p>分享标题：14字以内，建议使用朋友般亲切的口吻</p>
+</li>
+<li><p>分享图标：尺寸120*120，大小不超过10K，不支持GIF格式。必须采用https协议。</p>
+</li>
+<li><p>分享描述：20字以内，对标题的简要解读。</p>
+</li>
+<li><p>分享链接：外链页面所在服务器至少能支持每秒1500次的访问压力，且每次访问的响应时间200ms以内。必须采用https协议。</p>
+</li>
+<li><p>分享行为：页面上无分享按钮，页面上无诱导分享行为，包含但不限于分享后才能看到特定的信息，分享后才能进行下一步流程，分享后可以获得奖励等</p>
+</li>
+<li><p>分享文案：分享时“文案”和“图片”可以正常显示，分享后链接可以访问。</p>
+</li>
+<li><p>分享标题和描述不能出现敏感词汇，否则会导致部分不可预知的问题。比如分享者可以看到分享图标，被分享者看不到图标等。</p>
+</li>
+</ul>
+<h3 id="敏感词举例：红包、现金、到账等"><a href="#敏感词举例：红包、现金、到账等" class="headerlink" title="敏感词举例：红包、现金、到账等"></a>敏感词举例：红包、现金、到账等</h3><p>注：分享的图标链接和分享链接尽量保持为同一域名下的资源。否则可能会出现分享不成功或分享图标不显示的情况。</p>
+<p>由于不能由页面直接唤起微信的分享面板，所以就需要一个弹窗浮层来引导用户用户去点击…按钮唤起分享面板。注意这个弹窗浮层不能出现诱导分享的内容。</p>
+<h3 id="分享或广告文案禁止内容"><a href="#分享或广告文案禁止内容" class="headerlink" title="分享或广告文案禁止内容"></a>分享或广告文案禁止内容</h3><ul>
+<li><p>特殊字符：不允许使用特殊字符与符号 ，例如：“：）” “-。-”等； 不允许使用 emoji 表情</p>
+</li>
+<li><p>诱导或引导操作： 不允许出现诱导或引导用户操作的描述。包含但不限于以下文案：“请点击查看详情”、 “赶快戳开看一看”、“点一下下面你就知道是什么”、“点击下方了解公众号”</p>
+</li>
+<li><p>微信产品功能词汇：未经微信官方授权，禁止使用以下产品功能词汇及其谐音词汇。包含但不限于以下内容：“朋友圈” 、“点赞” 、“评论” 、“公众号”、 “微信”、 “红包”</p>
+</li>
+<li><p>URL：不允许直接放URL链接内容</p>
+</li>
+<li><p>电话号码：不允许出现电话号码</p>
+</li>
+<li><p>破折号：不允许出现破折号，破折号在移动端显示容易产生歧义</p>
+</li>
+<li><p>空行&amp;空格：不允许使用空行或空格</p>
+</li>
+<li><p>不规范折行：不允许出现单个词语或文字折行</p>
+</li>
+<li><p>股票代码：不允许出现公司股票代码</p>
+</li>
+<li><p>非简体中文文字&amp;方言&amp;小语种：不允许使用非简体中文文字（单字、词语、成语）。暂不支持使用方言和小语种作为文案。</p>
+</li>
+<li><p>产品销量数据：不允许使用任何维度的产品销量数据。</p>
+</li>
+</ul>
+<h2 id="分享开发调试时注意事项"><a href="#分享开发调试时注意事项" class="headerlink" title="分享开发调试时注意事项"></a>分享开发调试时注意事项</h2><ol>
+<li><p>分享出去的外链的域名必须和公众号后台配置的JS安全域名一致，否则会导致分享的失败</p>
+</li>
+<li><p>分享出去的外链，会自动给加上微信标识，导致二次分享失败。</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">from=groupmessage  分享到群</span><br><span class="line"></span><br><span class="line">from=timeline  分享到朋友圈</span><br><span class="line"></span><br><span class="line">from=singlemessage  分享到好友</span><br><span class="line"></span><br><span class="line">isappinstalled=0    0或1，表示是否安装了app</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>由于微信的签名生成时，需要传一个url参数，而这个url则是通过：<code>location.href.split(&#39;#&#39;)[0]</code>获取的url，取的是url的#前边的部分来生成签名，第一次分享成功，生成签名的url不带query字段。通过一次分享出去的链接，带上了query后，生成的签名就无效了，导致二次分享失败。</p>
+<p>解决办法：</p>
+<blockquote>
+<p>生成签名的时候，动态的获取url，传给生成签名的接口。</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>每次打开页面时，都获取到url的#前边部分传给签名生成接口，保证每次的签名都是有效的。</p>
+</blockquote>
+</blockquote>
+<ol start="3">
+<li><p>微信分享时invalid signature错误解决和查找顺序</p>
+<ol>
+<li><p>确认签名算法正确，可用<a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/debug">http://mp.weixin.qq.com/debug</a>… 页面工具进行校验。</p>
+</li>
+<li><p>确认config中nonceStr（js中驼峰标准大写S）, timestamp与用以签名中的对应noncestr, timestamp一致。</p>
+</li>
+<li><p>确认url是页面完整的url(请在当前页面alert(location.href.split(‘#’)[0])确认)，包括’http(s)://‘部分，以及’？’后面的GET参数部分,但不包括’#’hash后面的部分。</p>
+</li>
+<li><p>确认 config 中的 appid 与用来获取 jsapi_ticket 的 appid 一致。</p>
+</li>
+<li><p>确保一定缓存access_token和jsapi_ticket。</p>
+</li>
+<li><p>确保你获取用来签名的url是动态获取的，动态页面可参见实例代码中php的实现方式。如果是html的静态页面在前端通过ajax将url传到后台签名，前端需要用js获取当前页面除去’#’hash部分的链接（可用location.href.split(‘#’)[0]获取,必要时需要<code>encodeURIComponent</code>转换链接格式，因为页面一旦分享，微信客户端会在你的链接末尾加入其它参数，如果不是动态获取当前链接，将导致分享后的页面签名失败。</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="四川经济日报使用微信"><a href="#四川经济日报使用微信" class="headerlink" title="四川经济日报使用微信"></a>四川经济日报使用微信</h2><ul>
+<li><p>分享请求后台时间搓参数时  不能使用get传值，必须使用post 因为get 连接后面拼接需要分享的URL时可能会带有<code>&amp;</code>符号会被服务器理解成拼接参数</p>
+</li>
+<li><p>微信分享  后台请求时间搓 有效时间未7200秒，每天访问接口次数有限，否则后面无法成功。</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%BE%AE%E4%BF%A1/" rel="tag"># 微信</a>
+              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+              <a href="/tags/vue/" rel="tag"># vue</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/07/%E7%BD%91%E7%AB%99SEO/" rel="prev" title="网站SEO">
+      <i class="fa fa-chevron-left"></i> 网站SEO
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/07/pm2-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4/" rel="next" title="pm2进程管理与维护">
+      pm2进程管理与维护 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JS-SDK%E4%BD%BF%E7%94%A8"><span class="nav-number">1.1.</span> <span class="nav-text">JS-SDK使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E4%BF%A1%E5%88%86%E4%BA%AB"><span class="nav-number">2.</span> <span class="nav-text">微信分享</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E4%BA%AB%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83"><span class="nav-number">3.</span> <span class="nav-text">分享设计规范</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%8F%E6%84%9F%E8%AF%8D%E4%B8%BE%E4%BE%8B%EF%BC%9A%E7%BA%A2%E5%8C%85%E3%80%81%E7%8E%B0%E9%87%91%E3%80%81%E5%88%B0%E8%B4%A6%E7%AD%89"><span class="nav-number">3.1.</span> <span class="nav-text">敏感词举例：红包、现金、到账等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E4%BA%AB%E6%88%96%E5%B9%BF%E5%91%8A%E6%96%87%E6%A1%88%E7%A6%81%E6%AD%A2%E5%86%85%E5%AE%B9"><span class="nav-number">3.2.</span> <span class="nav-text">分享或广告文案禁止内容</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E4%BA%AB%E5%BC%80%E5%8F%91%E8%B0%83%E8%AF%95%E6%97%B6%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">4.</span> <span class="nav-text">分享开发调试时注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E5%B7%9D%E7%BB%8F%E6%B5%8E%E6%97%A5%E6%8A%A5%E4%BD%BF%E7%94%A8%E5%BE%AE%E4%BF%A1"><span class="nav-number">5.</span> <span class="nav-text">四川经济日报使用微信</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">MAGRY</p>
+  <div class="site-description" itemprop="description">路其修远兮，吾将上下而求索</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mgaryc" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mgaryc" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:a1144362724a@gmail.com" title="E-Mail → mailto:a1144362724a@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">蜀ICP备18037843号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MAGRY</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
