@@ -20,20 +20,22 @@
     var CONFIG = {"hostname":"blog.mgary.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="当前用户没有加权限   1Got permission denied while trying to connect to the Docker daemon socket at unix:&#x2F;&#x2F;&#x2F;var&#x2F;run&#x2F;docker.sock: Get http:&#x2F;&#x2F;%2Fvar%2Frun%2Fdocker.sock&#x2F;v1.40&#x2F;containers&#x2F;json: dial unix &#x2F;var&#x2F;run&#x2F;">
+  <meta name="description" content="吐槽 &gt; 最近的日子感觉人很颓废，有时候什么都想做，当想着试验做得时候，却又无法坚持，当想搞的时候发现时间已经不足了。后续的日子还很长，铸造新技术，加强、加深、巩固学习成果是为人的基本技能。  背景在平时工作时，技术只是达到了会用的程度，但是距离熟练使用还有很长的距离，因此研究Redis熟练使用是编程人员的基本准则； 研究方向根据面试方向掌握其基本知识   概述什么是RedisRedis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="docker-安装问题记录">
-<meta property="og:url" content="http://blog.mgary.top/2020/05/07/docker-%E5%AE%89%E8%A3%85%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:title" content="Redis技能提升">
+<meta property="og:url" content="http://blog.mgary.top/2021/07/06/Redis/index.html">
 <meta property="og:site_name" content="CodingDiary">
-<meta property="og:description" content="当前用户没有加权限   1Got permission denied while trying to connect to the Docker daemon socket at unix:&#x2F;&#x2F;&#x2F;var&#x2F;run&#x2F;docker.sock: Get http:&#x2F;&#x2F;%2Fvar%2Frun%2Fdocker.sock&#x2F;v1.40&#x2F;containers&#x2F;json: dial unix &#x2F;var&#x2F;run&#x2F;">
+<meta property="og:description" content="吐槽 &gt; 最近的日子感觉人很颓废，有时候什么都想做，当想着试验做得时候，却又无法坚持，当想搞的时候发现时间已经不足了。后续的日子还很长，铸造新技术，加强、加深、巩固学习成果是为人的基本技能。  背景在平时工作时，技术只是达到了会用的程度，但是距离熟练使用还有很长的距离，因此研究Redis熟练使用是编程人员的基本准则； 研究方向根据面试方向掌握其基本知识   概述什么是RedisRedis">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-05-07T04:00:31.000Z">
-<meta property="article:modified_time" content="2020-05-07T08:06:49.383Z">
+<meta property="og:image" content="http://blog-coding-diary.mgary.top/static/images/redis技能图.jpg">
+<meta property="article:published_time" content="2021-07-06T01:02:10.000Z">
+<meta property="article:modified_time" content="2021-07-06T07:55:57.652Z">
 <meta property="article:author" content="MAGRY">
-<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="数据库">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog-coding-diary.mgary.top/static/images/redis技能图.jpg">
 
-<link rel="canonical" href="http://blog.mgary.top/2020/05/07/docker-%E5%AE%89%E8%A3%85%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/">
+<link rel="canonical" href="http://blog.mgary.top/2021/07/06/Redis/">
 
 
 <script id="page-configurations">
@@ -46,7 +48,7 @@
   };
 </script>
 
-  <title>docker-安装问题记录 | CodingDiary</title>
+  <title>Redis技能提升 | CodingDiary</title>
   
 
 
@@ -167,7 +169,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2020/05/07/docker-%E5%AE%89%E8%A3%85%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/">
+    <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2021/07/06/Redis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -180,7 +182,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          docker-安装问题记录
+          Redis技能提升
         </h1>
 
         <div class="post-meta">
@@ -191,7 +193,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:06:49" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
+              <time title="创建时间：2021-07-06 09:02:10 / 修改时间：15:55:57" itemprop="dateCreated datePublished" datetime="2021-07-06T09:02:10+08:00">2021-07-06</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -199,7 +201,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">运维</span></a>
+                  <a href="/categories/redis/" itemprop="url" rel="index"><span itemprop="name">redis</span></a>
                 </span>
             </span>
 
@@ -214,16 +216,35 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <ul>
-<li><p>当前用户没有加权限</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.40/containers/json: dial unix /var/run/docker.sock: connect: permission denied</span><br></pre></td></tr></table></figure>
-<p>   解决办法</p>
-<p>  正确的是将当前用户加入docker组:</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gpasswd -a $&#123;USER&#125; docker</span><br></pre></td></tr></table></figure>
-<p>  退出重新进入即可</p>
+        <blockquote>
+<p>吐槽 <code>&gt;</code> 最近的日子感觉人很颓废，有时候什么都想做，当想着试验做得时候，却又无法坚持，当想搞的时候发现时间已经不足了。<br>后续的日子还很长，铸造新技术，加强、加深、巩固学习成果是为人的基本技能。</p>
+</blockquote>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>在平时工作时，技术只是达到了会用的程度，但是距离熟练使用还有很长的距离，因此研究Redis熟练使用是编程人员的基本准则；</p>
+<h1 id="研究方向"><a href="#研究方向" class="headerlink" title="研究方向"></a>研究方向</h1><p>根据<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/370187204">面试方向</a>掌握其基本知识</p>
+<img src="http://blog-coding-diary.mgary.top/static/images/redis技能图.jpg">
+<hr>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h2 id="什么是Redis"><a href="#什么是Redis" class="headerlink" title="什么是Redis"></a>什么是Redis</h2><p>Redis 是一个使用 C 语言写成的，开源的（BSD许可）高性能key-value非关系型（NoSQL）的键值对数据库.</p>
+<p>与传统数据库不同的是 Redis 的数据是存在内存中的，所以读写速度非常快，因此 redis 被广泛应用于缓存方向，每秒可以处理超过 10万次读写操作，是已知性能最快的Key-Value DB。另外，Redis 也经常用来做分布式锁。除此之外，Redis 支持事务 、持久化、LUA脚本、LRU驱动事件、多种集群方案。</p>
+<h2 id="Redis有哪些优缺点"><a href="#Redis有哪些优缺点" class="headerlink" title="Redis有哪些优缺点"></a>Redis有哪些优缺点</h2><ul>
+<li><p>优点</p>
+<ol>
+<li>读写性能优异， Redis能读的速度是110000次/s，写的速度是81000次/s。</li>
+<li>支持数据持久化，支持AOF和RDB两种持久化方式。</li>
+<li>支持事务，Redis的所有操作都是原子性的，同时Redis还支持对几个操作合并后的原子性执行。</li>
+<li>数据结构丰富，除了支持string类型的value外还支持hash、set、zset、list等数据结构。</li>
+<li>支持主从复制，主机会自动将数据同步到从机，可以进行读写分离。</li>
+</ol>
+</li>
+<li><p>缺点</p>
+<p>  1.数据库容量受到物理内存的限制，不能用作海量数据的高性能读写，因此Redis适合的场景主要局限在较小数据量的高性能操作和运算上.</p>
+<ol start="2">
+<li>Redis 不具备自动容错和恢复功能，主机从机的宕机都会导致前端部分读写请求失败，需要等待机器重启或者手动切换前端的IP才能恢复.</li>
+<li>主机宕机，宕机前有部分数据未能及时同步到从机，切换IP后还会引入数据不一致的问题，降低了系统的可用性.</li>
+<li>Redis 较难支持在线扩容，在集群容量达到上限时在线扩容会变得很复杂。为避免这一问题，运维人员在系统上线时必须确保有足够的空间，这对资源造成了很大的浪费.</li>
+</ol>
 </li>
 </ul>
-
+<h2 id="为什么要用缓存-为什么要用-Redis不用-map-guava-做缓存"><a href="#为什么要用缓存-为什么要用-Redis不用-map-guava-做缓存" class="headerlink" title="为什么要用缓存/为什么要用 Redis不用 map/guava 做缓存?"></a>为什么要用缓存/为什么要用 Redis不用 map/guava 做缓存?</h2><h2 id="Redis为什么这么快"><a href="#Redis为什么这么快" class="headerlink" title="Redis为什么这么快"></a>Redis为什么这么快</h2>
     </div>
 
     
@@ -232,7 +253,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Docker/" rel="tag"># Docker</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"># 数据库</a>
           </div>
 
         
@@ -241,13 +262,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/05/07/pm2-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4/" rel="prev" title="pm2进程管理与维护">
-      <i class="fa fa-chevron-left"></i> pm2进程管理与维护
+    <a href="/2021/07/05/hexo/" rel="prev" title="hexo">
+      <i class="fa fa-chevron-left"></i> hexo
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/05/07/Window-%E5%AE%89%E8%A3%85Scala%E5%8F%8A%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98/" rel="next" title="Window-安装Scala及出现问题">
-      Window-安装Scala及出现问题 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -306,6 +324,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A0%94%E7%A9%B6%E6%96%B9%E5%90%91"><span class="nav-number">2.</span> <span class="nav-text">研究方向</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">3.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFRedis"><span class="nav-number">3.1.</span> <span class="nav-text">什么是Redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis%E6%9C%89%E5%93%AA%E4%BA%9B%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">3.2.</span> <span class="nav-text">Redis有哪些优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E7%BC%93%E5%AD%98-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8-Redis%E4%B8%8D%E7%94%A8-map-guava-%E5%81%9A%E7%BC%93%E5%AD%98"><span class="nav-number">3.3.</span> <span class="nav-text">为什么要用缓存&#x2F;为什么要用 Redis不用 map&#x2F;guava 做缓存?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB"><span class="nav-number">3.4.</span> <span class="nav-text">Redis为什么这么快</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
