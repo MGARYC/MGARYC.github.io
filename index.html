@@ -259,63 +259,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2021/07/05/hexo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="MAGRY">
-      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="CodingDiary">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/05/hexo/" class="post-title-link" itemprop="url">hexo</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-05 11:43:04" itemprop="dateCreated datePublished" datetime="2021-07-05T11:43:04+08:00">2021-07-05</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2021/07/05/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1007,6 +950,101 @@
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2020/05/07/Kafka-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MAGRY">
+      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodingDiary">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/07/Kafka-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="post-title-link" itemprop="url">KAFKA学习记录</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:33:25" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">开发</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h2><h3 id="一、broker"><a href="#一、broker" class="headerlink" title="一、broker"></a>一、broker</h3><blockquote>
+<p>一个独立的 Kafka 服务器被称为 broker。</p>
+</blockquote>
+<h4 id="broker配置"><a href="#broker配置" class="headerlink" title="broker配置"></a>broker配置</h4><blockquote>
+<p>Kafka 发行包里自带的配置样本可以用来安装单机服务，但并不能满足大多数安装场景的要求。 Kafka 有很多配置选项，涉及安装和调优的方方面面。不过大多数调优选项可以使用默认配置，除非你对调优有特别的要求。</p>
+<blockquote>
+<ol>
+<li> broker.id<br>每个broker都需要有一个标识符，使用broker.id来表示。它的默认值是0，也可以被设置成其他任意整数。这个值在整个Kafka集群里必须是唯一的。这个值可以任意选定，如果出于维护的需要，可以在服务器节点间交换使用这些ID。建议把它们设置成与机器名具有相关性的整数，这样在进行维护时，将ID号映射到机器名就没那么麻烦了。例如，如果机器名包含唯一性的数字（比如hostl.example.com、host2.example.com），那么用这些数字<br>来设置broker.id就再好不过了。</li>
+<li>port<br>如果使用配置样本来启动Kafka，它会监听9092端口。修改po「t配置参数可以把它设置<br>成其他任意可用的端口。要注意，如果使用1024以下的端口，需要使用root权限启动<br>Kafka，不过不建议这么做。<br>zookeeper.connect<br>用于保存broker元数据的Zookeeperd地址是是通过zookeeper.connect来指定的。<br>localhost:2181表示这个Zooke巳per是运行在本地的2181端口上。该配置参数是用冒号分隔的一组localhost:port/path列表，每一部分的含义如下：<blockquote>
+<ul>
+<li>hostname是Zookeeper服务器的机器名或IP地址;</li>
+<li>port是Zookeeper的客户端连接端口;</li>
+<li>/path是可选的Zookeeper路径，作为Kafka集群的chroot环境。如果不指定，默认使用根路径。如果指定的chroot路径不存在，broker会在启动的时候创建它。</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+</blockquote>
+<h3 id="二、集群"><a href="#二、集群" class="headerlink" title="二、集群"></a>二、集群</h3><blockquote>
+<p>broker 是集群的组成部分。</p>
+</blockquote>
+<h3 id="三、生产者-Producer"><a href="#三、生产者-Producer" class="headerlink" title="三、生产者{Producer}"></a>三、生产者{Producer}</h3><blockquote>
+<p>创建消息。</p>
+</blockquote>
+<h3 id="四、消费者"><a href="#四、消费者" class="headerlink" title="四、消费者"></a>四、消费者</h3><blockquote>
+<p>消费消息。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
 
   
   <nav class="pagination">
@@ -1075,7 +1113,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
