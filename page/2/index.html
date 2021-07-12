@@ -243,6 +243,101 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2020/05/07/Kafka-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MAGRY">
+      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodingDiary">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/07/Kafka-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="post-title-link" itemprop="url">KAFKA学习记录</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:33:25" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">开发</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h2><h3 id="一、broker"><a href="#一、broker" class="headerlink" title="一、broker"></a>一、broker</h3><blockquote>
+<p>一个独立的 Kafka 服务器被称为 broker。</p>
+</blockquote>
+<h4 id="broker配置"><a href="#broker配置" class="headerlink" title="broker配置"></a>broker配置</h4><blockquote>
+<p>Kafka 发行包里自带的配置样本可以用来安装单机服务，但并不能满足大多数安装场景的要求。 Kafka 有很多配置选项，涉及安装和调优的方方面面。不过大多数调优选项可以使用默认配置，除非你对调优有特别的要求。</p>
+<blockquote>
+<ol>
+<li> broker.id<br>每个broker都需要有一个标识符，使用broker.id来表示。它的默认值是0，也可以被设置成其他任意整数。这个值在整个Kafka集群里必须是唯一的。这个值可以任意选定，如果出于维护的需要，可以在服务器节点间交换使用这些ID。建议把它们设置成与机器名具有相关性的整数，这样在进行维护时，将ID号映射到机器名就没那么麻烦了。例如，如果机器名包含唯一性的数字（比如hostl.example.com、host2.example.com），那么用这些数字<br>来设置broker.id就再好不过了。</li>
+<li>port<br>如果使用配置样本来启动Kafka，它会监听9092端口。修改po「t配置参数可以把它设置<br>成其他任意可用的端口。要注意，如果使用1024以下的端口，需要使用root权限启动<br>Kafka，不过不建议这么做。<br>zookeeper.connect<br>用于保存broker元数据的Zookeeperd地址是是通过zookeeper.connect来指定的。<br>localhost:2181表示这个Zooke巳per是运行在本地的2181端口上。该配置参数是用冒号分隔的一组localhost:port/path列表，每一部分的含义如下：<blockquote>
+<ul>
+<li>hostname是Zookeeper服务器的机器名或IP地址;</li>
+<li>port是Zookeeper的客户端连接端口;</li>
+<li>/path是可选的Zookeeper路径，作为Kafka集群的chroot环境。如果不指定，默认使用根路径。如果指定的chroot路径不存在，broker会在启动的时候创建它。</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+</blockquote>
+<h3 id="二、集群"><a href="#二、集群" class="headerlink" title="二、集群"></a>二、集群</h3><blockquote>
+<p>broker 是集群的组成部分。</p>
+</blockquote>
+<h3 id="三、生产者-Producer"><a href="#三、生产者-Producer" class="headerlink" title="三、生产者{Producer}"></a>三、生产者{Producer}</h3><blockquote>
+<p>创建消息。</p>
+</blockquote>
+<h3 id="四、消费者"><a href="#四、消费者" class="headerlink" title="四、消费者"></a>四、消费者</h3><blockquote>
+<p>消费消息。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2020/05/07/Redis-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -685,166 +780,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2020/05/07/Ubuntu19-%E5%88%86%E8%BE%A8%E7%8E%87%E9%80%89%E9%A1%B9%E4%B8%A2%E5%A4%B1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="MAGRY">
-      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="CodingDiary">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/07/Ubuntu19-%E5%88%86%E8%BE%A8%E7%8E%87%E9%80%89%E9%A1%B9%E4%B8%A2%E5%A4%B1/" class="post-title-link" itemprop="url">Ubuntu19-分辨率选项丢失</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:33:50" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">开发</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Ubuntu19-1-分辨率选项丢失"><a href="#Ubuntu19-1-分辨率选项丢失" class="headerlink" title="Ubuntu19-1-分辨率选项丢失"></a>Ubuntu19-1-分辨率选项丢失</h2><hr>
-<ul>
-<li>方案一<br>直接上手但是这个方法是针对  <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_22999067/article/details/90611457">分辨率调整选项里没有的选项而新增的</a>，因此无效</li>
-</ul>
-<hr>
-<ul>
-<li>方案二<ol>
-<li>在第一次撞墙后，开始一步一步解决问题，疑点一：显卡驱动是否有误，于是我直接注销使用其他用户登陆<br>发现没有问题，排除显卡驱动问题。</li>
-<li>查看调试分辨率命令的帮助文档<code>xrandr  -help</code>最后得出结果，尝试使用下命令直接进行切换才修复成功（有效）<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xrandr -s 0</span><br><span class="line">xrandr -s 1</span><br><span class="line">xrandr -s 2</span><br></pre></td></tr></table></figure></li>
-</ol>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2020/05/07/Swagger2-%E6%B3%A8%E8%A7%A3%E8%A7%A3%E9%87%8A/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="MAGRY">
-      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="CodingDiary">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/07/Swagger2-%E6%B3%A8%E8%A7%A3%E8%A7%A3%E9%87%8A/" class="post-title-link" itemprop="url">Swagger2-注解解释</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:33:45" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">开发</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="注解的使用方法"><a href="#注解的使用方法" class="headerlink" title="注解的使用方法"></a>注解的使用方法</h2><p>@ApiOperation 用在方法上，说明方法的作用<br>@ApiImplicitParams 用在方法上包含一组方法说明<br>@ApiImplicitParam y用在@ApiImplicitParams 注解中，指明一个请求参数的各个方面</p>
-<ul>
-<li>paranType 参数放在什么地方</li>
-<li>-header 请求参数的获取 @RequestHeader</li>
-<li>-query  请求参数的获取 @RequestParam</li>
-<li>-path (用于restful接口) 请求参数的获取 @PathVariable （请求后带参数）</li>
-<li>-body(RequestBody)</li>
-<li>-form (表单提交)</li>
-<li>name 参数名称</li>
-<li>dataType 参数类型</li>
-<li>required 参数是否必传</li>
-<li>value 参数的意思</li>
-<li>defaultValue 参数默认值</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2020/05/07/Word-%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1066,87 +1001,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2020/05/07/Window-%E5%AE%89%E8%A3%85Scala%E5%8F%8A%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="MAGRY">
-      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="CodingDiary">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/07/Window-%E5%AE%89%E8%A3%85Scala%E5%8F%8A%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">Window-安装Scala及出现问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:18:41" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">开发</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="scala安装"><a href="#scala安装" class="headerlink" title="scala安装"></a>scala安装</h2><blockquote>
-<p>scala官方下载地址：<a target="_blank" rel="noopener" href="http://www.scala-lang.org/download/">http://www.scala-lang.org/download/</a><br><img src="https://upload-images.jianshu.io/upload_images/15538074-e4dcbd147e3e1ee3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-</blockquote>
-<blockquote>
-<blockquote>
-<p>修改环境变量<br>（0）、右击我的电脑—属性—高级系统设置—环境变量—新建系统变量<br>变量名：SCALA_HOME<br>变量值：选择你自己设置的scala安装路径<br>（1）、选择PATH变量—编辑—新增一个变量值<br>scala安装目录的bin目录，例：C:\Program Files (x86)\scala\bin; 或者%SCALA_HOME%\bin;<br>（2）、找到classpath—新增变量值：<br>.;%SCALA_HOME%\bin;%SCALA_HOME%\lib\dt.jar;%SCALA_HOME%\lib\tools.jar.;<br>复制此变量值，注意 .; 不要遗漏。</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>配置环境变量完成之后，测试一下是否成功。<br>win + r —输入cmd—输入scala </p>
-</blockquote>
-<h2 id="出现“此时不应有-scala-bin-scala-bat。”问题"><a href="#出现“此时不应有-scala-bin-scala-bat。”问题" class="headerlink" title="出现“此时不应有 \scala\bin\scala.bat。”问题"></a>出现“此时不应有 \scala\bin\scala.bat。”问题</h2><blockquote>
-<p>scala的安装路径如果包含了空格，就可能会出现这种情况。</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2020/05/07/docker-%E5%AE%89%E8%A3%85%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1202,6 +1056,307 @@
 <p>  正确的是将当前用户加入docker组:</p>
   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gpasswd -a $&#123;USER&#125; docker</span><br></pre></td></tr></table></figure>
 <p>  退出重新进入即可</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2020/05/07/pm2-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MAGRY">
+      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodingDiary">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/07/pm2-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4/" class="post-title-link" itemprop="url">pm2进程管理与维护</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:25:34" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">运维</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>全局安装，简直不能更简单。<br><code>npm install -g pm2</code></p>
+<h1 id="目录介绍"><a href="#目录介绍" class="headerlink" title="目录介绍"></a>目录介绍</h1><p>pm2安装好后，会自动创建下面目录。看文件名基本就知道干嘛的了，就不翻译了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$HOME/.pm2  #将包含所有PM2相关文件</span><br><span class="line">$HOME/.pm2/logs #将包含所有应用程序日志</span><br><span class="line">$HOME/.pm2/pids #将包含所有应用程序pids</span><br><span class="line">$HOME/.pm2/pm2.log PM2 logs</span><br><span class="line">$HOME/.pm2/pm2.pid PM2 pid</span><br><span class="line">$HOME/.pm2/rpc.sock #用于远程命令的套接字文件</span><br><span class="line">$HOME/.pm2/pub.sock #可发布事件的套接字文件 </span><br><span class="line">$HOME/.pm2/conf.js #PM2配置</span><br></pre></td></tr></table></figure>
+<h1 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h1><ul>
+<li>查看进程状态<br><code>pm2 list</code></li>
+<li>删除<br><code>pm2 delete name</code></li>
+<li>停止<br><code>pm2 stop all</code></li>
+<li>启动<br><code>pm2 start npm --name &quot;jsyfShopNuxt&quot; -- run start </code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">pm2 list # 查看当前正在运行的进程</span><br><span class="line">pm2 start all  # 启动所有应用</span><br><span class="line">pm2 restart all  # 重启所有应用</span><br><span class="line">pm2 stop all # 停止所有的应用程序</span><br><span class="line">pm2 delete all # 关闭并删除所有应用</span><br><span class="line">pm2 logs # 控制台显示所有日志</span><br><span class="line"></span><br><span class="line">pm2 start 0  # 启动 id为 0的指定应用程序</span><br><span class="line">pm2 restart 0  # 重启 id为 0的指定应用程序</span><br><span class="line">pm2 stop 0 # 停止 id为 0的指定应用程序</span><br><span class="line">pm2 delete 0 # 删除 id为 0的指定应用程序</span><br><span class="line"></span><br><span class="line">pm2 logs 0 # 控制台显示编号为0的日志</span><br><span class="line">pm2 show 0  # 查看执行编号为0的进程</span><br><span class="line">pm2 monit jsyfShopNuxt # 监控名称为jsyfShopNuxt的进程</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2020/05/07/%E5%BE%AE%E4%BF%A1%E5%88%86%E4%BA%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MAGRY">
+      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodingDiary">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/07/%E5%BE%AE%E4%BF%A1%E5%88%86%E4%BA%AB/" class="post-title-link" itemprop="url">微信分享</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:32:21" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">开发</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>如果想要是使用微信的分享功能，需要使用微信JS-SDK来完成。且只能点击微信右上角的<code>...</code>调起分享面板，不能直接由页面行为唤起！</p>
+<h3 id="JS-SDK使用"><a href="#JS-SDK使用" class="headerlink" title="JS-SDK使用"></a>JS-SDK使用</h3><ol>
+<li><p>绑定域名：</p>
+<p> 登录微信公众平台 –&gt; 公众号设置 –&gt; 功能设置 –&gt; 填写“JS接口安全域名”(白名单设置)。</p>
+</li>
+<li><p>在页面引入JS文件：</p>
+<p> <a target="_blank" rel="noopener" href="http://res.wx.qq.com/open/js/jweixin-1.2.0.js">http://res.wx.qq.com/open/js/jweixin-1.2.0.js</a></p>
+</li>
+<li><p>配置config：</p>
+<p> 所有需要使用JS-SDK的页面必须先注入配置信息，否则将无法调用。</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wx.config(&#123;</span><br><span class="line"></span><br><span class="line">debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，pc端和微信开发者时才会打印。</span><br><span class="line"></span><br><span class="line">appId: &#x27;&#x27;, // 必填，公众号的唯一标识</span><br><span class="line"></span><br><span class="line">timestamp: , // 必填，生成签名的时间戳</span><br><span class="line"></span><br><span class="line">nonceStr: &#x27;&#x27;, // 必填，生成签名的随机串</span><br><span class="line"></span><br><span class="line">signature: &#x27;&#x27;,// 必填，签名</span><br><span class="line"></span><br><span class="line">jsApiList: [] // 必填，需要使用的JS接口列表</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p> 注意：</p>
+<ul>
+<li><p>config是一个客户端的异步操作</p>
+</li>
+<li><p>在JS-SDK后调用，也应该尽可能早的调用</p>
+</li>
+<li><p>同一个url仅需调用一次</p>
+</li>
+<li><p>对于变化url的SPA的web app可在每次url变化时进行调用</p>
+</li>
+<li><p>低于Android6.2版本的微信客户端，不支持pushState的H5新特性，使用pushState来实现web app的页面会导致签名失败</p>
+</li>
+</ul>
+</li>
+<li><p>配置成功回调：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  wx.ready(function()&#123;</span><br><span class="line"></span><br><span class="line">// ...</span><br><span class="line"></span><br><span class="line">  &#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p> 注：无论config成功或失败，ready中的内容都会被执行！</p>
+</li>
+<li><p>配置失败回调：</p>
+<p> config信息验证失败会执行error函数。</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wx.error(function(res)&#123;</span><br><span class="line"></span><br><span class="line">// ...</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>通用参数：</p>
+<p> 所有接口通过wx对象(也可使用jWeixin对象)来调用，参数是一个对象，除了每个接口本身需要传的参数之外，还有以下通用函数参数：</p>
+<ul>
+<li><p>success 接口调用成功时执行的回调函数。</p>
+</li>
+<li><p>fail 接口调用失败时执行的回调函数。</p>
+</li>
+<li><p>complete 接口调用完成时执行的回调函数，无论成功或失败都会执行。</p>
+</li>
+<li><p>cancel 用户点击取消时的回调函数，仅部分有用户取消操作的api才会用到。</p>
+</li>
+<li><p>trigger 监听Menu中的按钮点击时触发的方法，该方法仅支持Menu中的相关接口。</p>
+</li>
+</ul>
+<p> 回调参数：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">xxx: xxx,</span><br><span class="line"></span><br><span class="line">errMsg: &#x27;&#x27; // 接口调用成功/失败信息</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>微信分享接口</p>
+</li>
+</ol>
+<p>分享到朋友圈、好友、QQ、QQ空间对应的接口为<code>&#39;onMenuShareTimeline&#39;,&#39;onMenuShareAppMessage&#39;,&#39;onMenuShareQQ&#39;,&#39;onMenuShareQZone&#39;</code></p>
+<ul>
+<li>分享到朋友圈</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wx.onMenuShareTimeline(&#123;</span><br><span class="line"></span><br><span class="line">    title: &#x27;&#x27;, // 分享标题</span><br><span class="line"></span><br><span class="line">    link: &#x27;&#x27;, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致</span><br><span class="line"></span><br><span class="line">    imgUrl: &#x27;&#x27;, // 分享图标</span><br><span class="line"></span><br><span class="line">    success: function () &#123;</span><br><span class="line"></span><br><span class="line">        // 用户确认分享后执行的回调函数</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    cancel: function () &#123;</span><br><span class="line"></span><br><span class="line">        // 用户取消分享后执行的回调函数</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>注：分享到朋友圈，只有title分享标题，没有desc描述。</p>
+<ul>
+<li>分享到好友或群</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wx.onMenuShareAppMessage(&#123;</span><br><span class="line"></span><br><span class="line">    title: &#x27;&#x27;, // 分享标题</span><br><span class="line"></span><br><span class="line">    desc: &#x27;&#x27;, // 分享描述</span><br><span class="line"></span><br><span class="line">    link: &#x27;&#x27;, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致</span><br><span class="line"></span><br><span class="line">    imgUrl: &#x27;&#x27;, // 分享图标</span><br><span class="line"></span><br><span class="line">    type: &#x27;&#x27;, // 分享类型,music、video或link，不填默认为link</span><br><span class="line"></span><br><span class="line">    dataUrl: &#x27;&#x27;, // 如果type是music或video，则要提供数据链接，默认为空</span><br><span class="line"></span><br><span class="line">    success: function () &#123;</span><br><span class="line"></span><br><span class="line">    // 用户确认分享后执行的回调函数</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    cancel: function () &#123;</span><br><span class="line"></span><br><span class="line">    // 用户取消分享后执行的回调函数</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>分享到QQ和QQ空间</li>
+</ul>
+<p>分享接口：<code>onMenuShareQQ, onMenuShareQZone</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    title: &#x27;&#x27;, // 分享标题</span><br><span class="line"></span><br><span class="line">    desc: &#x27;&#x27;, // 分享描述</span><br><span class="line"></span><br><span class="line">    link: &#x27;&#x27;, // 分享链接</span><br><span class="line"></span><br><span class="line">    imgUrl: &#x27;&#x27;, // 分享图标</span><br><span class="line"></span><br><span class="line">    success: function () &#123;</span><br><span class="line"></span><br><span class="line">    // 用户确认分享后执行的回调函数</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    cancel: function () &#123;</span><br><span class="line"></span><br><span class="line">    // 用户取消分享后执行的回调函数</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="微信分享"><a href="#微信分享" class="headerlink" title="微信分享"></a>微信分享</h2><pre><code>用户调用微信的分享功能，可以自定义分享的title和描述，以及小图标和链接。可以分享到群、好友、朋友圈、QQ、QQ空间等。
+</code></pre>
+<h2 id="分享设计规范"><a href="#分享设计规范" class="headerlink" title="分享设计规范"></a>分享设计规范</h2><ul>
+<li><p>分享标题：14字以内，建议使用朋友般亲切的口吻</p>
+</li>
+<li><p>分享图标：尺寸120*120，大小不超过10K，不支持GIF格式。必须采用https协议。</p>
+</li>
+<li><p>分享描述：20字以内，对标题的简要解读。</p>
+</li>
+<li><p>分享链接：外链页面所在服务器至少能支持每秒1500次的访问压力，且每次访问的响应时间200ms以内。必须采用https协议。</p>
+</li>
+<li><p>分享行为：页面上无分享按钮，页面上无诱导分享行为，包含但不限于分享后才能看到特定的信息，分享后才能进行下一步流程，分享后可以获得奖励等</p>
+</li>
+<li><p>分享文案：分享时“文案”和“图片”可以正常显示，分享后链接可以访问。</p>
+</li>
+<li><p>分享标题和描述不能出现敏感词汇，否则会导致部分不可预知的问题。比如分享者可以看到分享图标，被分享者看不到图标等。</p>
+</li>
+</ul>
+<h3 id="敏感词举例：红包、现金、到账等"><a href="#敏感词举例：红包、现金、到账等" class="headerlink" title="敏感词举例：红包、现金、到账等"></a>敏感词举例：红包、现金、到账等</h3><p>注：分享的图标链接和分享链接尽量保持为同一域名下的资源。否则可能会出现分享不成功或分享图标不显示的情况。</p>
+<p>由于不能由页面直接唤起微信的分享面板，所以就需要一个弹窗浮层来引导用户用户去点击…按钮唤起分享面板。注意这个弹窗浮层不能出现诱导分享的内容。</p>
+<h3 id="分享或广告文案禁止内容"><a href="#分享或广告文案禁止内容" class="headerlink" title="分享或广告文案禁止内容"></a>分享或广告文案禁止内容</h3><ul>
+<li><p>特殊字符：不允许使用特殊字符与符号 ，例如：“：）” “-。-”等； 不允许使用 emoji 表情</p>
+</li>
+<li><p>诱导或引导操作： 不允许出现诱导或引导用户操作的描述。包含但不限于以下文案：“请点击查看详情”、 “赶快戳开看一看”、“点一下下面你就知道是什么”、“点击下方了解公众号”</p>
+</li>
+<li><p>微信产品功能词汇：未经微信官方授权，禁止使用以下产品功能词汇及其谐音词汇。包含但不限于以下内容：“朋友圈” 、“点赞” 、“评论” 、“公众号”、 “微信”、 “红包”</p>
+</li>
+<li><p>URL：不允许直接放URL链接内容</p>
+</li>
+<li><p>电话号码：不允许出现电话号码</p>
+</li>
+<li><p>破折号：不允许出现破折号，破折号在移动端显示容易产生歧义</p>
+</li>
+<li><p>空行&amp;空格：不允许使用空行或空格</p>
+</li>
+<li><p>不规范折行：不允许出现单个词语或文字折行</p>
+</li>
+<li><p>股票代码：不允许出现公司股票代码</p>
+</li>
+<li><p>非简体中文文字&amp;方言&amp;小语种：不允许使用非简体中文文字（单字、词语、成语）。暂不支持使用方言和小语种作为文案。</p>
+</li>
+<li><p>产品销量数据：不允许使用任何维度的产品销量数据。</p>
+</li>
+</ul>
+<h2 id="分享开发调试时注意事项"><a href="#分享开发调试时注意事项" class="headerlink" title="分享开发调试时注意事项"></a>分享开发调试时注意事项</h2><ol>
+<li><p>分享出去的外链的域名必须和公众号后台配置的JS安全域名一致，否则会导致分享的失败</p>
+</li>
+<li><p>分享出去的外链，会自动给加上微信标识，导致二次分享失败。</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">from=groupmessage  分享到群</span><br><span class="line"></span><br><span class="line">from=timeline  分享到朋友圈</span><br><span class="line"></span><br><span class="line">from=singlemessage  分享到好友</span><br><span class="line"></span><br><span class="line">isappinstalled=0    0或1，表示是否安装了app</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>由于微信的签名生成时，需要传一个url参数，而这个url则是通过：<code>location.href.split(&#39;#&#39;)[0]</code>获取的url，取的是url的#前边的部分来生成签名，第一次分享成功，生成签名的url不带query字段。通过一次分享出去的链接，带上了query后，生成的签名就无效了，导致二次分享失败。</p>
+<p>解决办法：</p>
+<blockquote>
+<p>生成签名的时候，动态的获取url，传给生成签名的接口。</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>每次打开页面时，都获取到url的#前边部分传给签名生成接口，保证每次的签名都是有效的。</p>
+</blockquote>
+</blockquote>
+<ol start="3">
+<li><p>微信分享时invalid signature错误解决和查找顺序</p>
+<ol>
+<li><p>确认签名算法正确，可用<a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/debug">http://mp.weixin.qq.com/debug</a>… 页面工具进行校验。</p>
+</li>
+<li><p>确认config中nonceStr（js中驼峰标准大写S）, timestamp与用以签名中的对应noncestr, timestamp一致。</p>
+</li>
+<li><p>确认url是页面完整的url(请在当前页面alert(location.href.split(‘#’)[0])确认)，包括’http(s)://‘部分，以及’？’后面的GET参数部分,但不包括’#’hash后面的部分。</p>
+</li>
+<li><p>确认 config 中的 appid 与用来获取 jsapi_ticket 的 appid 一致。</p>
+</li>
+<li><p>确保一定缓存access_token和jsapi_ticket。</p>
+</li>
+<li><p>确保你获取用来签名的url是动态获取的，动态页面可参见实例代码中php的实现方式。如果是html的静态页面在前端通过ajax将url传到后台签名，前端需要用js获取当前页面除去’#’hash部分的链接（可用location.href.split(‘#’)[0]获取,必要时需要<code>encodeURIComponent</code>转换链接格式，因为页面一旦分享，微信客户端会在你的链接末尾加入其它参数，如果不是动态获取当前链接，将导致分享后的页面签名失败。</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="四川经济日报使用微信"><a href="#四川经济日报使用微信" class="headerlink" title="四川经济日报使用微信"></a>四川经济日报使用微信</h2><ul>
+<li><p>分享请求后台时间搓参数时  不能使用get传值，必须使用post 因为get 连接后面拼接需要分享的URL时可能会带有<code>&amp;</code>符号会被服务器理解成拼接参数</p>
+</li>
+<li><p>微信分享  后台请求时间搓 有效时间未7200秒，每天访问接口次数有限，否则后面无法成功。</p>
 </li>
 </ul>
 
@@ -1287,7 +1442,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

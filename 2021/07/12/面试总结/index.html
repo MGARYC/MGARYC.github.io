@@ -20,18 +20,20 @@
     var CONFIG = {"hostname":"blog.mgary.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="路其修远兮，吾将上下而求索">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CodingDiary">
-<meta property="og:url" content="http://blog.mgary.top/tags/%E5%BE%AE%E4%BF%A1/index.html">
+  <meta name="description" content="JVM面试强：A a&#x3D;new A(); 此时引用a强引用对象A；不会被GC软：SoftReference.java，在内存不够时引用对象会被GC；弱：WeakReference.java，每次GC都会被回收；虚：PhantomReference.java，每次GC都会被回收；弱引用指向的对象，每次GC时，对象都会被作为垃圾回收。 SQLMYSQL 中有几种锁 表级锁   开销小 ，加锁块；不会出现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试总结">
+<meta property="og:url" content="http://blog.mgary.top/2021/07/12/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="CodingDiary">
-<meta property="og:description" content="路其修远兮，吾将上下而求索">
+<meta property="og:description" content="JVM面试强：A a&#x3D;new A(); 此时引用a强引用对象A；不会被GC软：SoftReference.java，在内存不够时引用对象会被GC；弱：WeakReference.java，每次GC都会被回收；虚：PhantomReference.java，每次GC都会被回收；弱引用指向的对象，每次GC时，对象都会被作为垃圾回收。 SQLMYSQL 中有几种锁 表级锁   开销小 ，加锁块；不会出现">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-07-12T10:08:40.000Z">
+<meta property="article:modified_time" content="2021-07-12T10:33:43.658Z">
 <meta property="article:author" content="MAGRY">
 <meta property="article:tag" content="java,SpringClude,SpringBoot,Mysql,Linux,Docker">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://blog.mgary.top/tags/%E5%BE%AE%E4%BF%A1/">
+<link rel="canonical" href="http://blog.mgary.top/2021/07/12/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/">
 
 
 <script id="page-configurations">
@@ -39,12 +41,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>标签: 微信 | CodingDiary</title>
+  <title>面试总结 | CodingDiary</title>
   
 
 
@@ -158,51 +160,113 @@
         <div class="content-wrap">
           
 
-          <div class="content tag">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">微信
-          <small>标签</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2021/07/12/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MAGRY">
+      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodingDiary">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          面试总结
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-07-12 18:08:40 / 修改时间：18:33:43" itemprop="dateCreated datePublished" datetime="2021-07-12T18:08:40+08:00">2021-07-12</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
+        <h2 id="JVM面试"><a href="#JVM面试" class="headerlink" title="JVM面试"></a>JVM面试</h2><p>强：A a=new A(); 此时引用a强引用对象A；不会被GC<br>软：SoftReference.java，在内存不够时引用对象会被GC；<br>弱：WeakReference.java，每次GC都会被回收；<br>虚：PhantomReference.java，每次GC都会被回收；<br>弱引用指向的对象，每次GC时，对象都会被作为垃圾回收。</p>
+<h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><h3 id="MYSQL-中有几种锁"><a href="#MYSQL-中有几种锁" class="headerlink" title="MYSQL 中有几种锁"></a>MYSQL 中有几种锁</h3><ul>
+<li>表级锁  <ol>
+<li>开销小 ，加锁块；不会出现死锁；</li>
+<li>锁定力度大，发生锁冲突的概率最高，并发最低。</li>
+</ol>
+</li>
+<li>行级锁<ol>
+<li>开销大，加锁慢；</li>
+<li>不会出现死锁；</li>
+<li>锁定粒度小，发生锁冲突的概率最低，并发也最高；</li>
+</ol>
+</li>
+<li>页面锁<ol>
+<li>开锁和加锁时间介于表锁与行锁之间；</li>
+<li>会出现死锁；</li>
+<li>锁定粒度介于表锁与行锁之间，并发一般。</li>
+</ol>
+</li>
+</ul>
+<h2 id="并发编程"><a href="#并发编程" class="headerlink" title="并发编程"></a>并发编程</h2><h3 id="死锁的四个必要条件"><a href="#死锁的四个必要条件" class="headerlink" title="死锁的四个必要条件"></a>死锁的四个必要条件</h3><ul>
+<li>斥条件  指资源在一个时间段，只能有一个进程占用（其他的只有等待）；</li>
+<li>占有且等待条件  进程已经持有资源，但还需要另一资源，但是新的资源已被占用，此时进程阻塞，但又对自己的资源保持不放；</li>
+<li>不可抢占条件 资源已被占用，但不能由于自己需要，就去抢占；</li>
+<li>循环等待条件 若干进程形成头尾相接的环形等待关系；</li>
+</ul>
+<h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><h3 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h3><h4 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h4><ul>
+<li>静态代理</li>
+</ul>
+<blockquote>
+<blockquote>
+<p>某个对象提供一个代理，代理角色固定，以控制对这个对象的访问。</p>
+</blockquote>
+</blockquote>
+<ul>
+<li>动态代理</li>
+</ul>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-05-07T12:00:31+08:00"
-              content="2020-05-07">
-          05-07
-        </time>
-      </div>
+      <footer class="post-footer">
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/05/07/%E5%BE%AE%E4%BF%A1%E5%88%86%E4%BA%AB/" itemprop="url">
-            <span itemprop="name">微信分享</span>
-          </a>
-      </div>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/07/06/Redis/" rel="prev" title="Redis技能提升">
+      <i class="fa fa-chevron-left"></i> Redis技能提升
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
   </article>
-
-    </div>
-  </div>
   
   
-  
-
   
 
 
@@ -255,6 +319,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E9%9D%A2%E8%AF%95"><span class="nav-number">1.</span> <span class="nav-text">JVM面试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL"><span class="nav-number">2.</span> <span class="nav-text">SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MYSQL-%E4%B8%AD%E6%9C%89%E5%87%A0%E7%A7%8D%E9%94%81"><span class="nav-number">2.1.</span> <span class="nav-text">MYSQL 中有几种锁</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">并发编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%BB%E9%94%81%E7%9A%84%E5%9B%9B%E4%B8%AA%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="nav-number">3.1.</span> <span class="nav-text">死锁的四个必要条件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring"><span class="nav-number">4.</span> <span class="nav-text">Spring</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AOP"><span class="nav-number">4.1.</span> <span class="nav-text">AOP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F"><span class="nav-number">4.1.1.</span> <span class="nav-text">代理模式</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
