@@ -164,6 +164,199 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2020/05/07/Docker-%E6%90%AD%E5%BB%BAHTTPS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MAGRY">
+      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodingDiary">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/07/Docker-%E6%90%AD%E5%BB%BAHTTPS/" class="post-title-link" itemprop="url">Docker-搭建HTTPS</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:06:49" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">运维</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/400/4143">SA免费版腾讯申请</a></p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://common-buy.aliyun.com/?spm=5176.2020520154.0.0.45d3Uo4kUo4kz4&commodityCode=cas#/buy">SA免费版阿里云申请</a> 选择Symantec服务商</p>
+</blockquote>
+<blockquote>
+<p>Linux 服务器一台</p>
+</blockquote>
+<blockquote>
+<p>安装方式采用Docker</p>
+</blockquote>
+<h1 id="开始配置"><a href="#开始配置" class="headerlink" title="开始配置"></a>开始配置</h1><p>Docker 下载Nginx<br>##. 查找 <a target="_blank" rel="noopener" href="https://hub.docker.com/r/library/nginx/">Docker Hub</a> 上的 nginx 镜像<br><code> docker search nginx</code></p>
+<h2 id="我现在使用官方镜像配置"><a href="#我现在使用官方镜像配置" class="headerlink" title="我现在使用官方镜像配置"></a>我现在使用官方镜像配置</h2><p><code>docker pull nginx</code></p>
+<h2 id="运行容器"><a href="#运行容器" class="headerlink" title="运行容器"></a>运行容器</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 80:80 --name mynginx -v $PWD/www:/www -v $PWD/conf/nginx.conf:/etc/nginx/nginx.conf -v $PWD/logs:/wwwlogs  -d nginx  </span><br></pre></td></tr></table></figure>
+<p>命令说明</p>
+<ul>
+<li><p>-p 80:80：将容器的80端口映射到主机的80端口</p>
+</li>
+<li><p>–name mynginx：将容器命名为mynginx</p>
+</li>
+<li><p>-v $PWD/www:/www：将主机中当前目录下的www挂载到容器的/www</p>
+</li>
+<li><p>-v $PWD/conf/nginx.conf:/etc/nginx/nginx.conf：将主机中当前目录下的nginx.conf挂载到容器的/etc/nginx/nginx.conf</p>
+</li>
+<li><p>-v $PWD/logs:/wwwlogs：将主机中当前目录下的logs挂载到容器的/wwwlogs</p>
+</li>
+</ul>
+<h2 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h2><h3 id="运行容器-1"><a href="#运行容器-1" class="headerlink" title="运行容器"></a>运行容器</h3><p>命令格式</p>
+<p><code>docker run [option] IMAGE [COMMOND] [ARG...] </code></p>
+<p>容器操作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">docker ps         # 查看正在运行的容器</span><br><span class="line"></span><br><span class="line">docker ps -a      # 查看所有容器</span><br><span class="line"></span><br><span class="line">docker ps -l      # 查看最近一次运行的容器</span><br><span class="line"></span><br><span class="line">docker create 容器名或者容器ID    # 创建容器</span><br><span class="line"></span><br><span class="line">docker start [-i] 容器名        # 启动容器</span><br><span class="line"></span><br><span class="line">docker run 容器名或者容器ID       # 运行容器，相当于docker create + docker start</span><br><span class="line"></span><br><span class="line">docker attach 容器名或者容器ID bash     # 进入容器的命令行（退出容器后容器会停止）</span><br><span class="line"></span><br><span class="line">docker exec -it 容器名或者容器ID bash   # 进入容器的命令行</span><br><span class="line"></span><br><span class="line">docker stop 容器名                    # 停止容器</span><br><span class="line"></span><br><span class="line">docker rm 容器名                      # 删除容器</span><br><span class="line"></span><br><span class="line">docker top 容器名                    # 查看WEB应用程序容器的进程</span><br><span class="line"></span><br><span class="line">docker inspect 容器名                # 查看Docker的底层信息</span><br></pre></td></tr></table></figure>
+<p>进入容器内部</p>
+<p><code>docker exec -it [容器名称] bash</code></p>
+<h2 id="配置Https"><a href="#配置Https" class="headerlink" title="配置Https"></a>配置Https</h2><p>配置nginx.conf</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">  server &#123; </span><br><span class="line">    listen       443; </span><br><span class="line">    server_name  localhost; </span><br><span class="line">    ssl                  on; </span><br><span class="line">    ssl_certificate      1_root_bundle.crt;      (证书公钥)</span><br><span class="line">    ssl_certificate_key      2_ domainname.com.key;      (证书私钥)</span><br><span class="line">    ssl_session_timeout  5m; </span><br><span class="line">    ssl_protocols  SSLv3 TLSv1; </span><br><span class="line">    ssl_ciphers  HIGH:!ADH:!EXPORT56:RC4+RSA:+MEDIUM; </span><br><span class="line">    ssl_prefer_server_ciphers   on; </span><br><span class="line">    location / &#123; </span><br><span class="line">        root   html; </span><br><span class="line">        index  index.html index.htm; </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="检查岂容"><a href="#检查岂容" class="headerlink" title="检查岂容"></a>检查岂容</h2><p> 启动nginx,访问https://+证书绑定的域名</p>
+<blockquote>
+<p>注:部署完毕后若网站无法通过https正常访问,可确认服务器443端口是否开启或被网站卫士等加速工具拦截。<br>(1)开启方法:防火墙设置-例外端口-添加443端口(TCP)。<br>(2)若被安全或加速工具拦截,可以在拦截记录中将443添加至信任列表。<br>(3)阿里云证书与腾讯证书不太一致但是大体分为两种（公有、私有两份证书）总体配置设置思路一致</p>
+</blockquote>
+<p>Utuntu 启动使用命令：<code>service nginx  [start/stop/...]</code><br>后续补充中。。。。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2020/05/07/Docker-%E5%AE%89%E8%A3%85MySQL8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MAGRY">
+      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodingDiary">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/07/Docker-%E5%AE%89%E8%A3%85MySQL8/" class="post-title-link" itemprop="url">Docker-安装MySQL8</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:05:45" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">运维</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="创建空文件，分别用于存放MySQL的数据信息、日志信息、配置信息"><a href="#创建空文件，分别用于存放MySQL的数据信息、日志信息、配置信息" class="headerlink" title="创建空文件，分别用于存放MySQL的数据信息、日志信息、配置信息"></a>创建空文件，分别用于存放<code>MySQL</code>的数据信息、日志信息、配置信息</h2><p><code>mkdir -p /mnt/mysql/data /mnt/mysql/logs /mnt/mysql/conf</code></p>
+<h2 id="Docker启动命令"><a href="#Docker启动命令" class="headerlink" title="Docker启动命令"></a>Docker启动命令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run //Docker启动命令</span><br><span class="line">-p 3308:3306 //设置映射端口</span><br><span class="line">--name mymysql //Docker名称</span><br><span class="line">-v $PWD/conf:/etc/mysql/conf.d //挂在外置存储空间《配置文件》</span><br><span class="line">-v $PWD/logs:/logs  //挂在外置存储空间《日志文件》</span><br><span class="line">-v $PWD/data:/var/lib/mysql //挂在外置存储空间《数据》</span><br><span class="line">-e MYSQL_ROOT_PASSWORD=123456  //设置初始化密码</span><br><span class="line">-d mysql:latest  //选择启动镜像</span><br></pre></td></tr></table></figure>
+
+<h2 id="MYSQl修改、配置文件"><a href="#MYSQl修改、配置文件" class="headerlink" title="MYSQl修改、配置文件"></a><code>MYSQl</code>修改、配置文件</h2><h3 id="进入镜像"><a href="#进入镜像" class="headerlink" title="进入镜像"></a>进入镜像</h3><p><code>docker exec -it mymysql /bin/sh</code> 或者 <code>docker exec -it mymysql bash</code></p>
+<h3 id="登录MySQL"><a href="#登录MySQL" class="headerlink" title="登录MySQL"></a>登录MySQL</h3><p><code>mysql -uroot -p</code></p>
+<h3 id="执行SQL"><a href="#执行SQL" class="headerlink" title="执行SQL"></a>执行SQL</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;ALTER USER &#x27;root&#x27;@&#x27;%&#x27; IDENTIFIED WITH mysql_native_password BY &#x27;root&#x27;;</span><br></pre></td></tr></table></figure>
+<h2 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h2><ul>
+<li><ol>
+<li>Navicat 报错  caching_sha2_password  </li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p><strong>解决办法</strong></p>
+<blockquote>
+<p>使用mysql进入控制台，然后输入ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY ‘111111’;，然后调用下命令FLUSH PRIVILEGES;</p>
+</blockquote>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2020/05/07/Kafka-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1073,307 +1266,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2020/05/07/pm2-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="MAGRY">
-      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="CodingDiary">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/07/pm2-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4/" class="post-title-link" itemprop="url">pm2进程管理与维护</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:25:34" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">运维</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>全局安装，简直不能更简单。<br><code>npm install -g pm2</code></p>
-<h1 id="目录介绍"><a href="#目录介绍" class="headerlink" title="目录介绍"></a>目录介绍</h1><p>pm2安装好后，会自动创建下面目录。看文件名基本就知道干嘛的了，就不翻译了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$HOME/.pm2  #将包含所有PM2相关文件</span><br><span class="line">$HOME/.pm2/logs #将包含所有应用程序日志</span><br><span class="line">$HOME/.pm2/pids #将包含所有应用程序pids</span><br><span class="line">$HOME/.pm2/pm2.log PM2 logs</span><br><span class="line">$HOME/.pm2/pm2.pid PM2 pid</span><br><span class="line">$HOME/.pm2/rpc.sock #用于远程命令的套接字文件</span><br><span class="line">$HOME/.pm2/pub.sock #可发布事件的套接字文件 </span><br><span class="line">$HOME/.pm2/conf.js #PM2配置</span><br></pre></td></tr></table></figure>
-<h1 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h1><ul>
-<li>查看进程状态<br><code>pm2 list</code></li>
-<li>删除<br><code>pm2 delete name</code></li>
-<li>停止<br><code>pm2 stop all</code></li>
-<li>启动<br><code>pm2 start npm --name &quot;jsyfShopNuxt&quot; -- run start </code></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">pm2 list # 查看当前正在运行的进程</span><br><span class="line">pm2 start all  # 启动所有应用</span><br><span class="line">pm2 restart all  # 重启所有应用</span><br><span class="line">pm2 stop all # 停止所有的应用程序</span><br><span class="line">pm2 delete all # 关闭并删除所有应用</span><br><span class="line">pm2 logs # 控制台显示所有日志</span><br><span class="line"></span><br><span class="line">pm2 start 0  # 启动 id为 0的指定应用程序</span><br><span class="line">pm2 restart 0  # 重启 id为 0的指定应用程序</span><br><span class="line">pm2 stop 0 # 停止 id为 0的指定应用程序</span><br><span class="line">pm2 delete 0 # 删除 id为 0的指定应用程序</span><br><span class="line"></span><br><span class="line">pm2 logs 0 # 控制台显示编号为0的日志</span><br><span class="line">pm2 show 0  # 查看执行编号为0的进程</span><br><span class="line">pm2 monit jsyfShopNuxt # 监控名称为jsyfShopNuxt的进程</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2020/05/07/%E5%BE%AE%E4%BF%A1%E5%88%86%E4%BA%AB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="MAGRY">
-      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="CodingDiary">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/07/%E5%BE%AE%E4%BF%A1%E5%88%86%E4%BA%AB/" class="post-title-link" itemprop="url">微信分享</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:32:21" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">开发</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>如果想要是使用微信的分享功能，需要使用微信JS-SDK来完成。且只能点击微信右上角的<code>...</code>调起分享面板，不能直接由页面行为唤起！</p>
-<h3 id="JS-SDK使用"><a href="#JS-SDK使用" class="headerlink" title="JS-SDK使用"></a>JS-SDK使用</h3><ol>
-<li><p>绑定域名：</p>
-<p> 登录微信公众平台 –&gt; 公众号设置 –&gt; 功能设置 –&gt; 填写“JS接口安全域名”(白名单设置)。</p>
-</li>
-<li><p>在页面引入JS文件：</p>
-<p> <a target="_blank" rel="noopener" href="http://res.wx.qq.com/open/js/jweixin-1.2.0.js">http://res.wx.qq.com/open/js/jweixin-1.2.0.js</a></p>
-</li>
-<li><p>配置config：</p>
-<p> 所有需要使用JS-SDK的页面必须先注入配置信息，否则将无法调用。</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wx.config(&#123;</span><br><span class="line"></span><br><span class="line">debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，pc端和微信开发者时才会打印。</span><br><span class="line"></span><br><span class="line">appId: &#x27;&#x27;, // 必填，公众号的唯一标识</span><br><span class="line"></span><br><span class="line">timestamp: , // 必填，生成签名的时间戳</span><br><span class="line"></span><br><span class="line">nonceStr: &#x27;&#x27;, // 必填，生成签名的随机串</span><br><span class="line"></span><br><span class="line">signature: &#x27;&#x27;,// 必填，签名</span><br><span class="line"></span><br><span class="line">jsApiList: [] // 必填，需要使用的JS接口列表</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p> 注意：</p>
-<ul>
-<li><p>config是一个客户端的异步操作</p>
-</li>
-<li><p>在JS-SDK后调用，也应该尽可能早的调用</p>
-</li>
-<li><p>同一个url仅需调用一次</p>
-</li>
-<li><p>对于变化url的SPA的web app可在每次url变化时进行调用</p>
-</li>
-<li><p>低于Android6.2版本的微信客户端，不支持pushState的H5新特性，使用pushState来实现web app的页面会导致签名失败</p>
-</li>
-</ul>
-</li>
-<li><p>配置成功回调：</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  wx.ready(function()&#123;</span><br><span class="line"></span><br><span class="line">// ...</span><br><span class="line"></span><br><span class="line">  &#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p> 注：无论config成功或失败，ready中的内容都会被执行！</p>
-</li>
-<li><p>配置失败回调：</p>
-<p> config信息验证失败会执行error函数。</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wx.error(function(res)&#123;</span><br><span class="line"></span><br><span class="line">// ...</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li><p>通用参数：</p>
-<p> 所有接口通过wx对象(也可使用jWeixin对象)来调用，参数是一个对象，除了每个接口本身需要传的参数之外，还有以下通用函数参数：</p>
-<ul>
-<li><p>success 接口调用成功时执行的回调函数。</p>
-</li>
-<li><p>fail 接口调用失败时执行的回调函数。</p>
-</li>
-<li><p>complete 接口调用完成时执行的回调函数，无论成功或失败都会执行。</p>
-</li>
-<li><p>cancel 用户点击取消时的回调函数，仅部分有用户取消操作的api才会用到。</p>
-</li>
-<li><p>trigger 监听Menu中的按钮点击时触发的方法，该方法仅支持Menu中的相关接口。</p>
-</li>
-</ul>
-<p> 回调参数：</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">xxx: xxx,</span><br><span class="line"></span><br><span class="line">errMsg: &#x27;&#x27; // 接口调用成功/失败信息</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li><p>微信分享接口</p>
-</li>
-</ol>
-<p>分享到朋友圈、好友、QQ、QQ空间对应的接口为<code>&#39;onMenuShareTimeline&#39;,&#39;onMenuShareAppMessage&#39;,&#39;onMenuShareQQ&#39;,&#39;onMenuShareQZone&#39;</code></p>
-<ul>
-<li>分享到朋友圈</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wx.onMenuShareTimeline(&#123;</span><br><span class="line"></span><br><span class="line">    title: &#x27;&#x27;, // 分享标题</span><br><span class="line"></span><br><span class="line">    link: &#x27;&#x27;, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致</span><br><span class="line"></span><br><span class="line">    imgUrl: &#x27;&#x27;, // 分享图标</span><br><span class="line"></span><br><span class="line">    success: function () &#123;</span><br><span class="line"></span><br><span class="line">        // 用户确认分享后执行的回调函数</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    cancel: function () &#123;</span><br><span class="line"></span><br><span class="line">        // 用户取消分享后执行的回调函数</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>注：分享到朋友圈，只有title分享标题，没有desc描述。</p>
-<ul>
-<li>分享到好友或群</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wx.onMenuShareAppMessage(&#123;</span><br><span class="line"></span><br><span class="line">    title: &#x27;&#x27;, // 分享标题</span><br><span class="line"></span><br><span class="line">    desc: &#x27;&#x27;, // 分享描述</span><br><span class="line"></span><br><span class="line">    link: &#x27;&#x27;, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致</span><br><span class="line"></span><br><span class="line">    imgUrl: &#x27;&#x27;, // 分享图标</span><br><span class="line"></span><br><span class="line">    type: &#x27;&#x27;, // 分享类型,music、video或link，不填默认为link</span><br><span class="line"></span><br><span class="line">    dataUrl: &#x27;&#x27;, // 如果type是music或video，则要提供数据链接，默认为空</span><br><span class="line"></span><br><span class="line">    success: function () &#123;</span><br><span class="line"></span><br><span class="line">    // 用户确认分享后执行的回调函数</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    cancel: function () &#123;</span><br><span class="line"></span><br><span class="line">    // 用户取消分享后执行的回调函数</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>分享到QQ和QQ空间</li>
-</ul>
-<p>分享接口：<code>onMenuShareQQ, onMenuShareQZone</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    title: &#x27;&#x27;, // 分享标题</span><br><span class="line"></span><br><span class="line">    desc: &#x27;&#x27;, // 分享描述</span><br><span class="line"></span><br><span class="line">    link: &#x27;&#x27;, // 分享链接</span><br><span class="line"></span><br><span class="line">    imgUrl: &#x27;&#x27;, // 分享图标</span><br><span class="line"></span><br><span class="line">    success: function () &#123;</span><br><span class="line"></span><br><span class="line">    // 用户确认分享后执行的回调函数</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    cancel: function () &#123;</span><br><span class="line"></span><br><span class="line">    // 用户取消分享后执行的回调函数</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="微信分享"><a href="#微信分享" class="headerlink" title="微信分享"></a>微信分享</h2><pre><code>用户调用微信的分享功能，可以自定义分享的title和描述，以及小图标和链接。可以分享到群、好友、朋友圈、QQ、QQ空间等。
-</code></pre>
-<h2 id="分享设计规范"><a href="#分享设计规范" class="headerlink" title="分享设计规范"></a>分享设计规范</h2><ul>
-<li><p>分享标题：14字以内，建议使用朋友般亲切的口吻</p>
-</li>
-<li><p>分享图标：尺寸120*120，大小不超过10K，不支持GIF格式。必须采用https协议。</p>
-</li>
-<li><p>分享描述：20字以内，对标题的简要解读。</p>
-</li>
-<li><p>分享链接：外链页面所在服务器至少能支持每秒1500次的访问压力，且每次访问的响应时间200ms以内。必须采用https协议。</p>
-</li>
-<li><p>分享行为：页面上无分享按钮，页面上无诱导分享行为，包含但不限于分享后才能看到特定的信息，分享后才能进行下一步流程，分享后可以获得奖励等</p>
-</li>
-<li><p>分享文案：分享时“文案”和“图片”可以正常显示，分享后链接可以访问。</p>
-</li>
-<li><p>分享标题和描述不能出现敏感词汇，否则会导致部分不可预知的问题。比如分享者可以看到分享图标，被分享者看不到图标等。</p>
-</li>
-</ul>
-<h3 id="敏感词举例：红包、现金、到账等"><a href="#敏感词举例：红包、现金、到账等" class="headerlink" title="敏感词举例：红包、现金、到账等"></a>敏感词举例：红包、现金、到账等</h3><p>注：分享的图标链接和分享链接尽量保持为同一域名下的资源。否则可能会出现分享不成功或分享图标不显示的情况。</p>
-<p>由于不能由页面直接唤起微信的分享面板，所以就需要一个弹窗浮层来引导用户用户去点击…按钮唤起分享面板。注意这个弹窗浮层不能出现诱导分享的内容。</p>
-<h3 id="分享或广告文案禁止内容"><a href="#分享或广告文案禁止内容" class="headerlink" title="分享或广告文案禁止内容"></a>分享或广告文案禁止内容</h3><ul>
-<li><p>特殊字符：不允许使用特殊字符与符号 ，例如：“：）” “-。-”等； 不允许使用 emoji 表情</p>
-</li>
-<li><p>诱导或引导操作： 不允许出现诱导或引导用户操作的描述。包含但不限于以下文案：“请点击查看详情”、 “赶快戳开看一看”、“点一下下面你就知道是什么”、“点击下方了解公众号”</p>
-</li>
-<li><p>微信产品功能词汇：未经微信官方授权，禁止使用以下产品功能词汇及其谐音词汇。包含但不限于以下内容：“朋友圈” 、“点赞” 、“评论” 、“公众号”、 “微信”、 “红包”</p>
-</li>
-<li><p>URL：不允许直接放URL链接内容</p>
-</li>
-<li><p>电话号码：不允许出现电话号码</p>
-</li>
-<li><p>破折号：不允许出现破折号，破折号在移动端显示容易产生歧义</p>
-</li>
-<li><p>空行&amp;空格：不允许使用空行或空格</p>
-</li>
-<li><p>不规范折行：不允许出现单个词语或文字折行</p>
-</li>
-<li><p>股票代码：不允许出现公司股票代码</p>
-</li>
-<li><p>非简体中文文字&amp;方言&amp;小语种：不允许使用非简体中文文字（单字、词语、成语）。暂不支持使用方言和小语种作为文案。</p>
-</li>
-<li><p>产品销量数据：不允许使用任何维度的产品销量数据。</p>
-</li>
-</ul>
-<h2 id="分享开发调试时注意事项"><a href="#分享开发调试时注意事项" class="headerlink" title="分享开发调试时注意事项"></a>分享开发调试时注意事项</h2><ol>
-<li><p>分享出去的外链的域名必须和公众号后台配置的JS安全域名一致，否则会导致分享的失败</p>
-</li>
-<li><p>分享出去的外链，会自动给加上微信标识，导致二次分享失败。</p>
-</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">from=groupmessage  分享到群</span><br><span class="line"></span><br><span class="line">from=timeline  分享到朋友圈</span><br><span class="line"></span><br><span class="line">from=singlemessage  分享到好友</span><br><span class="line"></span><br><span class="line">isappinstalled=0    0或1，表示是否安装了app</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>由于微信的签名生成时，需要传一个url参数，而这个url则是通过：<code>location.href.split(&#39;#&#39;)[0]</code>获取的url，取的是url的#前边的部分来生成签名，第一次分享成功，生成签名的url不带query字段。通过一次分享出去的链接，带上了query后，生成的签名就无效了，导致二次分享失败。</p>
-<p>解决办法：</p>
-<blockquote>
-<p>生成签名的时候，动态的获取url，传给生成签名的接口。</p>
-</blockquote>
-<blockquote>
-<blockquote>
-<p>每次打开页面时，都获取到url的#前边部分传给签名生成接口，保证每次的签名都是有效的。</p>
-</blockquote>
-</blockquote>
-<ol start="3">
-<li><p>微信分享时invalid signature错误解决和查找顺序</p>
-<ol>
-<li><p>确认签名算法正确，可用<a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/debug">http://mp.weixin.qq.com/debug</a>… 页面工具进行校验。</p>
-</li>
-<li><p>确认config中nonceStr（js中驼峰标准大写S）, timestamp与用以签名中的对应noncestr, timestamp一致。</p>
-</li>
-<li><p>确认url是页面完整的url(请在当前页面alert(location.href.split(‘#’)[0])确认)，包括’http(s)://‘部分，以及’？’后面的GET参数部分,但不包括’#’hash后面的部分。</p>
-</li>
-<li><p>确认 config 中的 appid 与用来获取 jsapi_ticket 的 appid 一致。</p>
-</li>
-<li><p>确保一定缓存access_token和jsapi_ticket。</p>
-</li>
-<li><p>确保你获取用来签名的url是动态获取的，动态页面可参见实例代码中php的实现方式。如果是html的静态页面在前端通过ajax将url传到后台签名，前端需要用js获取当前页面除去’#’hash部分的链接（可用location.href.split(‘#’)[0]获取,必要时需要<code>encodeURIComponent</code>转换链接格式，因为页面一旦分享，微信客户端会在你的链接末尾加入其它参数，如果不是动态获取当前链接，将导致分享后的页面签名失败。</p>
-</li>
-</ol>
-</li>
-</ol>
-<h2 id="四川经济日报使用微信"><a href="#四川经济日报使用微信" class="headerlink" title="四川经济日报使用微信"></a>四川经济日报使用微信</h2><ul>
-<li><p>分享请求后台时间搓参数时  不能使用get传值，必须使用post 因为get 连接后面拼接需要分享的URL时可能会带有<code>&amp;</code>符号会被服务器理解成拼接参数</p>
-</li>
-<li><p>微信分享  后台请求时间搓 有效时间未7200秒，每天访问接口次数有限，否则后面无法成功。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1442,7 +1334,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
