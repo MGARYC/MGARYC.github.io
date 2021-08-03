@@ -164,7 +164,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2020/05/07/Docker-%E6%90%AD%E5%BB%BAHTTPS/">
+    <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2020/05/07/Docker-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -178,7 +178,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/05/07/Docker-%E6%90%AD%E5%BB%BAHTTPS/" class="post-title-link" itemprop="url">Docker-搭建HTTPS</a>
+            <a href="/2020/05/07/Docker-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/" class="post-title-link" itemprop="url">Docker-远程连接</a>
         </h2>
 
         <div class="post-meta">
@@ -212,47 +212,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><blockquote>
-<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/400/4143">SA免费版腾讯申请</a></p>
-</blockquote>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://common-buy.aliyun.com/?spm=5176.2020520154.0.0.45d3Uo4kUo4kz4&commodityCode=cas#/buy">SA免费版阿里云申请</a> 选择Symantec服务商</p>
-</blockquote>
-<blockquote>
-<p>Linux 服务器一台</p>
-</blockquote>
-<blockquote>
-<p>安装方式采用Docker</p>
-</blockquote>
-<h1 id="开始配置"><a href="#开始配置" class="headerlink" title="开始配置"></a>开始配置</h1><p>Docker 下载Nginx<br>##. 查找 <a target="_blank" rel="noopener" href="https://hub.docker.com/r/library/nginx/">Docker Hub</a> 上的 nginx 镜像<br><code> docker search nginx</code></p>
-<h2 id="我现在使用官方镜像配置"><a href="#我现在使用官方镜像配置" class="headerlink" title="我现在使用官方镜像配置"></a>我现在使用官方镜像配置</h2><p><code>docker pull nginx</code></p>
-<h2 id="运行容器"><a href="#运行容器" class="headerlink" title="运行容器"></a>运行容器</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 80:80 --name mynginx -v $PWD/www:/www -v $PWD/conf/nginx.conf:/etc/nginx/nginx.conf -v $PWD/logs:/wwwlogs  -d nginx  </span><br></pre></td></tr></table></figure>
-<p>命令说明</p>
-<ul>
-<li><p>-p 80:80：将容器的80端口映射到主机的80端口</p>
-</li>
-<li><p>–name mynginx：将容器命名为mynginx</p>
-</li>
-<li><p>-v $PWD/www:/www：将主机中当前目录下的www挂载到容器的/www</p>
-</li>
-<li><p>-v $PWD/conf/nginx.conf:/etc/nginx/nginx.conf：将主机中当前目录下的nginx.conf挂载到容器的/etc/nginx/nginx.conf</p>
-</li>
-<li><p>-v $PWD/logs:/wwwlogs：将主机中当前目录下的logs挂载到容器的/wwwlogs</p>
-</li>
+          <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi /lib/systemd/system/docker.service</span><br><span class="line">修改</span><br><span class="line">ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock</span><br></pre></td></tr></table></figure>
+<h2 id="Docker-服务-TLS-证书全自动生成"><a href="#Docker-服务-TLS-证书全自动生成" class="headerlink" title="Docker 服务 TLS 证书全自动生成"></a>Docker 服务 TLS 证书全自动生成</h2><h2 id="转载https-segmentfault-com-a-1190000018530483"><a href="#转载https-segmentfault-com-a-1190000018530483" class="headerlink" title="转载https://segmentfault.com/a/1190000018530483"></a>转载<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000018530483">https://segmentfault.com/a/1190000018530483</a></h2><h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
+<li>客户端用的key保存到~/.docker/tls-client-certs.tar.gz</li>
+<li>需要使用openssl 命令因此需要配置文件输出地址</li>
 </ul>
-<h2 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h2><h3 id="运行容器-1"><a href="#运行容器-1" class="headerlink" title="运行容器"></a>运行容器</h3><p>命令格式</p>
-<p><code>docker run [option] IMAGE [COMMOND] [ARG...] </code></p>
-<p>容器操作</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">docker ps         # 查看正在运行的容器</span><br><span class="line"></span><br><span class="line">docker ps -a      # 查看所有容器</span><br><span class="line"></span><br><span class="line">docker ps -l      # 查看最近一次运行的容器</span><br><span class="line"></span><br><span class="line">docker create 容器名或者容器ID    # 创建容器</span><br><span class="line"></span><br><span class="line">docker start [-i] 容器名        # 启动容器</span><br><span class="line"></span><br><span class="line">docker run 容器名或者容器ID       # 运行容器，相当于docker create + docker start</span><br><span class="line"></span><br><span class="line">docker attach 容器名或者容器ID bash     # 进入容器的命令行（退出容器后容器会停止）</span><br><span class="line"></span><br><span class="line">docker exec -it 容器名或者容器ID bash   # 进入容器的命令行</span><br><span class="line"></span><br><span class="line">docker stop 容器名                    # 停止容器</span><br><span class="line"></span><br><span class="line">docker rm 容器名                      # 删除容器</span><br><span class="line"></span><br><span class="line">docker top 容器名                    # 查看WEB应用程序容器的进程</span><br><span class="line"></span><br><span class="line">docker inspect 容器名                # 查看Docker的底层信息</span><br></pre></td></tr></table></figure>
-<p>进入容器内部</p>
-<p><code>docker exec -it [容器名称] bash</code></p>
-<h2 id="配置Https"><a href="#配置Https" class="headerlink" title="配置Https"></a>配置Https</h2><p>配置nginx.conf</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">  server &#123; </span><br><span class="line">    listen       443; </span><br><span class="line">    server_name  localhost; </span><br><span class="line">    ssl                  on; </span><br><span class="line">    ssl_certificate      1_root_bundle.crt;      (证书公钥)</span><br><span class="line">    ssl_certificate_key      2_ domainname.com.key;      (证书私钥)</span><br><span class="line">    ssl_session_timeout  5m; </span><br><span class="line">    ssl_protocols  SSLv3 TLSv1; </span><br><span class="line">    ssl_ciphers  HIGH:!ADH:!EXPORT56:RC4+RSA:+MEDIUM; </span><br><span class="line">    ssl_prefer_server_ciphers   on; </span><br><span class="line">    location / &#123; </span><br><span class="line">        root   html; </span><br><span class="line">        index  index.html index.htm; </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="检查岂容"><a href="#检查岂容" class="headerlink" title="检查岂容"></a>检查岂容</h2><p> 启动nginx,访问https://+证书绑定的域名</p>
-<blockquote>
-<p>注:部署完毕后若网站无法通过https正常访问,可确认服务器443端口是否开启或被网站卫士等加速工具拦截。<br>(1)开启方法:防火墙设置-例外端口-添加443端口(TCP)。<br>(2)若被安全或加速工具拦截,可以在拦截记录中将443添加至信任列表。<br>(3)阿里云证书与腾讯证书不太一致但是大体分为两种（公有、私有两份证书）总体配置设置思路一致</p>
-</blockquote>
-<p>Utuntu 启动使用命令：<code>service nginx  [start/stop/...]</code><br>后续补充中。。。。</p>
+<h3 id="centos7-3地址修改"><a href="#centos7-3地址修改" class="headerlink" title="centos7.3地址修改"></a>centos7.3地址修改</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> vim  /etc/pki/tls/openssl.cnf</span><br><span class="line">//修改位置</span><br><span class="line">[ CA_default ]</span><br><span class="line">dir             = /etc/docker/openssl</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Created by L.STONE &lt;web.developer.network@gmail.com&gt;</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Mod By Ryan.L &lt;github-benzBrake@woai.ru&gt;</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -------------------------------------------------------------</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 自动创建 Docker TLS 证书</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -------------------------------------------------------------</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 以下是配置信息</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Config start</span></span><br><span class="line">IP=&quot;8.8.8.8&quot;</span><br><span class="line">PASSWORD=&quot;123456&quot;</span><br><span class="line">COUNTRY=&quot;CN&quot;</span><br><span class="line">STATE=&quot;Beijing&quot;</span><br><span class="line">CITY=&quot;&quot;</span><br><span class="line">ORGANIZATION=&quot;iPlayLoli&quot;</span><br><span class="line">ORGANIZATIONAL_UNIT=&quot;Dev&quot;</span><br><span class="line">COMMON_NAME=&quot;$IP&quot;</span><br><span class="line">EMAIL=&quot;github-benzBrake@woai.ru&quot;</span><br><span class="line"><span class="meta">#</span><span class="bash"> Config end</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 工作目录</span></span><br><span class="line">mkdir -p /etc/docker ~/.docker</span><br><span class="line">cd ~/.docker</span><br><span class="line"><span class="meta">#</span><span class="bash"> 停止 docker</span></span><br><span class="line">service docker stop</span><br><span class="line"><span class="meta">#</span><span class="bash"> 生成 CA 密钥</span></span><br><span class="line">if [[ ! -f ca-key.pem ]]; then</span><br><span class="line">    echo &quot; - 生成 CA 密钥&quot;</span><br><span class="line">    openssl genrsa -aes256 -passout &quot;pass:$PASSWORD&quot; -out &quot;ca-key.pem&quot; 4096</span><br><span class="line">fi</span><br><span class="line"><span class="meta">#</span><span class="bash"> 生成 CA</span></span><br><span class="line">if [[ ! -f ca.pem ]]; then</span><br><span class="line">    echo &quot; - 生成 CA&quot;</span><br><span class="line">    openssl req -new -x509 -days 365 -key &quot;ca-key.pem&quot; -sha256 -out &quot;ca.pem&quot; -passin &quot;pass:$PASSWORD&quot; -subj &quot;/C=$COUNTRY/ST=$STATE/L=$CITY/O=$ORGANIZATION/OU=$ORGANIZATIONAL_UNIT/CN=$COMMON_NAME/emailAddress=$EMAIL&quot;</span><br><span class="line">fi</span><br><span class="line"><span class="meta">#</span><span class="bash"> 生成服务器密钥 &amp; 服务器证书</span></span><br><span class="line">if [[ ! -f server-key.pem ]]; then</span><br><span class="line">    echo &quot; - 生成服务器密钥&quot;</span><br><span class="line">    openssl genrsa -out &quot;server-key.pem&quot; 4096</span><br><span class="line">fi</span><br><span class="line">if [[ ! -f server.csr ]]; then</span><br><span class="line">     openssl req -subj &quot;/CN=$COMMON_NAME&quot; -sha256 -new -key &quot;server-key.pem&quot; -out server.csr</span><br><span class="line">fi</span><br><span class="line">if [[ ! -f server-cert.pem ]]; then</span><br><span class="line">    echo &quot; - 生成服务器证书&quot;</span><br><span class="line">    echo &quot;subjectAltName = IP:$IP,IP:127.0.0.1&quot; &gt;&gt; extfile.cnf</span><br><span class="line">    echo &quot;extendedKeyUsage = serverAuth&quot; &gt;&gt; extfile.cnf</span><br><span class="line">    openssl x509 -req -days 365 -sha256 -in server.csr -passin &quot;pass:$PASSWORD&quot; -CA &quot;ca.pem&quot; -CAkey &quot;ca-key.pem&quot; -CAcreateserial -out &quot;server-cert.pem&quot; -extfile extfile.cnf</span><br><span class="line">fi</span><br><span class="line">rm -f extfile.cnf</span><br><span class="line"><span class="meta">#</span><span class="bash"> 生成客户端证书</span></span><br><span class="line">if [[ ! -f key.pem ]]; then</span><br><span class="line">    openssl genrsa -out &quot;key.pem&quot; 4096</span><br><span class="line">fi</span><br><span class="line">if [[ ! -f cert.pem ]]; then</span><br><span class="line">    openssl req -subj &#x27;/CN=client&#x27; -new -key &quot;key.pem&quot; -out client.csr</span><br><span class="line">    echo extendedKeyUsage = clientAuth &gt;&gt; extfile.cnf</span><br><span class="line">    openssl x509 -req -days 365 -sha256 -in client.csr -passin &quot;pass:$PASSWORD&quot; -CA &quot;ca.pem&quot; -CAkey &quot;ca-key.pem&quot; -CAcreateserial -out &quot;cert.pem&quot; -extfile extfile.cnf</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">chmod -v 0400 &quot;ca-key.pem&quot; &quot;key.pem&quot; &quot;server-key.pem&quot;</span><br><span class="line">chmod -v 0444 &quot;ca.pem&quot; &quot;server-cert.pem&quot; &quot;cert.pem&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 打包客户端证书</span></span><br><span class="line">echo &quot; - 打包客户端证书为 tls-client-certs.tar.gz&quot;</span><br><span class="line">mkdir -p &quot;tls-client-certs&quot;</span><br><span class="line">cp -f &quot;ca.pem&quot; &quot;cert.pem&quot; &quot;key.pem&quot; &quot;tls-client-certs/&quot;</span><br><span class="line">cd &quot;tls-client-certs&quot;</span><br><span class="line">tar zcf &quot;tls-client-certs.tar.gz&quot; *</span><br><span class="line">mv &quot;tls-client-certs.tar.gz&quot; ../</span><br><span class="line">cd ..</span><br><span class="line">rm -rf &quot;tls-client-certs&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 拷贝服务端证书</span></span><br><span class="line">mkdir -p /etc/docker/certs.d</span><br><span class="line">cp -f &quot;ca.pem&quot; &quot;server-cert.pem&quot; &quot;server-key.pem&quot; /etc/docker/certs.d/</span><br><span class="line">echo &quot; - 修改 /etc/docker/daemon.json 文件&quot;</span><br><span class="line">if [[ -f /etc/docker/daemon.json ]]; then</span><br><span class="line">    grep &quot;/etc/docker/certs.d/server-key.pem&quot; /etc/docker/daemon.json &gt; /dev/null</span><br><span class="line">    if [[ ! $? -eq 0 ]]; then</span><br><span class="line">        cat &gt;/etc/docker/daemon.json&lt;&lt;EOF</span><br><span class="line">&#123;</span><br><span class="line">  &quot;tlsverify&quot;: true,</span><br><span class="line">  &quot;tlscacert&quot;: &quot;/etc/docker/certs.d/ca.pem&quot;,</span><br><span class="line">  &quot;tlscert&quot;: &quot;/etc/docker/certs.d/server-cert.pem&quot;,</span><br><span class="line">  &quot;tlskey&quot;: &quot;/etc/docker/certs.d/server-key.pem&quot;,</span><br><span class="line">  &quot;hosts&quot;: [&quot;tcp://0.0.0.0:2376&quot;, &quot;unix:///var/run/docker.sock&quot;]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line">    fi</span><br><span class="line">else</span><br><span class="line">    cat &gt;/etc/docker/daemon.json&lt;&lt;EOF</span><br><span class="line">&#123;</span><br><span class="line">  &quot;tlsverify&quot;: true,</span><br><span class="line">  &quot;tlscacert&quot;: &quot;/etc/docker/certs.d/ca.pem&quot;,</span><br><span class="line">  &quot;tlscert&quot;: &quot;/etc/docker/certs.d/server-cert.pem&quot;,</span><br><span class="line">  &quot;tlskey&quot;: &quot;/etc/docker/certs.d/server-key.pem&quot;,</span><br><span class="line">  &quot;hosts&quot;: [&quot;tcp://0.0.0.0:2376&quot;, &quot;unix:///var/run/docker.sock&quot;]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line">fi</span><br><span class="line"><span class="meta">#</span><span class="bash"> 覆盖启动参数，解决 docker 启动失败</span></span><br><span class="line">if [[ ! -z $(command -v systemctl) ]];then</span><br><span class="line">    mkdir -p /etc/systemd/system/docker.service.d</span><br><span class="line">    if [[ ! -f /etc/systemd/system/docker.service.d/override.conf ]]; then</span><br><span class="line">        cat &gt;/etc/systemd/system/docker.service.d/override.conf&lt;&lt;EOF</span><br><span class="line">[Service]</span><br><span class="line">ExecStart=</span><br><span class="line">ExecStart=/usr/bin/dockerd</span><br><span class="line">EOF</span><br><span class="line">    systemctl daemon-reload</span><br><span class="line">    fi</span><br><span class="line">fi</span><br><span class="line"><span class="meta">#</span><span class="bash"> 清理</span></span><br><span class="line">rm -vf client.csr server.csr extfile.cnf ca.srl server-cert.pem server-key.pem cert.pem</span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动 docker</span></span><br><span class="line">service docker start</span><br><span class="line"><span class="meta">#</span><span class="bash"> 客户端远程连接</span></span><br><span class="line">echo &quot;Connect to server via docker-cli:&quot;</span><br><span class="line">echo &quot;docker -H $IP:2376 --tlsverify --tlscacert ~/.docker/ca.pem --tlscert ~/.docker/cert.pem --tlskey ~/.docker/key.pem ps -a&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 客户端使用 cURL 连接</span></span><br><span class="line">echo &quot;Connect to server via curl:&quot;</span><br><span class="line">echo &quot;curl --cacert ~/.docker/ca.pem --cert ~/.docker/cert.pem --key ~/.docker/key.pem https://$IP:2376/containers/json&quot;</span><br><span class="line"></span><br><span class="line">echo -e &quot;\e[1;32mAll be done.\e[0m&quot;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -272,7 +240,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2020/05/07/Docker-%E5%AE%89%E8%A3%85MySQL8/">
+    <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2020/05/07/IDEA-%E5%BF%AB%E6%8D%B7%E9%94%AE%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -286,7 +254,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/05/07/Docker-%E5%AE%89%E8%A3%85MySQL8/" class="post-title-link" itemprop="url">Docker-安装MySQL8</a>
+            <a href="/2020/05/07/IDEA-%E5%BF%AB%E6%8D%B7%E9%94%AE%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">IDEA-快捷键使用</a>
         </h2>
 
         <div class="post-meta">
@@ -297,7 +265,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:05:45" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
+              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:08:45" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -305,7 +273,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">运维</span></a>
+                  <a href="/categories/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">开发</span></a>
                 </span>
             </span>
 
@@ -320,103 +288,39 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="创建空文件，分别用于存放MySQL的数据信息、日志信息、配置信息"><a href="#创建空文件，分别用于存放MySQL的数据信息、日志信息、配置信息" class="headerlink" title="创建空文件，分别用于存放MySQL的数据信息、日志信息、配置信息"></a>创建空文件，分别用于存放<code>MySQL</code>的数据信息、日志信息、配置信息</h2><p><code>mkdir -p /mnt/mysql/data /mnt/mysql/logs /mnt/mysql/conf</code></p>
-<h2 id="Docker启动命令"><a href="#Docker启动命令" class="headerlink" title="Docker启动命令"></a>Docker启动命令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run //Docker启动命令</span><br><span class="line">-p 3308:3306 //设置映射端口</span><br><span class="line">--name mymysql //Docker名称</span><br><span class="line">-v $PWD/conf:/etc/mysql/conf.d //挂在外置存储空间《配置文件》</span><br><span class="line">-v $PWD/logs:/logs  //挂在外置存储空间《日志文件》</span><br><span class="line">-v $PWD/data:/var/lib/mysql //挂在外置存储空间《数据》</span><br><span class="line">-e MYSQL_ROOT_PASSWORD=123456  //设置初始化密码</span><br><span class="line">-d mysql:latest  //选择启动镜像</span><br></pre></td></tr></table></figure>
-
-<h2 id="MYSQl修改、配置文件"><a href="#MYSQl修改、配置文件" class="headerlink" title="MYSQl修改、配置文件"></a><code>MYSQl</code>修改、配置文件</h2><h3 id="进入镜像"><a href="#进入镜像" class="headerlink" title="进入镜像"></a>进入镜像</h3><p><code>docker exec -it mymysql /bin/sh</code> 或者 <code>docker exec -it mymysql bash</code></p>
-<h3 id="登录MySQL"><a href="#登录MySQL" class="headerlink" title="登录MySQL"></a>登录MySQL</h3><p><code>mysql -uroot -p</code></p>
-<h3 id="执行SQL"><a href="#执行SQL" class="headerlink" title="执行SQL"></a>执行SQL</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;ALTER USER &#x27;root&#x27;@&#x27;%&#x27; IDENTIFIED WITH mysql_native_password BY &#x27;root&#x27;;</span><br></pre></td></tr></table></figure>
-<h2 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h2><ul>
-<li><ol>
-<li>Navicat 报错  caching_sha2_password  </li>
+          <h1 id="磨刀不误砍柴工，这些快捷键能加快编码数据，希望大家收藏一波"><a href="#磨刀不误砍柴工，这些快捷键能加快编码数据，希望大家收藏一波" class="headerlink" title="磨刀不误砍柴工，这些快捷键能加快编码数据，希望大家收藏一波"></a>磨刀不误砍柴工，这些快捷键能加快编码数据，希望大家收藏一波</h1><p>Ctrl+/ 或 Ctrl+Shift+/ 注释（// 或者/<em>…</em>/ ）<br>Ctrl+D 复制行<br>Ctrl+X 删除行<br>快速修复 alt+enter (modify/cast)<br>代码提示 alt+/<br>ctr+G 定位某一行<br>Shift+F6 重构-重命名<br>Ctrl+R 替换文本<br>Ctrl+F 查找文本</p>
+<p>Ctrl+E 最近打开的文件<br>Ctrl+J 自动代码</p>
+<p>组织导入 ctr+alt+O<br>格式化代码 ctr+alt+L<br>大小写转化 ctr+shift+U</p>
+<hr>
+<h2 id="IntelliJ-Idea-常用快捷键列表"><a href="#IntelliJ-Idea-常用快捷键列表" class="headerlink" title="IntelliJ Idea 常用快捷键列表"></a>IntelliJ Idea 常用快捷键列表</h2><p>Alt+回车 导入包,自动修正<br>Ctrl+N   查找类<br>Ctrl+Shift+N 查找文件<br>Ctrl+Alt+L  格式化代码<br>Ctrl+Alt+O 优化导入的类和包<br>Alt+Insert 生成代码(如get,set方法,构造函数等)<br>Ctrl+E或者Alt+Shift+C  最近更改的代码<br>Ctrl+R 替换文本<br>Ctrl+F 查找文本<br>Ctrl+Shift+Space 自动补全代码<br>Ctrl+空格 代码提示<br>Ctrl+Alt+Space 类名或接口名提示<br>Ctrl+P 方法参数提示<br>Ctrl+Shift+Alt+N 查找类中的方法或变量<br>Alt+Shift+C 对比最近修改的代码</p>
+<p>Shift+F6  重构-重命名<br>Ctrl+Shift+先上键<br>Ctrl+X 删除行<br>Ctrl+D 复制行<br>Ctrl+/ 或 Ctrl+Shift+/  注释（// 或者/<em>…</em>/ ）<br>Ctrl+J  自动代码<br>Ctrl+E 最近打开的文件<br>Ctrl+H 显示类结构图<br>Ctrl+Q 显示注释文档<br>Alt+F1 查找代码所在位置<br>Alt+1 快速打开或隐藏工程面板<br>Ctrl+Alt+ left/right 返回至上次浏览的位置<br>Alt+ left/right 切换代码视图<br>Alt+ Up/Down 在方法间快速移动定位<br>Ctrl+Shift+Up/Down 代码向上/下移动。<br>F2 或Shift+F2 高亮错误或警告快速定位</p>
+<p>代码标签输入完成后，按Tab，生成代码。<br>选中文本，按Ctrl+Shift+F7 ，高亮显示所有该文本，按Esc高亮消失。<br>Ctrl+W 选中代码，连续按会有其他效果<br>选中文本，按Alt+F3 ，逐个往下查找相同文本，并高亮显示。<br>Ctrl+Up/Down 光标跳转到第一行或最后一行下<br>Ctrl+B 快速打开光标处的类或方法 </p>
+<hr>
+<h2 id="IDEA内存优化"><a href="#IDEA内存优化" class="headerlink" title="IDEA内存优化"></a>IDEA内存优化</h2><ol>
+<li>因机器本身的配置而配置：</li>
 </ol>
-</li>
-</ul>
-<blockquote>
-<p><strong>解决办法</strong></p>
-<blockquote>
-<p>使用mysql进入控制台，然后输入ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY ‘111111’;，然后调用下命令FLUSH PRIVILEGES;</p>
-</blockquote>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2020/05/07/Kafka-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="MAGRY">
-      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="CodingDiary">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/07/Kafka-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">Kafka常见问题解决方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:32:45" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">运维</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="max-request-size出错-RecordTooLargeException异常"><a href="#max-request-size出错-RecordTooLargeException异常" class="headerlink" title="max-request-size出错;RecordTooLargeException异常"></a>max-request-size出错;RecordTooLargeException异常</h2><ol>
-<li><p>Kafka者配置文件 server.properties中添加</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">message.max.bytes=100000000（100M）</span><br><span class="line">replica.fetch.max.bytes=100000000（100M）每个分区试图获取的消息字节数。要大于等于message.max.bytes</span><br></pre></td></tr></table></figure></li>
-<li><p>生产者配置文件producer.properties中添加</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">max.request.size = 100000000（100M）请求的最大大小为字节。要小于 message.max.bytes</span><br></pre></td></tr></table></figure></li>
-<li><p>消费者配置文件consumer.properties中添加</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fetch.message.max.bytes=100000000（100M）每个提取请求中为每个主题分区提取的消息字节数。要大于等于message.max.bytes</span><br></pre></td></tr></table></figure></li>
-<li><p>Springboot 配置</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">kafka:</span><br><span class="line">	bootstrap-servers: localhost:<span class="number">9092</span></span><br><span class="line">	producer:</span><br><span class="line">	properties:</span><br><span class="line">		max.request.size: <span class="number">100000000</span></span><br></pre></td></tr></table></figure></li>
-<li><p>修改成功项目生产者启动答应打印</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ProducerConfig values: </span><br><span class="line">	acks = 1</span><br><span class="line">	batch.size = 100000000</span><br><span class="line">	bootstrap.servers = [127.0.0.1:9092]</span><br><span class="line">	buffer.memory = 100000000</span><br><span class="line">	client.id = </span><br><span class="line">	compression.type = none</span><br><span class="line">	connections.max.idle.ms = 540000</span><br><span class="line">	enable.idempotence = false</span><br><span class="line">	interceptor.classes = null</span><br><span class="line">	key.serializer = class org.apache.kafka.common.serialization.StringSerializer</span><br><span class="line">	linger.ms = 0</span><br><span class="line">	max.block.ms = 60000</span><br><span class="line">	max.in.flight.requests.per.connection = 5</span><br><span class="line">	max.request.size = 100000000</span><br><span class="line">	metadata.max.age.ms = 300000</span><br></pre></td></tr></table></figure></li>
+<h2 id="IntelliJ-IDEA-8-bin-idea-exe-vmoptions"><a href="#IntelliJ-IDEA-8-bin-idea-exe-vmoptions" class="headerlink" title="\IntelliJ IDEA 8\bin\idea.exe.vmoptions  "></a>\IntelliJ IDEA 8\bin\idea.exe.vmoptions  </h2><p>-Xms64m<br>-Xmx256m<br>-XX:MaxPermSize=92m<br>-ea<br>-server<br>-Dsun.awt.keepWorkingSetOnMinimize=true</p>
+<hr>
+<ol start="2">
+<li>查询快捷键</li>
 </ol>
+<p>CTRL+N   查找类<br>CTRL+SHIFT+N  查找文件<br>CTRL+SHIFT+ALT+N 查找类中的方法或变量<br>CIRL+B   找变量的来源<br>CTRL+ALT+B  找所有的子类<br>CTRL+SHIFT+B  找变量的类<br>CTRL+G   定位行<br>CTRL+F   在当前窗口查找文本<br>CTRL+SHIFT+F  在指定窗口查找文本<br>CTRL+R   在 当前窗口替换文本<br>CTRL+SHIFT+R  在指定窗口替换文本<br>ALT+SHIFT+C  查找修改的文件<br>CTRL+E   最近打开的文件<br>F3   向下查找关键字出现位置<br>SHIFT+F3  向上一个关键字出现位置<br>F4   查找变量来源<br>CTRL+ALT+F7  选中的字符查找工程出现的地方<br>CTRL+SHIFT+O  弹出显示查找内容</p>
+<hr>
+<ol start="3">
+<li>自动代码</li>
+</ol>
+<p>ALT+回车  导入包,自动修正<br>CTRL+ALT+L  格式化代码<br>CTRL+ALT+I  自动缩进<br>CTRL+ALT+O  优化导入的类和包<br>ALT+INSERT  生成代码(如GET,SET方法,构造函数等)<br>CTRL+E 最近更改的代码<br>CTRL+SHIFT+SPACE 自动补全代码<br>CTRL+空格  代码提示<br>CTRL+ALT+SPACE  类名或接口名提示<br>CTRL+P   方法参数提示<br>CTRL+J   自动代码<br>CTRL+ALT+T  把选中的代码放在 TRY{} IF{} ELSE{} 里</p>
+<hr>
+<ol start="4">
+<li>复制快捷方式</li>
+</ol>
+<p>CTRL+D   复制行<br>CTRL+X   剪切,删除行  </p>
+<hr>
+<ol start="5">
+<li>其他快捷方式</li>
+</ol>
+<p>CIRL+U   大小写切换<br>CTRL+Z   倒退<br>CTRL+SHIFT+Z  向前<br>CTRL+ALT+F12  资源管理器打开文件夹<br>ALT+F1   查找文件所在目录位置<br>SHIFT+ALT+INSERT 竖编辑模式<br>CTRL+/   注释//<br>CTRL+SHIFT+/  注释/<em>…</em>/<br>CTRL+W   选中代码，连续按会有其他效果<br>CTRL+B   快速打开光标处的类或方法<br>ALT+ ←/→  切换代码视图<br>CTRL+ALT ←/→  返回上次编辑的位置<br>ALT+ ↑/↓  在方法间快速移动定位<br>SHIFT+F6  重构-重命名<br>CTRL+H   显示类结构图<br>CTRL+Q   显示注释文档<br>ALT+1   快速打开或隐藏工程面板<br>CTRL+SHIFT+UP/DOWN 代码向上/下移动。<br>CTRL+UP/DOWN  光标跳转到第一行或最后一行下<br>ESC   光标返回编辑框<br>SHIFT+ESC  光标返回编辑框,关闭无用的窗口<br>F1   帮助千万别按,很卡!<br>CTRL+F4   非常重要下班都用</p>
+<hr>
 
       
     </div>
@@ -512,6 +416,85 @@
 <h3 id="四、消费者"><a href="#四、消费者" class="headerlink" title="四、消费者"></a>四、消费者</h3><blockquote>
 <p>消费消息。</p>
 </blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2020/05/07/Kafka-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MAGRY">
+      <meta itemprop="description" content="路其修远兮，吾将上下而求索">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodingDiary">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/07/Kafka-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">Kafka常见问题解决方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:32:45" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">运维</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="max-request-size出错-RecordTooLargeException异常"><a href="#max-request-size出错-RecordTooLargeException异常" class="headerlink" title="max-request-size出错;RecordTooLargeException异常"></a>max-request-size出错;RecordTooLargeException异常</h2><ol>
+<li><p>Kafka者配置文件 server.properties中添加</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">message.max.bytes=100000000（100M）</span><br><span class="line">replica.fetch.max.bytes=100000000（100M）每个分区试图获取的消息字节数。要大于等于message.max.bytes</span><br></pre></td></tr></table></figure></li>
+<li><p>生产者配置文件producer.properties中添加</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">max.request.size = 100000000（100M）请求的最大大小为字节。要小于 message.max.bytes</span><br></pre></td></tr></table></figure></li>
+<li><p>消费者配置文件consumer.properties中添加</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fetch.message.max.bytes=100000000（100M）每个提取请求中为每个主题分区提取的消息字节数。要大于等于message.max.bytes</span><br></pre></td></tr></table></figure></li>
+<li><p>Springboot 配置</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">kafka:</span><br><span class="line">	bootstrap-servers: localhost:<span class="number">9092</span></span><br><span class="line">	producer:</span><br><span class="line">	properties:</span><br><span class="line">		max.request.size: <span class="number">100000000</span></span><br></pre></td></tr></table></figure></li>
+<li><p>修改成功项目生产者启动答应打印</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ProducerConfig values: </span><br><span class="line">	acks = 1</span><br><span class="line">	batch.size = 100000000</span><br><span class="line">	bootstrap.servers = [127.0.0.1:9092]</span><br><span class="line">	buffer.memory = 100000000</span><br><span class="line">	client.id = </span><br><span class="line">	compression.type = none</span><br><span class="line">	connections.max.idle.ms = 540000</span><br><span class="line">	enable.idempotence = false</span><br><span class="line">	interceptor.classes = null</span><br><span class="line">	key.serializer = class org.apache.kafka.common.serialization.StringSerializer</span><br><span class="line">	linger.ms = 0</span><br><span class="line">	max.block.ms = 60000</span><br><span class="line">	max.in.flight.requests.per.connection = 5</span><br><span class="line">	max.request.size = 100000000</span><br><span class="line">	metadata.max.age.ms = 300000</span><br></pre></td></tr></table></figure></li>
+</ol>
 
       
     </div>
@@ -973,7 +956,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2020/05/07/Word-%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/">
+    <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2020/05/07/Swagger2-%E6%B3%A8%E8%A7%A3%E8%A7%A3%E9%87%8A/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -987,7 +970,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/05/07/Word-%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/" class="post-title-link" itemprop="url">word 快捷键</a>
+            <a href="/2020/05/07/Swagger2-%E6%B3%A8%E8%A7%A3%E8%A7%A3%E9%87%8A/" class="post-title-link" itemprop="url">Swagger2-注解解释</a>
         </h2>
 
         <div class="post-meta">
@@ -998,7 +981,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:28:35" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
+              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:33:45" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1006,7 +989,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%96%87%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">文档</span></a>
+                  <a href="/categories/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">开发</span></a>
                 </span>
             </span>
 
@@ -1021,159 +1004,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="word-快捷键"><a href="#word-快捷键" class="headerlink" title="word 快捷键"></a>word 快捷键</h2><h3 id="撤销和恢复操作"><a href="#撤销和恢复操作" class="headerlink" title="撤销和恢复操作"></a>撤销和恢复操作</h3><ul>
-<li><p>Esc：取消操作</p>
-</li>
-<li><p>Ctrl+Z：撤销操作</p>
-</li>
-<li><p>Ctrl+Y：恢复或重复操作</p>
-</li>
-</ul>
-<h3 id="文本编辑"><a href="#文本编辑" class="headerlink" title="文本编辑"></a>文本编辑</h3><ul>
-<li><p>Ctrl+Shift+空格键：创建不间断空格</p>
-</li>
-<li><p>Ctrl+连字符：创建不间断连字符</p>
-</li>
-<li><p>Ctrl+B：加粗字母</p>
-</li>
-<li><p>Ctrl+I：使字母倾斜</p>
-</li>
-<li><p>Ctrl+U：为字符添加下划线</p>
-</li>
-<li><p>Ctrl+Shift+&lt;：将字号减小一个值</p>
-</li>
-<li><p>Ctrl+Shift+&gt;：将字号增大一个值</p>
-</li>
-<li><p>Ctrl+[：将字号减小1 磅</p>
-</li>
-<li><p>Ctrl+]：将字号增大1 磅</p>
-</li>
-<li><p>Ctrl+空格键：删除段落或字符格式</p>
-</li>
-<li><p>Ctrl+C：复制所选文本或对象</p>
-</li>
-<li><p>Ctrl+X：剪切所选文本或对象</p>
-</li>
-<li><p>Ctrl+V：粘贴文本或对象</p>
-</li>
-<li><p>Ctrl+Alt+V：选择性粘贴</p>
-</li>
-<li><p>Ctrl+Shift+V：仅粘贴格式</p>
-</li>
-<li><p>Ctrl+Shift+G：打开“字数统计”对话框</p>
-</li>
-</ul>
-<h3 id="创建、查看和保存文档"><a href="#创建、查看和保存文档" class="headerlink" title="创建、查看和保存文档"></a>创建、查看和保存文档</h3><ul>
-<li><p>Ctrl+O：打开文档</p>
-</li>
-<li><p>Ctrl+W：关闭文档</p>
-</li>
-<li><p>Alt+Ctrl+S：拆分文档窗口</p>
-</li>
-<li><p>Ctrl+S：保存文档</p>
-</li>
-<li><p>Alt+Shift+C：撤消拆分文档窗口</p>
-<h3 id="查找、替换和浏览文本"><a href="#查找、替换和浏览文本" class="headerlink" title="查找、替换和浏览文本"></a>查找、替换和浏览文本</h3></li>
-<li><p>Ctrl+F：查找内容、格式和特殊项</p>
-</li>
-<li><p>Alt+Ctrl+Y：重复查找</p>
-</li>
-<li><p>Ctrl+H：替换文字、特定格式和特殊项</p>
-</li>
-<li><p>Ctrl+G：转到至页、书签、脚注、表格、注释、图形或其他位置</p>
-</li>
-<li><p>Alt+Ctrl+Z：在最后四个已编辑过的位置之间进行切换</p>
-</li>
-<li><p>Ctrl+Page Up：移至上一编辑位置</p>
-</li>
-<li><p>Ctrl+Page Down：移至下一编辑位置</p>
-</li>
-</ul>
-<h3 id="切换视图"><a href="#切换视图" class="headerlink" title="切换视图"></a>切换视图</h3><ul>
-<li><p>Alt+Ctrl+P：切换到普通视图</p>
-</li>
-<li><p>Alt+Ctrl+O：切换到大纲视图</p>
-</li>
-<li><p>Alt+Ctrl+N：切换到草稿视图</p>
-</li>
-</ul>
-<h3 id="大纲视图"><a href="#大纲视图" class="headerlink" title="大纲视图"></a>大纲视图</h3><ul>
-<li><p>Alt+Shift+向左键：提升段落级别</p>
-</li>
-<li><p>Alt+Shift+向右键：降低段落级别</p>
-</li>
-<li><p>Ctrl+Shift+N：降级为正文</p>
-</li>
-<li><p>Alt+Shift+向上键：上移所选段落</p>
-</li>
-<li><p>Alt+Shift+向下键：下移所选段落</p>
-</li>
-<li><p>Alt+Shift+加号：扩展标题下的文本</p>
-</li>
-<li><p>Alt+Shift+减号：折叠标题下的文本</p>
-</li>
-<li><p>Alt+Shift+A：扩展或折叠所有文本或标题</p>
-</li>
-<li><p>数字键盘上的斜杠 (/)：隐藏或显示字符格式</p>
-</li>
-<li><p>Alt+Shift+L：显示首行正文或所有正文</p>
-</li>
-<li><p>Ctrl+Tab：插入制表符</p>
-</li>
-</ul>
-<h3 id="打印和预览文档"><a href="#打印和预览文档" class="headerlink" title="打印和预览文档"></a>打印和预览文档</h3><ul>
-<li><p>Ctrl+P:打印文档</p>
-</li>
-<li><p>Alt+Ctrl+I：切换至或退出打印预览</p>
-</li>
-<li><p>箭头键：在放大的预览页上移动</p>
-</li>
-<li><p>Page Up/Down：缩小显示比例时逐页翻阅预览页</p>
-</li>
-<li><p>Ctrl+Home：缩小显示比例时移至预览首页</p>
-</li>
-<li><p>Ctrl+End：缩小显示比例时移至最后一张预览页</p>
-</li>
-</ul>
-<h3 id="审阅文档"><a href="#审阅文档" class="headerlink" title="审阅文档"></a>审阅文档</h3><ul>
-<li><p>Alt+Ctrl+M：插入批注</p>
-</li>
-<li><p>Ctrl+Shift+E：打开或关闭修订</p>
-</li>
-<li><p>Alt+Shift+C：如果“审阅窗格”打开，则将其关闭</p>
-</li>
-</ul>
-<h3 id="处理网页"><a href="#处理网页" class="headerlink" title="处理网页"></a>处理网页</h3><ul>
-<li><p>Ctrl+K：插入超链接</p>
-</li>
-<li><p>Alt+向右键：前进一页</p>
-</li>
-<li><p>Alt+向左键：返回一页</p>
-</li>
-<li><p>F9：刷新</p>
-</li>
-</ul>
-<h3 id="访问和使用任务窗格和库"><a href="#访问和使用任务窗格和库" class="headerlink" title="访问和使用任务窗格和库"></a>访问和使用任务窗格和库</h3><ul>
-<li><p>（可能多次) F6：从程序窗口中的一个任务窗格移动到另一个</p>
-</li>
-<li><p>（可能多次）Ctrl+Tab：菜单活动状态时，移到任务窗格</p>
-</li>
-<li><p>Tab或Shift+Tab：任务窗格活动状态，选择该任务窗格中的下一个或上一个选项</p>
-</li>
-<li><p>Ctrl+空格键：显示任务窗格菜单上的整个命令集</p>
-</li>
-<li><p>Shift+F10：打开选中库项目的下拉菜单</p>
-</li>
-<li><p>空格键或Enter：执行分配给所选按钮的操作</p>
-</li>
-<li><p>Home：选择库中的第一个项目</p>
-</li>
-<li><p>End：选择库中的最后一个项目</p>
-</li>
-<li><p>Page Up：在选中的库列表中向上滚动</p>
-</li>
-<li><p>Page Down：在选中的库列表中向下滚动</p>
-</li>
+          <h2 id="注解的使用方法"><a href="#注解的使用方法" class="headerlink" title="注解的使用方法"></a>注解的使用方法</h2><p>@ApiOperation 用在方法上，说明方法的作用<br>@ApiImplicitParams 用在方法上包含一组方法说明<br>@ApiImplicitParam y用在@ApiImplicitParams 注解中，指明一个请求参数的各个方面</p>
+<ul>
+<li>paranType 参数放在什么地方</li>
+<li>-header 请求参数的获取 @RequestHeader</li>
+<li>-query  请求参数的获取 @RequestParam</li>
+<li>-path (用于restful接口) 请求参数的获取 @PathVariable （请求后带参数）</li>
+<li>-body(RequestBody)</li>
+<li>-form (表单提交)</li>
+<li>name 参数名称</li>
+<li>dataType 参数类型</li>
+<li>required 参数是否必传</li>
+<li>value 参数的意思</li>
+<li>defaultValue 参数默认值</li>
 </ul>
 
       
@@ -1194,7 +1037,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2020/05/07/docker-%E5%AE%89%E8%A3%85%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/">
+    <link itemprop="mainEntityOfPage" href="http://blog.mgary.top/2020/05/07/Ubuntu19-%E5%88%86%E8%BE%A8%E7%8E%87%E9%80%89%E9%A1%B9%E4%B8%A2%E5%A4%B1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1208,7 +1051,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/05/07/docker-%E5%AE%89%E8%A3%85%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" class="post-title-link" itemprop="url">docker-安装问题记录</a>
+            <a href="/2020/05/07/Ubuntu19-%E5%88%86%E8%BE%A8%E7%8E%87%E9%80%89%E9%A1%B9%E4%B8%A2%E5%A4%B1/" class="post-title-link" itemprop="url">Ubuntu19-分辨率选项丢失</a>
         </h2>
 
         <div class="post-meta">
@@ -1219,7 +1062,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:06:49" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
+              <time title="创建时间：2020-05-07 12:00:31 / 修改时间：16:33:50" itemprop="dateCreated datePublished" datetime="2020-05-07T12:00:31+08:00">2020-05-07</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1227,7 +1070,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">运维</span></a>
+                  <a href="/categories/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">开发</span></a>
                 </span>
             </span>
 
@@ -1242,13 +1085,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <ul>
-<li><p>当前用户没有加权限</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.40/containers/json: dial unix /var/run/docker.sock: connect: permission denied</span><br></pre></td></tr></table></figure>
-<p>   解决办法</p>
-<p>  正确的是将当前用户加入docker组:</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gpasswd -a $&#123;USER&#125; docker</span><br></pre></td></tr></table></figure>
-<p>  退出重新进入即可</p>
+          <h2 id="Ubuntu19-1-分辨率选项丢失"><a href="#Ubuntu19-1-分辨率选项丢失" class="headerlink" title="Ubuntu19-1-分辨率选项丢失"></a>Ubuntu19-1-分辨率选项丢失</h2><hr>
+<ul>
+<li>方案一<br>直接上手但是这个方法是针对  <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_22999067/article/details/90611457">分辨率调整选项里没有的选项而新增的</a>，因此无效</li>
+</ul>
+<hr>
+<ul>
+<li>方案二<ol>
+<li>在第一次撞墙后，开始一步一步解决问题，疑点一：显卡驱动是否有误，于是我直接注销使用其他用户登陆<br>发现没有问题，排除显卡驱动问题。</li>
+<li>查看调试分辨率命令的帮助文档<code>xrandr  -help</code>最后得出结果，尝试使用下命令直接进行切换才修复成功（有效）<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xrandr -s 0</span><br><span class="line">xrandr -s 1</span><br><span class="line">xrandr -s 2</span><br></pre></td></tr></table></figure></li>
+</ol>
 </li>
 </ul>
 
